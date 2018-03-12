@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/transparent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/white_translucent"
+        android:paddingBottom="16dp">
+
+        <ImageView
+            android:id="@+id/img_video"
+            android:layout_width="150dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="13dp"
+            android:layout_marginTop="13dp"
+            android:background="@mipmap/default_320" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            style="@style/small_tv_style"
+            android:layout_marginLeft="178dp"
+            android:layout_marginTop="15dp" />
+
+        <TextView
+            android:id="@+id/tv_descript"
+            style="@style/small_tv_styledescript"
+            android:layout_below="@id/tv_title"
+            android:layout_marginLeft="178dp"
+            android:layout_marginTop="4dp"
+            android:lines="2" />
+        <TextView
+            android:id="@+id/space"
+            android:layout_width="match_parent"
+            android:layout_height="12dp"
+            android:layout_below="@+id/tv_descript"/>
+
+        <TextView
+            android:id="@+id/tv_rank"
+            style="@style/small_tv_info"
+            android:layout_below="@id/space"
+            android:layout_marginBottom="3dp"
+            android:layout_marginLeft="178dp"
+            android:text="高级" />
+
+        <TextView
+            android:id="@+id/tv_hot"
+            style="@style/small_tv_info"
+            android:layout_below="@id/space"
+            android:layout_marginBottom="3dp"
+            android:layout_marginLeft="208dp"
+            android:text="3000" />
+
+        <TextView
+            android:id="@+id/tv_prices"
+            style="@style/small_tv_info"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_rank"
+            android:layout_marginBottom="0dp"
+            android:layout_marginLeft="178dp"
+            android:text="1024.00元" />
+    </RelativeLayout>
+
+    <!--<TextView
+        android:id="@+id/tv_title"
+        style="@style/small_tv_style"
+        android:layout_marginTop="3dp" />-->
+
+</LinearLayout>

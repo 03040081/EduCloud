@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/both_match_style"
+    android:background="?attr/background"
+    android:orientation="vertical">
+
+    <include layout="@layout/commen_title" />
+
+    <fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard
+        android:id="@+id/videoplayer"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@color/white_translucent_20" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center">
+
+        <LinearLayout
+            android:id="@+id/ll_about"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/tab_height"
+            android:background="@color/white_translucent_20"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <com.ogaclejapan.smarttablayout.SmartTabLayout
+                android:id="@+id/viewpagertab"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:paddingBottom="4dp"
+                app:stl_defaultTabBackground="@android:color/transparent"
+                app:stl_defaultTabTextColor="@color/tab_ab_tex_selector"
+                app:stl_defaultTabTextSize="14sp"
+                app:stl_distributeEvenly="true"
+                app:stl_dividerColor="@android:color/transparent"
+                app:stl_indicatorColor="@android:color/holo_green_dark"
+                app:stl_indicatorCornerRadius="1.5dp"
+                app:stl_indicatorInterpolation="smart"
+                app:stl_indicatorThickness="3dp"
+                app:stl_underlineColor="@android:color/transparent" />
+            <!--<android.support.design.widget.TabLayout
+                android:id="@+id/tablayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#E0E0E0"
+                app:tabIndicatorColor="@color/bel_red_text"
+                app:tabMode="fixed"
+                app:tabSelectedTextColor="@color/colorOrangeAccent"
+                app:tabTextColor="@android:color/black"
+                app:tabIndicatorHeight="5dp"
+                />-->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <com.zsc.zzc.educloud.widget.SwipeViewPager
+            android:id="@+id/viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/ll_about" />
+        <com.zsc.zzc.educloud.widget.LVGhost
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/circle_loading"
+            style="@style/loading_style"/>
+    </RelativeLayout>
+
+</LinearLayout>

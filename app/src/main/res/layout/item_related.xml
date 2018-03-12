@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:padding="3dp"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white_translucent">
+
+        <ImageView
+            android:id="@+id/img_video"
+            android:layout_width="74dp"
+            android:layout_marginLeft="7dp"
+            android:layout_marginTop="8dp"
+            android:layout_height="53dp"
+            android:background="@mipmap/default_200"
+            android:padding="3dp"/>
+        <TextView
+            android:id="@+id/tv_title"
+            style="@style/small_tv_stylerealte"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="89dp"
+            android:singleLine="true"/>
+        <TextView
+            android:id="@+id/tv_rank"
+            style="@style/small_tv_info"
+            android:layout_below="@id/tv_title"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="89dp"
+            android:text="高级"/>
+        <TextView
+            android:id="@+id/tv_hot"
+            style="@style/small_tv_info"
+            android:layout_below="@id/tv_title"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="114dp"
+            android:text="3000"/>
+        <TextView
+            android:id="@+id/tv_prices"
+            style="@style/small_tv_info"
+            android:layout_below="@+id/tv_rank"
+            android:layout_marginTop="2dp"
+            android:layout_marginLeft="89dp"
+            android:text="1024.00元"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="8dp"
+            android:layout_below="@+id/tv_prices"/>
+    </RelativeLayout>
+</LinearLayout>
