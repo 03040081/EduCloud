@@ -59,7 +59,6 @@ public class SettingActivity extends SwipeBackActivity {
             case R.id.rl_recommend:
                 new MaterialDialog.Builder(this)
                         .content(R.string.setting_recommend_content)
-
                         .positiveText(R.string.close)
                         .negativeText(R.string.setting_recommend_copy).onNegative(new MaterialDialog.SingleButtonCallback() {
                     @Override
@@ -68,16 +67,13 @@ public class SettingActivity extends SwipeBackActivity {
                         cmb.setText(getResources().getString(R.string.setting_recommend_url));
                         EventUtil.showToast(SettingActivity.this, "已复制到粘贴板");
                     }
-                })
-                        .show();
+                }).show();
                 break;
             case R.id.rl_about:
                 new MaterialDialog.Builder(this)
                         .title(R.string.about)
-
                         .icon(new IconicsDrawable(this)
-
-                                .icon(MaterialDesignIconic.Icon.gmi_account)
+                         .icon(MaterialDesignIconic.Icon.gmi_account)
                                 .sizeDp(20))
                         .content(R.string.about_me)
 
