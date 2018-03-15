@@ -11,4 +11,32 @@
         app:layout_empty="@layout/view_empty"
         app:scrollbars="none" />
 
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="5dp">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true">
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColorHint="#848c89">
+
+                <EditText
+                    android:id="@+id/tv_contents_assess"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/selector_bg_edit_2"
+                    android:textCursorDrawable="@null"
+                    android:textSize="15sp"
+                    android:layout_alignParentBottom="true"/>
+            </android.support.design.widget.TextInputLayout>
+        </ScrollView>
+    </RelativeLayout>
 </RelativeLayout>

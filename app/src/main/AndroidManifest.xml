@@ -27,7 +27,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.activitys.MainActivity" />
+        <activity android:name=".ui.activitys.MainActivity"
+            android:windowSoftInputMode="adjustNothing"/>
         <activity
             android:name=".ui.activitys.VideoListActivity"
             android:theme="@style/CustomTransparent" />

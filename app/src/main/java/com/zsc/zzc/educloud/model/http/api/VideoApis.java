@@ -112,4 +112,31 @@ public interface VideoApis {
                                                             @Query("currPage") int currPage,
                                                             @Query("pageSize") int pageSize);
 
+    /*
+    发表评论
+     */
+    @FormUrlEncoded
+    @POST
+    void publishAssess(@Field("videoId")int videoId,
+                       @Field("score")int score,
+                       @Field("contents")String contents,
+                       @Field("userId")int userId);
+
+    /*
+    发表咨询
+     */
+    @FormUrlEncoded
+    @POST
+    void publishForum(@Field("videoId")int videoId,
+                      @Field("contents")String contents,
+                      @Field("userId")int userId);
+
+    /*
+    添加到个人课程表
+     */
+    @FormUrlEncoded
+    @POST
+    Observable<Boolean> addSchedule(@Field("userId")int userId,
+                                    @Field("videoId")int videoId);
+
 }
