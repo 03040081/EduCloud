@@ -18,11 +18,7 @@ import retrofit2.http.POST;
 import retrofit2.http.Query;
 import rx.Observable;
 
-/**
- * Description: VideoApis
- * Creator: yxc
- * date: 2016/9/8 14:05
- */
+
 
 public interface VideoApis {
     //String HOST = "http://api.svipmovie.com/front/";
