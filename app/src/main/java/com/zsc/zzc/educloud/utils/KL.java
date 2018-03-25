@@ -12,8 +12,6 @@ package com.zsc.zzc.educloud.utils;
  * 2.和slf4j  相同格式，统一管理；
  *
  * 3.抽离简化日志功能。
- *
- * Created by CP on 15/8/6.
  */
 public class KL extends L {
 }

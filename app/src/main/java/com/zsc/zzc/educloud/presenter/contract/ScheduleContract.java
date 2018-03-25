@@ -6,10 +6,6 @@ import com.zsc.zzc.educloud.model.bean.VideoInfor;
 
 import java.util.List;
 
-/**
- * Created by 21191 on 2018/3/7.
- */
-
 public interface ScheduleContract {
 
     interface View extends BaseView {

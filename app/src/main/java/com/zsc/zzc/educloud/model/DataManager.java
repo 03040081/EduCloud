@@ -14,12 +14,6 @@ import java.util.List;
 import io.realm.Realm;
 import rx.Observable;
 
-/**
- * @author: Est <codeest.dev@gmail.com>
- * @date: 2017/4/21
- * @desciption:
- */
-
 public class DataManager implements HttpHelper, DBHelper {
 
     HttpHelper mHttpHelper;

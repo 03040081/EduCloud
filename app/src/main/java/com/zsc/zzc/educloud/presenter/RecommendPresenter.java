@@ -15,11 +15,6 @@ import javax.inject.Inject;
 import rx.Subscription;
 import rx.functions.Action1;
 
-/**
- * Description: RecommendPresenter
- * Creator: yxc
- * date: 2016/9/21 16:26
- */
 public class RecommendPresenter extends RxPresenter<RecommendContract.View> implements RecommendContract.Presenter {
 
     int page = 1;

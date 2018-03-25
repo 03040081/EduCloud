@@ -28,10 +28,6 @@ import com.zsc.zzc.educloud.presenter.contract.RegisterContract;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-/**
- * Created by 21191 on 2018/3/1.
- */
-
 public class RegisterActivity extends SwipeBackActivity<RegisterPresenter> implements RegisterContract.View {
 
     @BindView(R.id.fab)

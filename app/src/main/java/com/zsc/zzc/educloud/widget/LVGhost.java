@@ -13,10 +13,6 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
 
-/**
- * Created by lumingmin on 16/6/29.
- */
-
 public class LVGhost extends View {
 
 

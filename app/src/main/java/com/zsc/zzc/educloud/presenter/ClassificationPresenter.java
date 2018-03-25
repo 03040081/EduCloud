@@ -17,11 +17,6 @@ import javax.inject.Inject;
 import rx.Subscription;
 import rx.functions.Action1;
 
-/**
- * Description: ClassificationPresenter
- * Creator: yxc
- * date: 2016/9/21 17:55
- */
 public class ClassificationPresenter extends RxPresenter<ClassificationContract.View> implements ClassificationContract.Presenter {
     int page = 0;
 

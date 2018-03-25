@@ -23,11 +23,6 @@ import rx.Subscription;
 import rx.functions.Action0;
 import rx.functions.Action1;
 
-/**
- * Description: VideoInfoPresenter
- * Creator: yxc
- * date: 2016/9/21 15:35
- */
 public class VideoInfoPresenter extends RxPresenter<VideoInfoContract.View> implements VideoInfoContract.Presenter {
 
     public final static String Refresh_Video_Info = "Refresh_Video_Info";

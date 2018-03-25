@@ -2,10 +2,6 @@ package com.zsc.zzc.educloud.model.bean;
 
 import io.realm.RealmObject;
 
-/**
- * Created by zjg on 2016/10/11.
- */
-
 public class SearchKey extends RealmObject {
     public String searchKey;
     public long insertTime;//插入时间

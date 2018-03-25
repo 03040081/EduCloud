@@ -13,7 +13,7 @@ import com.zsc.zzc.educloud.component.ImageLoader;
 import com.zsc.zzc.educloud.model.bean.VideoInfor;
 
 
-/**
+/*
  推荐
  */
 public class RelatedAdapter extends RecyclerArrayAdapter<VideoInfor> {

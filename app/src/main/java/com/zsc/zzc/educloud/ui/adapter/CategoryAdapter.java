@@ -14,10 +14,6 @@ import com.zsc.zzc.educloud.widget.MyGridView;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by 21191 on 2018/2/26.
- */
-
 public class CategoryAdapter extends BaseAdapter implements AdapterView.OnItemClickListener {
     private Context context;
     private List<Category> categoryArrayList =new ArrayList<Category>();

@@ -13,11 +13,6 @@ import com.zsc.zzc.educloud.ui.activitys.VideoInfoActivity;
 
 import java.util.List;
 
-/**
- * Description: BannerAdapter
- * Creator: yxc
- * date: 2016/9/30 11:09
- */
 public class BannerAdapter extends StaticPagerAdapter {
 
     private Context ctx;

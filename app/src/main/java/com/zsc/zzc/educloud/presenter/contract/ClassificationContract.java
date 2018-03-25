@@ -6,11 +6,6 @@ import com.zsc.zzc.educloud.model.bean.Major;
 
 import java.util.List;
 
-/**
- * Description: ClassificationContract
- * Creator: yxc
- * date: 2016/9/21 17:55
- */
 public interface ClassificationContract {
 
     interface View extends BaseView {

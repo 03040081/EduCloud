@@ -6,11 +6,6 @@ import com.zsc.zzc.educloud.model.bean.VideoInfor;
 
 import java.util.List;
 
-/**
- * Description: VideoListContract
- * Creator: yxc
- * date: 2017/9/16 14:59
- */
 public interface SearchVideoListContract {
 
     interface View extends BaseView {

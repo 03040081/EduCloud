@@ -11,11 +11,6 @@ import com.zsc.zzc.educloud.R;
 import com.zsc.zzc.educloud.component.ImageLoader;
 import com.zsc.zzc.educloud.model.bean.VideoInfor;
 
-/**
- * Description: 推荐
- * Creator: yxc
- * date: 2016/9/30 11:10
- */
 public class RecommendAdapter extends RecyclerArrayAdapter<VideoInfor> {
 
     public RecommendAdapter(Context context) {

@@ -4,10 +4,6 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.ListView;
 
-/**
- * Created by 21191 on 2018/2/24.
- */
-
 public class MyListView extends ListView {
     public MyListView(Context context) {
         super(context);

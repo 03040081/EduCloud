@@ -15,10 +15,6 @@ import javax.inject.Inject;
 import rx.Subscription;
 import rx.functions.Action1;
 
-/**
- * Created by 21191 on 2018/3/7.
- */
-
 public class SchedulePresenter extends RxPresenter<ScheduleContract.View> implements ScheduleContract.Presenter {
 
 

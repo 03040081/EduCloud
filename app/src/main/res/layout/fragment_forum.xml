@@ -26,7 +26,7 @@
             android:layout_gravity="center_vertical">
 
             <EditText
-                android:id="@+id/tv_contents_assess"
+                android:id="@+id/tv_contents_forum"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_alignParentBottom="true"
@@ -41,6 +41,7 @@
         </android.support.design.widget.TextInputLayout>
 
         <Button
+            android:id="@+id/bt_post_forum"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:layout_marginRight="4dp"

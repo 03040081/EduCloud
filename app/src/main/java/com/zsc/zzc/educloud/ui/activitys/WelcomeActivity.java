@@ -13,11 +13,7 @@ import com.zsc.zzc.educloud.utils.StringUtils;
 import java.util.List;
 
 import butterknife.BindView;
-/**
- * Description: 开屏页
- * Creator: yxc
- * date: 2017/9/6 14:57
- */
+
 public class WelcomeActivity extends BaseMvpActivity<WelcomePresenter> implements WelcomeContract.View {
 
     @BindView(R.id.iv_welcome_bg)

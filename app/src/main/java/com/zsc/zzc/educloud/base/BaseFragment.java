@@ -20,14 +20,7 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import me.yokeyword.fragmentation.SupportFragment;
 
-//import com.zsc.zzc.educloud.widget.theme.ColorUiUtil;
 
-
-/**
- * Description: BaseFragment
- * Creator: yxc
- * date: 2016/9/7 11:40
- */
 public abstract class BaseFragment extends SupportFragment {
 
     private final String TAG = getClass().getSimpleName();

@@ -10,10 +10,6 @@ import javax.inject.Inject;
 
 import rx.Observable;
 
-
-/**
- * Created by codeest on 2016/8/3.
- */
 public class RetrofitHelper1 implements HttpHelper {
 
     private VideoApis mVideoApis;

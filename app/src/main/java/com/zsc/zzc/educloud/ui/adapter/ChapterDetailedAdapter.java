@@ -12,9 +12,6 @@ import com.zsc.zzc.educloud.model.bean.ChapterDetailed;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by 21191 on 2018/2/24.
- */
 
 public class ChapterDetailedAdapter extends BaseAdapter {
 

@@ -13,10 +13,6 @@ import javax.inject.Inject;
 import rx.Subscription;
 import rx.functions.Action1;
 
-/**
- * Created by 21191 on 2018/3/3.
- */
-
 public class RegisterPresenter extends RxPresenter<RegisterContract.View> implements RegisterContract.Presenter{
 
     @Inject

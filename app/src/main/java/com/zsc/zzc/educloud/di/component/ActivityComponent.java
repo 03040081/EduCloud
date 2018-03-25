@@ -15,11 +15,6 @@ import com.zsc.zzc.educloud.ui.activitys.WelcomeActivity;
 
 import dagger.Component;
 
-/**
- * Description:
- * Creator: yxc
- * date: $date $time
- */
 @ActivityScope
 @Component(dependencies = AppComponent.class, modules = {ActivityModule.class})
 public interface ActivityComponent {

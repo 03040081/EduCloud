@@ -12,9 +12,6 @@ import android.view.animation.AnimationUtils;
 
 import com.zsc.zzc.educloud.R;
 
-/*
-*https://github.com/Fichardu/CircleProgress
-*/
 public class CircleProgress extends View {
 
     private static final int RED = 0xFFE5282C;

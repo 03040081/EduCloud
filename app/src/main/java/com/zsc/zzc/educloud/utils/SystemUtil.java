@@ -13,9 +13,6 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
-/**
- * Created by codeest on 2016/8/4.
- */
 public class SystemUtil {
 
     /**

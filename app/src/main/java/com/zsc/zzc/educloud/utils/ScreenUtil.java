@@ -3,11 +3,8 @@ package com.zsc.zzc.educloud.utils;
 import android.content.Context;
 import android.util.DisplayMetrics;
 
-/**
- * Description: ScreenUtil
- * Creator: yxc
- * date: $date $time
- *                    分辨率
+/*
+分辨率
  */
 public class ScreenUtil {
     /**

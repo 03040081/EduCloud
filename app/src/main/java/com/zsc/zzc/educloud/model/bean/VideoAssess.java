@@ -2,9 +2,6 @@ package com.zsc.zzc.educloud.model.bean;
 
 import java.io.Serializable;
 
-/**
- * Created by 21191 on 2018/2/13.
- */
 
 public class VideoAssess implements Serializable {
 

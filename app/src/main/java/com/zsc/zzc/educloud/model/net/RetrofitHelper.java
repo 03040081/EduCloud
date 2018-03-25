@@ -21,11 +21,6 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-/**
- * Description: RetrofitHelper1
- * Creator: yxc
- * date: 2016/9/21 10:03
- */
 public class RetrofitHelper {
 
     private static OkHttpClient okHttpClient = null;

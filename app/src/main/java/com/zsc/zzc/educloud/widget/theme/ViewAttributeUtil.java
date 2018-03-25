@@ -3,12 +3,6 @@ package com.zsc.zzc.educloud.widget.theme;
 
 import android.util.AttributeSet;
 
-
-/**
- * Description: ViewAttributeUtil
- * Creator: yxc
- * date: 2016/10/26 11:25
- */
 public class ViewAttributeUtil {
 
     public static int getAttributeValue(AttributeSet attr, int paramInt) {

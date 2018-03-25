@@ -9,11 +9,6 @@ import com.zsc.zzc.educloud.di.module.ActivityModule;
 
 import javax.inject.Inject;
 
-/**
- * Description: MVP Activity基类
- * Creator: yxc
- * date: 17/9/14
- */
 
 public abstract class BaseMvpActivity<T extends BasePresenter> extends BaseActivity implements BaseView {
 

@@ -4,11 +4,6 @@ import android.os.Environment;
 
 import java.io.File;
 
-/**
- * Description: Constants
- * Creator: yxc
- * date: 2016/9/21 10:05
- */
 public class Constants {
     //================= PATH ====================
     public static final String PATH_DATA = App.getInstance().getCacheDir().getAbsolutePath() + File.separator + "data";

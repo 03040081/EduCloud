@@ -10,11 +10,6 @@ import com.mikepenz.iconics.typeface.IIcon;
 
 import java.util.Random;
 
-/**
- * Description:
- * Creator: yxc
- * date: $date $time
- */
 public class StringUtils {
     /**
      * 去掉特殊字符

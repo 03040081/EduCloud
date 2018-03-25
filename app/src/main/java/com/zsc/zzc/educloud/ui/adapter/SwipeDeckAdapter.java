@@ -18,11 +18,6 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-/**
- * Description: SwipeDeckAdapter
- * Creator: yxc
- * date: 2017/9/30 11:10
- */
 public class SwipeDeckAdapter extends BaseAdapter {
 
     private List<VideoInfor> data;

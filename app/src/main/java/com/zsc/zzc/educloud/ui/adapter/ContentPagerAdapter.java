@@ -6,11 +6,6 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 import java.util.List;
 
-/**
- * Description: ContentPagerAdapter
- * Creator: yxc
- * date: 2016/9/7 11:47
- */
 public class ContentPagerAdapter extends FragmentPagerAdapter {
 
 	private List<Fragment> fragments;

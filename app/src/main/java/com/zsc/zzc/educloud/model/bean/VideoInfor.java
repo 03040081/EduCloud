@@ -3,10 +3,6 @@ package com.zsc.zzc.educloud.model.bean;
 import java.io.Serializable;
 import java.util.List;
 
-/**
- * Created by 21191 on 2018/2/13.
- */
-
 public class VideoInfor implements Serializable {
     private int videoId;
     private String videoTile;

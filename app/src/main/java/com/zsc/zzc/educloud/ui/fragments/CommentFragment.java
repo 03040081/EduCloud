@@ -28,11 +28,6 @@ import java.util.List;
 
 import butterknife.BindView;
 
-/**
- * Description: 详情--评论
- * Creator: yxc
- * date: 2016/9/9 9:54
- */
 public class CommentFragment extends BaseMvpFragment<CommentPresenter> implements CommentContract.View, SwipeRefreshLayout.OnRefreshListener, RecyclerArrayAdapter.OnLoadMoreListener {
 
     @BindView(R.id.recyclerView)

@@ -1,8 +1,7 @@
 package com.zsc.zzc.educloud.model.exception;
 
-/**
- * Created by 12262 on 2016/5/31.
- * 与服务器约定好的异常
+/*
+ 与服务器约定好的异常
  */
 public class ERROR {
     /**

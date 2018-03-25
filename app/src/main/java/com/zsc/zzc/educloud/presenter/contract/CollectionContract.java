@@ -6,12 +6,6 @@ import com.zsc.zzc.educloud.base.BaseView;
 import com.zsc.zzc.educloud.model.bean.VideoInfor;
 
 import java.util.List;
-
-/**
- * Description: CollectionContract
- * Creator: yxc
- * date: 2016/9/29 12:06
- */
 public interface CollectionContract {
 
     interface View extends BaseView {

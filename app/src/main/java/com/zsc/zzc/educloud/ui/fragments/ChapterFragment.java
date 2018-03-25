@@ -18,10 +18,6 @@ import org.simple.eventbus.Subscriber;
 
 import butterknife.BindView;
 
-/**
- * Created by 21191 on 2018/2/24.
- */
-
 public class ChapterFragment extends BaseFragment implements ChapterAdapter.MyClickListener {
 
     @BindView(R.id.chaptercontent)

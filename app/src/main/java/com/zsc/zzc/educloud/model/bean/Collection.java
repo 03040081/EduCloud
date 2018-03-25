@@ -4,11 +4,7 @@ import java.io.Serializable;
 
 import io.realm.RealmObject;
 
-/**
- * Description: 收藏
- * Creator: yxc
- * date: 2016/9/23 11:29
- */
+
 public class Collection extends RealmObject implements Serializable {
     int videoId;
     long time;

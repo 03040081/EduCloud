@@ -13,13 +13,6 @@ import io.realm.Realm;
 import io.realm.RealmConfiguration;
 import io.realm.RealmResults;
 import io.realm.Sort;
-
-/**
- * Description: RealmHelper
- * Creator: yxc
- * date: 2016/9/21 17:46
- */
-
 public class RealmHelper implements DBHelper {
 
     public static final String DB_NAME = "educloud.realm";

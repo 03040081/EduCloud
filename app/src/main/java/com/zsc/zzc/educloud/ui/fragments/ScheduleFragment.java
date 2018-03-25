@@ -25,10 +25,6 @@ import java.util.List;
 
 import butterknife.BindView;
 
-/**
- * Created by 21191 on 2018/3/7.
- */
-
 public class ScheduleFragment extends BaseMvpFragment<SchedulePresenter> implements ScheduleContract.View{
 
     @BindView(R.id.title_name)

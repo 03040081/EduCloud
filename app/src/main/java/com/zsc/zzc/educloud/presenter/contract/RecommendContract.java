@@ -6,11 +6,6 @@ import com.zsc.zzc.educloud.model.bean.VideoInfor;
 
 import java.util.List;
 
-/**
- * Description: RecommendContract
- * Creator: yxc
- * date: 2016/9/21 15:53
- */
 public interface RecommendContract {
 
     interface View extends BaseView {

@@ -1,6 +1,5 @@
 package com.zsc.zzc.educloud.presenter;
 
-
 import com.zsc.zzc.educloud.base.RxPresenter;
 import com.zsc.zzc.educloud.model.bean.VideoInfor;
 import com.zsc.zzc.educloud.model.http.response.VideoHttpResponse;

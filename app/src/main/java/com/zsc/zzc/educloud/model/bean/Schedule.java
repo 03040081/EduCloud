@@ -2,9 +2,6 @@ package com.zsc.zzc.educloud.model.bean;
 
 import java.io.Serializable;
 
-/**
- * Created by 21191 on 2018/3/8.
- */
 
 public class Schedule implements Serializable {
     private int scheduleId;

@@ -41,11 +41,6 @@ import butterknife.OnClick;
 
 import static com.zsc.zzc.educloud.R.id.recyclerView;
 
-/**
- * Description:
- * Creator: yxc
- * date: $date $time
- */
 public class MineFragment extends BaseMvpFragment<MinePresenter> implements MineContract.View {
     //public static final String SET_THEME = "SET_THEME";
     MineHistoryVideoListAdapter mAdapter;

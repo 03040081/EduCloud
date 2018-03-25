@@ -14,10 +14,6 @@ import com.zsc.zzc.educloud.widget.MyListView;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by 21191 on 2018/2/24.
- */
-
 public class ChapterAdapter extends BaseAdapter implements AdapterView.OnItemClickListener{
 
     private Context context;

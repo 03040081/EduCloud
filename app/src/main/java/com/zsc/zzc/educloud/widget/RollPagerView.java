@@ -29,8 +29,8 @@ import java.lang.reflect.Field;
 import java.util.Timer;
 import java.util.TimerTask;
 
-/**
- * 支持轮播和提示的的viewpager
+/*
+ 支持轮播和提示的的viewpager
  */
 public class RollPagerView extends RelativeLayout implements ViewPager.OnPageChangeListener {
 

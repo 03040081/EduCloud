@@ -11,7 +11,6 @@ import com.zsc.zzc.educloud.R;
 import com.zsc.zzc.educloud.component.ImageLoader;
 import com.zsc.zzc.educloud.model.bean.VideoInfor;
 
-
 public class VideoListAdapter extends RecyclerArrayAdapter<VideoInfor> {
 
     public VideoListAdapter(Context context) {

@@ -21,10 +21,6 @@ import com.zsc.zzc.educloud.presenter.contract.LoginContract;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-/**
- * Created by 21191 on 2018/3/1.
- */
-
 public class LoginActivity extends SwipeBackActivity<LoginPresenter> implements LoginContract.View {
 
     @BindView(R.id.et_username)

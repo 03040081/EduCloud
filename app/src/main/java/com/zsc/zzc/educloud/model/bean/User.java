@@ -5,10 +5,6 @@ import java.io.Serializable;
 import io.realm.RealmObject;
 import io.realm.annotations.Ignore;
 
-/**
- * Created by 21191 on 2018/2/13.
- */
-
 public class User extends RealmObject implements Serializable {
     private int userId;
     private String userName;

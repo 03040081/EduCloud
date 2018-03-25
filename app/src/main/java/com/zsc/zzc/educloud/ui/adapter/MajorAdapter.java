@@ -15,10 +15,6 @@ import com.zsc.zzc.educloud.ui.fragments.ClassificationFragment;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by 21191 on 2018/2/26.
- */
-
 public class MajorAdapter extends BaseAdapter {
 
     private Context context;

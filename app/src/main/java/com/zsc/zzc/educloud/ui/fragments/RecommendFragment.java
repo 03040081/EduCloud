@@ -40,11 +40,6 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-/**
- * Description: 精选
- * Creator: yxc
- * date: $date $time
- */
 public class RecommendFragment extends BaseMvpFragment<RecommendPresenter> implements RecommendContract.View, SwipeRefreshLayout.OnRefreshListener, View.OnClickListener, RecyclerArrayAdapter.OnLoadMoreListener {
 
     @BindView(R.id.recyclerView)

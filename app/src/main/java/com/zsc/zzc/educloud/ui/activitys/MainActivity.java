@@ -27,11 +27,6 @@ import java.util.List;
 
 import butterknife.BindView;
 
-/**
- * Description: 主页
- * Creator: yxc
- * date: 2017/9/6 14:57
- */
 public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedChangeListener {
 
     //public static final String Set_Theme_Color = "Set_Theme_Color";

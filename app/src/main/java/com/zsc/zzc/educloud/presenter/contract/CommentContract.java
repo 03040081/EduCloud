@@ -7,11 +7,6 @@ import com.zsc.zzc.educloud.model.bean.VideoAssess;
 
 import java.util.List;
 
-/**
- * Description: CommentContract
- * Creator: yxc
- * date: 2016/10/18 13:21
- */
 public interface CommentContract {
 
     interface View extends BaseView {

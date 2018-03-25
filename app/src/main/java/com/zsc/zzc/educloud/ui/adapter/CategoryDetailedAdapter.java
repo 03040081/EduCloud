@@ -12,10 +12,6 @@ import com.zsc.zzc.educloud.model.bean.CategoryDetailed;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by 21191 on 2018/2/26.
- */
-
 public class CategoryDetailedAdapter extends BaseAdapter {
 
     private Context context;

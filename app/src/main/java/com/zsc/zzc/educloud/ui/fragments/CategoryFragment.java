@@ -17,10 +17,6 @@ import com.zsc.zzc.educloud.ui.adapter.CategoryAdapter;
 
 import java.util.List;
 
-/**
- * Created by 21191 on 2018/2/26.
- */
-
 public class CategoryFragment extends Fragment implements CategoryAdapter.MyClickListener {
     public static final String TAG = "CategoryFragment";
     private CategoryAdapter adapterCon;

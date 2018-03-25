@@ -1,9 +1,5 @@
 package com.zsc.zzc.educloud.model.http.response;
 
-/**
- * Created by codeest on 16/8/28.
- */
-
 public class VideoHttpResponse<T> {
 
     private int code;

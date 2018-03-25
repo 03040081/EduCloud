@@ -1,11 +1,5 @@
 package com.zsc.zzc.educloud.widget;
 
-/**
- * Description:
- * Creator: yxc
- * date: $date $time
- */
-
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.TypedArray;

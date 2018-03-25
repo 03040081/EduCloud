@@ -7,10 +7,6 @@ import com.zsc.zzc.educloud.model.bean.Forum;
 
 import java.util.List;
 
-/**
- * Created by 21191 on 2018/3/10.
- */
-
 public interface ForumContract {
 
     interface View extends BaseView {

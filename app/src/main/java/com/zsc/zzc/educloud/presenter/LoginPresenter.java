@@ -10,16 +10,22 @@ import com.zsc.zzc.educloud.model.net.RetrofitHelper;
 import com.zsc.zzc.educloud.presenter.contract.LoginContract;
 import com.zsc.zzc.educloud.utils.RxUtil;
 
+import org.simple.eventbus.EventBus;
+
+import java.util.concurrent.TimeUnit;
+
 import javax.inject.Inject;
 
+import rx.Observable;
 import rx.Subscription;
 import rx.functions.Action1;
 
-/**
- * Created by 21191 on 2018/3/3.
- */
-
 public class LoginPresenter extends RxPresenter<LoginContract.View> implements LoginContract.Presenter {
+
+    public final static String Put_USERID="Put_USERID";
+
+    int userId=0;
+    final int WAIT_TIME = 200;
 
     @Inject
     public LoginPresenter(){
@@ -36,6 +42,8 @@ public class LoginPresenter extends RxPresenter<LoginContract.View> implements L
                         if (user != null) {
                             mView.saveContent(user);
                             insertUser(user);
+                            userId=user.getUserId();
+                            putUserId();
                             Log.e("Presenter用户：",user.getUserName());
                         }
                     }
@@ -55,4 +63,19 @@ public class LoginPresenter extends RxPresenter<LoginContract.View> implements L
             RealmHelper.getInstance().insertUserInfo(user);
         }
     }
+
+
+
+    private void putUserId(){
+        Subscription rxSubscription= Observable.timer(WAIT_TIME, TimeUnit.MILLISECONDS)
+                .compose(RxUtil.<Long>rxSchedulerHelper())
+                .subscribe(new Action1<Long>() {
+                    @Override
+                    public void call(Long aLong) {
+                        EventBus.getDefault().post(userId,Put_USERID);
+                    }
+                });
+        addSubscribe(rxSubscription);
+    }
+
 }

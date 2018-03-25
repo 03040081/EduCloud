@@ -4,10 +4,6 @@ import java.io.Serializable;
 
 import io.realm.RealmObject;
 
-/**
- * Created by 21191 on 2018/2/13.
- */
-
 public class RoleInfo extends RealmObject implements Serializable {
     private int roleId;
     private String roleName;

@@ -26,11 +26,6 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-/**
- * Description: 播放历史
- * Creator: yxc
- * date: 2017/9/6 14:57
- */
 public class HistoryActivity extends SwipeBackActivity<CollectionPresenter> implements CollectionContract.View {
 
     @BindView(R.id.rl_collect_clear)

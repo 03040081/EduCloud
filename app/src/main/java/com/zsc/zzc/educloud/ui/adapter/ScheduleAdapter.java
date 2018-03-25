@@ -11,10 +11,6 @@ import com.zsc.zzc.educloud.R;
 import com.zsc.zzc.educloud.component.ImageLoader;
 import com.zsc.zzc.educloud.model.bean.VideoInfor;
 
-/**
- * Created by 21191 on 2018/3/8.
- */
-
 public class ScheduleAdapter extends RecyclerArrayAdapter<VideoInfor> {
 
     public ScheduleAdapter(Context context) {

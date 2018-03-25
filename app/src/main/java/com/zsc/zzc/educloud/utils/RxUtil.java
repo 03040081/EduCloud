@@ -11,11 +11,6 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
-/**
- * Description: RxUtil
- * Creator: yxc
- * date: 2016/9/21 18:47
- */
 public class RxUtil {
 
     /**

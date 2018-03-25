@@ -25,11 +25,6 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-/**
- * Description: 影片列表
- * Creator: yxc
- * date: 2017/9/6 14:57
- */
 public class VideoListActivity extends SwipeBackActivity<VideoListPresenter> implements VideoListContract.View, SwipeRefreshLayout.OnRefreshListener, RecyclerArrayAdapter.OnLoadMoreListener {
 
     //String mTitle = "";

@@ -12,10 +12,6 @@ import com.zsc.zzc.educloud.R;
 import com.zsc.zzc.educloud.component.ImageLoader;
 import com.zsc.zzc.educloud.model.bean.Forum;
 
-/**
- * Created by 21191 on 2018/3/10.
- */
-
 public class ForumAdapter extends RecyclerArrayAdapter<Forum> {
 
     public ForumAdapter(Context context){

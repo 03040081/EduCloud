@@ -1,8 +1,12 @@
 package com.zsc.zzc.educloud.presenter;
 
 import com.zsc.zzc.educloud.base.RxPresenter;
+import com.zsc.zzc.educloud.model.bean.User;
+import com.zsc.zzc.educloud.model.db.RealmHelper;
 import com.zsc.zzc.educloud.presenter.contract.WelcomeContract;
 import com.zsc.zzc.educloud.utils.RxUtil;
+
+import org.simple.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,14 +18,11 @@ import rx.Observable;
 import rx.Subscription;
 import rx.functions.Action1;
 
-/**
- * Description: WelcomePresenter
- * Creator: yxc
- * date: 2016/9/22 13:17
- */
 public class WelcomePresenter extends RxPresenter<WelcomeContract.View> implements WelcomeContract.Presenter {
 
     private static final int COUNT_DOWN_TIME = 2200;
+    final int WAIT_TIME = 200;
+    int userId=0;
 
     @Inject
     public WelcomePresenter() {
@@ -29,28 +30,13 @@ public class WelcomePresenter extends RxPresenter<WelcomeContract.View> implemen
 
     @Override
     public void getWelcomeData() {
-//        Subscription rxSubscription = RetrofitHelper1.getVideoApi().getHomePage()
-//                .compose(RxUtil.<VideoHttpResponse<VideoRes>>rxSchedulerHelper())
-//                .compose(RxUtil.<VideoRes>handleResult())
-//                .subscribe(new Action1<VideoRes>() {
-//                    @Override
-//                    public void call(final VideoRes res) {
-//                        if (res != null) {
-//                            if (mView.isActive()) {
-//                                mView.showContent(res);
-//                            }
-//                        }
-//                        startCountDown();
-//                    }
-//                }, new Action1<Throwable>() {
-//                    @Override
-//                    public void call(Throwable throwable) {
-//                        startCountDown();
-//                    }
-//                });
-//        addSubscribe(rxSubscription);
+
         mView.showContent(getImgData());
         startCountDown();
+
+        getUserInfo();
+        if(userId>0)
+            putUserId();
     }
 
     private void startCountDown() {
@@ -76,6 +62,24 @@ public class WelcomePresenter extends RxPresenter<WelcomeContract.View> implemen
         imgs.add("file:///android_asset/f.jpg");
         imgs.add("file:///android_asset/g.jpg");
         return imgs;
+    }
+
+    public void getUserInfo() {
+        User user= RealmHelper.getInstance().getUserInfo();
+        if(user!=null) {
+            userId=user.getUserId();
+        }
+    }
+    private void putUserId(){
+        Subscription rxSubscription= Observable.timer(WAIT_TIME, TimeUnit.MILLISECONDS)
+                .compose(RxUtil.<Long>rxSchedulerHelper())
+                .subscribe(new Action1<Long>() {
+                    @Override
+                    public void call(Long aLong) {
+                        EventBus.getDefault().post(userId,LoginPresenter.Put_USERID);
+                    }
+                });
+        addSubscribe(rxSubscription);
     }
 
 }

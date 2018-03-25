@@ -9,11 +9,6 @@ import android.widget.Toast;
 
 import java.math.BigDecimal;
 
-/**
- * Description:
- * Creator: yxc
- * date: $date $time
- */
 public class EventUtil {
     protected static long lastClickTime;
 

@@ -21,7 +21,6 @@ import java.util.WeakHashMap;
  * <p/>
  * 3.抽离简化日志功能。
  * <p/>
- * Created by Caopeng on
  */
 public class L {
 

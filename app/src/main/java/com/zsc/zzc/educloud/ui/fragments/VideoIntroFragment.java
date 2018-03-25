@@ -24,11 +24,6 @@ import org.simple.eventbus.Subscriber;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-/**
- * Description: 详情——简介
- * Creator: yxc
- * date: 2016/9/9 9:54
- */
 public class VideoIntroFragment extends BaseFragment {
 
     @BindView(R.id.recyclerViewinfo)

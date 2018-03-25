@@ -27,10 +27,6 @@ import java.util.List;
 
 import butterknife.BindView;
 
-/**
- * Created by 21191 on 2018/3/10.
- */
-
 public class ForumFragment extends BaseMvpFragment<ForumPresenter> implements ForumContract.View,SwipeRefreshLayout.OnRefreshListener, RecyclerArrayAdapter.OnLoadMoreListener {
 
     @BindView(R.id.recyclerView)

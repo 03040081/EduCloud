@@ -8,9 +8,6 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
 
-/**
- * Created by yuexingchuan on 17/9/18.
- */
 public abstract class RootView<T extends BasePresenter> extends View implements BaseView {
     protected boolean mActive;//是否被销毁
     protected Context mContext;

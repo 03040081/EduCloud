@@ -11,9 +11,6 @@ import com.zsc.zzc.educloud.di.module.FragmentModule;
 
 import javax.inject.Inject;
 
-/**
- * Created by yuexingchuan on 17/9/14.
- */
 
 public abstract class BaseMvpFragment<T extends BasePresenter> extends BaseFragment implements BaseView {
 

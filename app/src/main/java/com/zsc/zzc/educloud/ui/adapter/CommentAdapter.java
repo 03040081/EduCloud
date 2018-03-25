@@ -12,12 +12,6 @@ import com.zsc.zzc.educloud.R;
 import com.zsc.zzc.educloud.component.ImageLoader;
 import com.zsc.zzc.educloud.model.bean.VideoAssess;
 
-
-/**
- * Description: 评论列表
- * Creator: yxc
- * date: 2016/9/30 11:10
- */
 public class CommentAdapter extends RecyclerArrayAdapter<VideoAssess> {
 
     public CommentAdapter(Context context) {
