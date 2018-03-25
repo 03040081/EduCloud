@@ -11,4 +11,42 @@
         app:layout_empty="@layout/view_empty"
         app:scrollbars="none" />
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="66dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="1dp"
+        android:paddingLeft="2dp"
+        android:paddingRight="2dp">
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="300dp"
+            android:layout_height="60dp"
+            android:textColorHint="#848c89"
+            android:layout_gravity="center_vertical">
+
+            <EditText
+                android:id="@+id/tv_contents_assess"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:background="@drawable/bg_edittext"
+                android:paddingLeft="2dp"
+                android:paddingRight="2dp"
+                android:textCursorDrawable="@null"
+                android:layout_gravity="center_vertical"
+                android:textSize="15sp" />
+        </android.support.design.widget.TextInputLayout>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginRight="4dp"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/bt_shape_post"
+            android:text="发 表" />
+    </LinearLayout>
+
 </RelativeLayout>
