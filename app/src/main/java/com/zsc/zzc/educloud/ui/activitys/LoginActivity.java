@@ -17,6 +17,7 @@ import com.zsc.zzc.educloud.base.SwipeBackActivity;
 import com.zsc.zzc.educloud.model.bean.User;
 import com.zsc.zzc.educloud.presenter.LoginPresenter;
 import com.zsc.zzc.educloud.presenter.contract.LoginContract;
+import com.zsc.zzc.educloud.utils.ActivityUtils;
 
 import org.simple.eventbus.EventBus;
 
@@ -94,6 +95,7 @@ public class LoginActivity extends SwipeBackActivity<LoginPresenter> implements 
                 userAccount= String.valueOf(etUsername.getText());
                 String userPass= String.valueOf(etPassword.getText());
                 mPresenter.login(userAccount,userPass);
+                ActivityUtils.finishAll();
                 MainActivity.start(mContext);
                 break;
         }

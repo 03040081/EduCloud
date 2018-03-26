@@ -22,6 +22,9 @@ import android.content.ContextWrapper;
 import android.support.annotation.NonNull;
 import android.view.View;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ActivityUtils {
 
     public static @NonNull
@@ -38,4 +41,21 @@ public class ActivityUtils {
         throw new IllegalStateException("View " + view + " is not attached to an Activity");
     }
 
+    public static List<Activity> activities=new ArrayList<>();
+
+    public static void addActivity(Activity activity){
+        activities.add(activity);
+    }
+
+    public static void removeActivity(Activity activity){
+        activities.remove(activity);
+    }
+
+    public static void finishAll(){
+        for (Activity activity:activities){
+            if(!activity.isFinishing()){
+                activity.finish();
+            }
+        }
+    }
 }

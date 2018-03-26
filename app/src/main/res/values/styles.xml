@@ -37,6 +37,12 @@
         <item name="android:layout_height">wrap_content</item>
     </style>
 
+    <style name="mine_icon_style">
+        <item name="android:layout_width">18dp</item>
+        <item name="android:layout_height">18dp</item>
+        <item name="android:padding">15dp</item>
+    </style>
+
     <style name="both_match_style">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
@@ -118,6 +124,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">@android:color/white</item>
         <item name="android:textSize">14sp</item>
+        <item name="android:layout_marginLeft">23dp</item>
     </style>
 
     <style name="trans_button_style">
@@ -176,6 +183,11 @@
 
     <style name="settingItemTvStyle" parent="lwrap_hmatch_style">
         <item name="android:gravity">center</item>
+    </style>
+
+    <style name="settingItemLoginOut" parent="lwrap_hmatch_style">
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">20sp</item>
     </style>
 
     <style name="settingItemImgStyle" parent="both_wrap_style">

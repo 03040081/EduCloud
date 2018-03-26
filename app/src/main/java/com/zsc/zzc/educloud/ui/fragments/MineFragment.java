@@ -12,12 +12,12 @@ import android.widget.TextView;
 import com.jude.easyrecyclerview.EasyRecyclerView;
 import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
 import com.jude.easyrecyclerview.decoration.SpaceDecoration;
-import com.mikepenz.material_design_iconic_typeface_library.MaterialDesignIconic;
 import com.zsc.zzc.educloud.R;
 import com.zsc.zzc.educloud.base.BaseMvpFragment;
 import com.zsc.zzc.educloud.component.ImageLoader;
 import com.zsc.zzc.educloud.model.bean.User;
 import com.zsc.zzc.educloud.model.bean.VideoInfor;
+import com.zsc.zzc.educloud.presenter.LoginPresenter;
 import com.zsc.zzc.educloud.presenter.MinePresenter;
 import com.zsc.zzc.educloud.presenter.VideoInfoPresenter;
 import com.zsc.zzc.educloud.presenter.contract.MineContract;
@@ -29,7 +29,6 @@ import com.zsc.zzc.educloud.ui.activitys.VideoInfoActivity;
 import com.zsc.zzc.educloud.ui.adapter.MineHistoryVideoListAdapter;
 import com.zsc.zzc.educloud.utils.EventUtil;
 import com.zsc.zzc.educloud.utils.ScreenUtil;
-import com.zsc.zzc.educloud.utils.StringUtils;
 
 import org.simple.eventbus.EventBus;
 import org.simple.eventbus.Subscriber;
@@ -60,10 +59,10 @@ public class MineFragment extends BaseMvpFragment<MinePresenter> implements Mine
     TextView tvHistory;
     @BindView(R.id.tv_collection)
     TextView tvCollection;
-    @BindView(R.id.tv_order)
+    /*@BindView(R.id.tv_order)
     TextView tvOrder;
     @BindView(R.id.tv_cat)
-    TextView tvCat;
+    TextView tvCat;*/
     @BindView(R.id.tv_download)
     TextView tvDownload;
     @BindView(R.id.tv_setting)
@@ -86,12 +85,6 @@ public class MineFragment extends BaseMvpFragment<MinePresenter> implements Mine
         ((AppCompatActivity) getContext()).setSupportActionBar(toolbar);
         toolbar.setTitle("");
         titleName.setText(getResources().getString(R.string.mine_title));
-        StringUtils.setIconDrawable(mContext, tvHistory,MaterialDesignIconic.Icon.gmi_hotel , 16, 15);
-        StringUtils.setIconDrawable(mContext, tvCollection, MaterialDesignIconic.Icon.gmi_time_countdown, 16, 15);
-        StringUtils.setIconDrawable(mContext, tvOrder, MaterialDesignIconic.Icon.gmi_time_countdown, 16, 15);
-        StringUtils.setIconDrawable(mContext, tvCat, MaterialDesignIconic.Icon.gmi_time_countdown, 16, 15);
-        StringUtils.setIconDrawable(mContext, tvDownload, MaterialDesignIconic.Icon.gmi_collection_bookmark, 16, 15);
-        StringUtils.setIconDrawable(mContext, tvSetting, MaterialDesignIconic.Icon.gmi_palette, 16, 15);
 
         mRecyclerView.setAdapter(mAdapter = new MineHistoryVideoListAdapter(mContext));
         GridLayoutManager gridLayoutManager = new GridLayoutManager(mContext, 3);
@@ -103,6 +96,11 @@ public class MineFragment extends BaseMvpFragment<MinePresenter> implements Mine
         itemDecoration.setPaddingHeaderFooter(false);
         mRecyclerView.addItemDecoration(itemDecoration);
 
+        User user= LoginPresenter.getUserInfo();
+        if(user==null){
+            username.setText("点击登录");
+            imgHead.setImageResource(R.drawable.mine_head);
+        }
     }
 
     @Override
@@ -114,6 +112,7 @@ public class MineFragment extends BaseMvpFragment<MinePresenter> implements Mine
                 VideoInfoActivity.start(mContext,videoInfor);
             }
         });
+
     }
 
     @Override
@@ -142,22 +141,14 @@ public class MineFragment extends BaseMvpFragment<MinePresenter> implements Mine
 
 
 
-    @OnClick({R.id.rl_history, R.id.rl_collection, R.id.rl_order, R.id.rl_cat,R.id.rl_download, R.id.img_setting,R.id.img_head})
+    @OnClick({R.id.rl_history, R.id.rl_collection,R.id.rl_download, R.id.img_setting,R.id.img_head})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.rl_history:
                 getContext().startActivity(new Intent(mContext, HistoryActivity.class));
                 break;
             case R.id.rl_collection:
-                //EventUtil.showToast(getContext(), "敬请期待");
-                //mPresenter.getUserInfo();
                 getContext().startActivity(new Intent(mContext, CollectionActivity.class));
-                break;
-            case R.id.rl_order:
-                //订单
-                break;
-            case R.id.rl_cat:
-                //购物车
                 break;
             case R.id.rl_download:
                 //下载

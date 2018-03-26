@@ -56,4 +56,17 @@
         <ImageView style="@style/settingItemImgStyle" />
     </RelativeLayout>
 
+    <RelativeLayout
+        android:id="@+id/rl_loginout"
+        style="@style/settingItemLittleMarginStyle">
+
+        <TextView
+            style="@style/settingItemLoginOut"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="@string/loginout" />
+
+
+    </RelativeLayout>
+
 </LinearLayout>

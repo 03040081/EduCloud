@@ -11,6 +11,7 @@ import android.widget.RelativeLayout;
 
 import com.zsc.zzc.educloud.R;
 import com.zsc.zzc.educloud.app.App;
+import com.zsc.zzc.educloud.utils.ActivityUtils;
 import com.zsc.zzc.educloud.utils.KL;
 import com.zsc.zzc.educloud.utils.ScreenUtil;
 
@@ -26,6 +27,9 @@ public abstract class BaseActivity extends SupportActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        ActivityUtils.addActivity(this);
+
         KL.d(this.getClass(), this.getClass().getName() + "------>onCreate");
         init();
 
@@ -83,6 +87,8 @@ public abstract class BaseActivity extends SupportActivity {
         if (mUnBinder != null)
             mUnBinder.unbind();
         App.getInstance().unregisterActivity(this);
+        //------------暂定方案---------------
+        ActivityUtils.removeActivity(this);//
     }
 
     /**

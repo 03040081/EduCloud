@@ -17,6 +17,8 @@ import com.pgyersdk.views.PgyerDialog;
 import com.zsc.zzc.educloud.R;
 import com.zsc.zzc.educloud.app.Constants;
 import com.zsc.zzc.educloud.base.SwipeBackActivity;
+import com.zsc.zzc.educloud.presenter.LoginPresenter;
+import com.zsc.zzc.educloud.utils.ActivityUtils;
 import com.zsc.zzc.educloud.utils.EventUtil;
 import com.zsc.zzc.educloud.utils.PreUtils;
 
@@ -38,6 +40,8 @@ public class SettingActivity extends SwipeBackActivity {
     TextView tvCache;
     @BindView(R.id.title_name)
     TextView titleName;
+    @BindView(R.id.rl_loginout)
+    RelativeLayout rlloginout;
 
     @Override
     protected int getLayout() {
@@ -50,7 +54,7 @@ public class SettingActivity extends SwipeBackActivity {
         tvCache.setText(EventUtil.getFormatSize(Glide.getPhotoCacheDir(this).length()));
     }
 
-    @OnClick({R.id.rl_back, R.id.rl_recommend, R.id.rl_about, R.id.rl_feedback, R.id.rl_clearcache})
+    @OnClick({R.id.rl_back, R.id.rl_recommend, R.id.rl_about, R.id.rl_feedback, R.id.rl_clearcache,R.id.rl_loginout})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.rl_back:
@@ -89,6 +93,11 @@ public class SettingActivity extends SwipeBackActivity {
             case R.id.rl_clearcache:
                 tvCache.setText("0kb");
                 EventUtil.showToast(this, "已清理缓存");
+                break;
+            case R.id.rl_loginout:
+                LoginPresenter.loginOut();
+                ActivityUtils.finishAll();
+                MainActivity.start(mContext);
                 break;
         }
     }
