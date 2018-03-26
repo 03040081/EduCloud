@@ -1,10 +1,14 @@
 package com.zsc.zzc.educloud.ui.fragments;
 
+import android.content.Context;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.jude.easyrecyclerview.EasyRecyclerView;
@@ -14,6 +18,7 @@ import com.zsc.zzc.educloud.R;
 import com.zsc.zzc.educloud.base.BaseMvpFragment;
 import com.zsc.zzc.educloud.model.bean.Forum;
 import com.zsc.zzc.educloud.presenter.ForumPresenter;
+import com.zsc.zzc.educloud.presenter.LoginPresenter;
 import com.zsc.zzc.educloud.presenter.VideoInfoPresenter;
 import com.zsc.zzc.educloud.presenter.contract.ForumContract;
 import com.zsc.zzc.educloud.ui.adapter.ForumAdapter;
@@ -26,21 +31,29 @@ import org.simple.eventbus.Subscriber;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
-public class ForumFragment extends BaseMvpFragment<ForumPresenter> implements ForumContract.View,SwipeRefreshLayout.OnRefreshListener, RecyclerArrayAdapter.OnLoadMoreListener {
+public class ForumFragment extends BaseMvpFragment<ForumPresenter> implements ForumContract.View, SwipeRefreshLayout.OnRefreshListener, RecyclerArrayAdapter.OnLoadMoreListener {
 
     @BindView(R.id.recyclerView)
     EasyRecyclerView recyclerView;
+    @BindView(R.id.tv_contents_forum)
+    EditText tvforum;
+    @BindView(R.id.bt_post_forum)
+    Button btforum;
     TextView tv_empty;
 
     ForumAdapter adapter;
 
+    int videoId = 0;
+    int userId = 0;
+
     @Override
     protected void initView(LayoutInflater inflater) {
         EventBus.getDefault().register(this);
-        recyclerView.setAdapterWithProgress(adapter=new ForumAdapter(mContext));
+        recyclerView.setAdapterWithProgress(adapter = new ForumAdapter(mContext));
         recyclerView.setErrorView(R.layout.view_error);
-        adapter.setMore(R.layout.view_more,this);
+        adapter.setMore(R.layout.view_more, this);
         adapter.setNoMore(R.layout.view_nomore);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         SpaceDecoration itemDecoration = new SpaceDecoration(ScreenUtil.dip2px(getContext(), 8));
@@ -48,7 +61,7 @@ public class ForumFragment extends BaseMvpFragment<ForumPresenter> implements Fo
         itemDecoration.setPaddingStart(true);
         itemDecoration.setPaddingHeaderFooter(false);
         recyclerView.addItemDecoration(itemDecoration);
-        tv_empty=(TextView)recyclerView.getEmptyView();
+        tv_empty = (TextView) recyclerView.getEmptyView();
         tv_empty.setText("暂无咨询");
     }
 
@@ -68,16 +81,29 @@ public class ForumFragment extends BaseMvpFragment<ForumPresenter> implements Fo
                 onRefresh();
             }
         });
+        this.userId = LoginPresenter.getUserId();
+        if (userId > 0)
+            btforum.setEnabled(true);
+    }
+
+    @OnClick(R.id.bt_post_forum)
+    public void onClick(View view) {
+        String txt = tvforum.getText().toString().trim();
+        if (txt.length() > 0 && userId > 0) {
+            mPresenter.postForum(videoId, txt, userId);
+            tvforum.setText("");
+            hintKbTwo();
+        }
     }
 
     @Override
     public void showError(String msg) {
-        EventUtil.showToast(mContext,msg);
+        EventUtil.showToast(mContext, msg);
     }
 
     @Override
     public void refreshFaild(String msg) {
-        if(!TextUtils.isEmpty(msg)){
+        if (!TextUtils.isEmpty(msg)) {
             showError(msg);
         }
         recyclerView.showError();
@@ -91,11 +117,12 @@ public class ForumFragment extends BaseMvpFragment<ForumPresenter> implements Fo
     @Override
     public void showContent(List<Forum> list) {
         adapter.clear();
-        if(list!=null&&list.size()<10){
+        if (list != null && list.size() < 10) {
             clearFooter();
         }
         adapter.addAll(list);
     }
+
     public void clearFooter() {
         adapter.setMore(new View(mContext), this);
         adapter.setError(new View(mContext));
@@ -126,15 +153,25 @@ public class ForumFragment extends BaseMvpFragment<ForumPresenter> implements Fo
     public void onLoadMore() {
         mPresenter.loadMore();
     }
+
     @Subscriber(tag = VideoInfoPresenter.Put_DataId)
     public void setData(int dataId) {
+        this.videoId = dataId;
         mPresenter.setMediaId(dataId);
         mPresenter.onRefresh();
     }
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         EventBus.getDefault().unregister(this);
     }
 
+    private void hintKbTwo() {
+        InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+        if (imm.isActive()) {
+            imm.toggleSoftInput(InputMethodManager.SHOW_IMPLICIT,
+                    InputMethodManager.HIDE_NOT_ALWAYS);
+        }
+    }
 }

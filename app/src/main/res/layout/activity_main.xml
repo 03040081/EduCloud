@@ -26,19 +26,19 @@
                 style="@style/tab_rb_style"
                 android:checked="true"
                 android:drawableTop="@drawable/tab_02"
-                android:text="精选" />
+                android:text="推荐" />
 
             <RadioButton
                 android:id="@+id/tab_rb_2"
                 style="@style/tab_rb_style"
                 android:drawableTop="@drawable/tab_03"
-                android:text="专题" />
+                android:text="分类" />
 
             <RadioButton
                 android:id="@+id/tab_rb_3"
                 style="@style/tab_rb_style"
                 android:drawableTop="@drawable/tab_01"
-                android:text="发现" />
+                android:text="课表" />
 
             <RadioButton
                 android:id="@+id/tab_rb_4"

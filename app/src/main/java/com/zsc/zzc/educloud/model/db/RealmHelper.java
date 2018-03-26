@@ -250,5 +250,11 @@ public class RealmHelper implements DBHelper {
         User user=getRealm().where(User.class).findFirst();
         return user;
     }
+
+    public void deleteAllUserInfo(){
+        getRealm().beginTransaction();
+        getRealm().delete(User.class);
+        getRealm().commitTransaction();
+    }
     //-------------------------------------------------------------------------------------------
 }

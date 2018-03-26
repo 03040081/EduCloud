@@ -18,6 +18,8 @@ import com.zsc.zzc.educloud.model.bean.User;
 import com.zsc.zzc.educloud.presenter.LoginPresenter;
 import com.zsc.zzc.educloud.presenter.contract.LoginContract;
 
+import org.simple.eventbus.EventBus;
+
 import butterknife.BindView;
 import butterknife.OnClick;
 
@@ -62,6 +64,7 @@ public class LoginActivity extends SwipeBackActivity<LoginPresenter> implements 
     }
     @Override
     public void initView(){
+        EventBus.getDefault().register(this);
         if(userAccount!=null&&!userAccount.equals("")){
             etUsername.setText(userAccount);
         }

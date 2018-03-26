@@ -71,4 +71,19 @@ public class ForumPresenter extends RxPresenter<ForumContract.View> implements F
                 });
         addSubscribe(rxSubscription);
     }
+
+    public void postForum(int videoId,String contents,int userId){
+
+        Subscription rxSubscription=RetrofitHelper.getVideoApi().publishForum(videoId,contents,userId)
+                .compose(RxUtil.<VideoHttpResponse<Boolean>>rxSchedulerHelper())
+                .compose(RxUtil.<Boolean>handleResult())
+                .subscribe(new Action1<Boolean>() {
+                    @Override
+                    public void call(Boolean bool) {
+                        if(bool==null||bool==false)
+                            mView.showError("发表失败");
+                    }
+                });
+        addSubscribe(rxSubscription);
+    }
 }

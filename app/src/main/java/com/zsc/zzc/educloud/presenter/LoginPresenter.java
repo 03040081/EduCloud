@@ -10,13 +10,8 @@ import com.zsc.zzc.educloud.model.net.RetrofitHelper;
 import com.zsc.zzc.educloud.presenter.contract.LoginContract;
 import com.zsc.zzc.educloud.utils.RxUtil;
 
-import org.simple.eventbus.EventBus;
-
-import java.util.concurrent.TimeUnit;
-
 import javax.inject.Inject;
 
-import rx.Observable;
 import rx.Subscription;
 import rx.functions.Action1;
 
@@ -43,7 +38,6 @@ public class LoginPresenter extends RxPresenter<LoginContract.View> implements L
                             mView.saveContent(user);
                             insertUser(user);
                             userId=user.getUserId();
-                            putUserId();
                             Log.e("Presenter用户：",user.getUserName());
                         }
                     }
@@ -64,9 +58,24 @@ public class LoginPresenter extends RxPresenter<LoginContract.View> implements L
         }
     }
 
+    public static int getUserId(){
+       User user= RealmHelper.getInstance().getUserInfo();
+        if(user!=null){
+            return user.getUserId();
+        }
+        return 0;
+    }
+
+    public static User getUserInfo(){
+        return RealmHelper.getInstance().getUserInfo();
+    }
+
+    public static void loginOut(){
+        RealmHelper.getInstance().deleteAllUserInfo();
+    }
 
 
-    private void putUserId(){
+    /*private void putUserId(){
         Subscription rxSubscription= Observable.timer(WAIT_TIME, TimeUnit.MILLISECONDS)
                 .compose(RxUtil.<Long>rxSchedulerHelper())
                 .subscribe(new Action1<Long>() {
@@ -76,6 +85,7 @@ public class LoginPresenter extends RxPresenter<LoginContract.View> implements L
                     }
                 });
         addSubscribe(rxSubscription);
-    }
+        Log.e("调用到LoginPresenter函数",String.valueOf(userId));
+    }*/
 
 }

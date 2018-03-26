@@ -19,7 +19,6 @@ import retrofit2.http.Query;
 import rx.Observable;
 
 
-
 public interface VideoApis {
     //String HOST = "http://api.svipmovie.com/front/";
     String HOST = "http://47.93.11.130:8080/educloud/";
@@ -112,9 +111,8 @@ public interface VideoApis {
     发表评论
      */
     @FormUrlEncoded
-    @POST
-    void publishAssess(@Field("videoId")int videoId,
-                       @Field("score")int score,
+    @POST("publishAssess")
+    Observable<VideoHttpResponse<Boolean>> publishAssess(@Field("videoId")int videoId,
                        @Field("contents")String contents,
                        @Field("userId")int userId);
 
@@ -122,8 +120,8 @@ public interface VideoApis {
     发表咨询
      */
     @FormUrlEncoded
-    @POST
-    void publishForum(@Field("videoId")int videoId,
+    @POST("publishForum")
+    Observable<VideoHttpResponse<Boolean>> publishForum(@Field("videoId")int videoId,
                       @Field("contents")String contents,
                       @Field("userId")int userId);
 
@@ -131,8 +129,8 @@ public interface VideoApis {
     添加到个人课程表
      */
     @FormUrlEncoded
-    @POST
-    Observable<Boolean> addSchedule(@Field("userId")int userId,
+    @POST("addSchedule")
+    Observable<VideoHttpResponse<Boolean>> addSchedule(@Field("userId")int userId,
                                     @Field("videoId")int videoId);
 
 }

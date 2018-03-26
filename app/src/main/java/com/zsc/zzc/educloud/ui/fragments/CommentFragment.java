@@ -1,12 +1,17 @@
 package com.zsc.zzc.educloud.ui.fragments;
 
+import android.content.Context;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.jude.easyrecyclerview.EasyRecyclerView;
 import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
@@ -15,6 +20,7 @@ import com.zsc.zzc.educloud.R;
 import com.zsc.zzc.educloud.base.BaseMvpFragment;
 import com.zsc.zzc.educloud.model.bean.VideoAssess;
 import com.zsc.zzc.educloud.presenter.CommentPresenter;
+import com.zsc.zzc.educloud.presenter.LoginPresenter;
 import com.zsc.zzc.educloud.presenter.VideoInfoPresenter;
 import com.zsc.zzc.educloud.presenter.contract.CommentContract;
 import com.zsc.zzc.educloud.ui.adapter.CommentAdapter;
@@ -27,6 +33,7 @@ import org.simple.eventbus.Subscriber;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 public class CommentFragment extends BaseMvpFragment<CommentPresenter> implements CommentContract.View, SwipeRefreshLayout.OnRefreshListener, RecyclerArrayAdapter.OnLoadMoreListener {
 
@@ -34,9 +41,17 @@ public class CommentFragment extends BaseMvpFragment<CommentPresenter> implement
     EasyRecyclerView recyclerView;
     TextView tv_empty;
 
+    @BindView(R.id.tv_contents_assess)
+    EditText tvcontents;
+    @BindView(R.id.bt_post_assess)
+    Button btassess;
+
     CommentAdapter adapter;
 
-    int pageSize=20;
+    int pageSize = 20;
+
+    int videoId=0;
+    int userId=0;
 
     @Override
     protected int getLayout() {
@@ -76,6 +91,23 @@ public class CommentFragment extends BaseMvpFragment<CommentPresenter> implement
                 onRefresh();
             }
         });
+
+        userId= LoginPresenter.getUserId();
+        if(userId>0)
+            btassess.setEnabled(true);
+    }
+
+    @OnClick(R.id.bt_post_assess)
+    public void onClick(View view){
+        String txt=tvcontents.getText().toString().trim();
+        if(txt.length()>0&&userId>0){
+            mPresenter.postComment(videoId,txt,userId);
+            tvcontents.setText("");
+            hintKbTwo();
+        }else{
+            Log.e("评论","NULL");
+            Toast.makeText(mContext,"文本不能为空",Toast.LENGTH_SHORT);
+        }
     }
 
     @Override
@@ -127,7 +159,8 @@ public class CommentFragment extends BaseMvpFragment<CommentPresenter> implement
 
     @Subscriber(tag = VideoInfoPresenter.Put_DataId)
     public void setData(int dataId) {
-        Log.e("检查VideoId传输状态:  ",String.valueOf(dataId));
+        Log.e("检查VideoId传输状态:  ", String.valueOf(dataId));
+        this.videoId=dataId;
         mPresenter.setMediaId(dataId);
         mPresenter.onRefresh();
     }
@@ -141,5 +174,13 @@ public class CommentFragment extends BaseMvpFragment<CommentPresenter> implement
     @Override
     protected void initInject() {
         getFragmentComponent().inject(this);
+    }
+
+    private void hintKbTwo() {
+        InputMethodManager imm=(InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+        if(imm.isActive()){
+            imm.toggleSoftInput(InputMethodManager.SHOW_IMPLICIT,
+                    InputMethodManager.HIDE_NOT_ALWAYS);
+        }
     }
 }

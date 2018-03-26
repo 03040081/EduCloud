@@ -6,8 +6,6 @@ import com.zsc.zzc.educloud.model.db.RealmHelper;
 import com.zsc.zzc.educloud.presenter.contract.WelcomeContract;
 import com.zsc.zzc.educloud.utils.RxUtil;
 
-import org.simple.eventbus.EventBus;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -34,9 +32,6 @@ public class WelcomePresenter extends RxPresenter<WelcomeContract.View> implemen
         mView.showContent(getImgData());
         startCountDown();
 
-        getUserInfo();
-        if(userId>0)
-            putUserId();
     }
 
     private void startCountDown() {
@@ -70,7 +65,7 @@ public class WelcomePresenter extends RxPresenter<WelcomeContract.View> implemen
             userId=user.getUserId();
         }
     }
-    private void putUserId(){
+/*    private void putUserId(){
         Subscription rxSubscription= Observable.timer(WAIT_TIME, TimeUnit.MILLISECONDS)
                 .compose(RxUtil.<Long>rxSchedulerHelper())
                 .subscribe(new Action1<Long>() {
@@ -80,6 +75,6 @@ public class WelcomePresenter extends RxPresenter<WelcomeContract.View> implemen
                     }
                 });
         addSubscribe(rxSubscription);
-    }
+    }*/
 
 }

@@ -20,6 +20,7 @@ public class CommentPresenter extends RxPresenter<CommentContract.View> implemen
     int mediaId=0 ;
     int pageSize=20;
 
+
     @Inject
     public CommentPresenter() {
     }
@@ -31,6 +32,23 @@ public class CommentPresenter extends RxPresenter<CommentContract.View> implemen
             getComment(mediaId);
         }
     }
+
+    public void postComment(int videoId,String contents,int userId){
+
+        Subscription rxSubscription=RetrofitHelper.getVideoApi().publishAssess(videoId,contents,userId)
+                .compose(RxUtil.<VideoHttpResponse<Boolean>>rxSchedulerHelper())
+                .compose(RxUtil.<Boolean>handleResult())
+                .subscribe(new Action1<Boolean>() {
+                    @Override
+                    public void call(Boolean bool) {
+                        if(bool==null||bool==false)
+                            mView.showError("发表失败");
+                    }
+                });
+        addSubscribe(rxSubscription);
+    }
+
+
 
     private void getComment(int mediaId) {
         Subscription rxSubscription = RetrofitHelper.getVideoApi().getVideoAssesses(page,pageSize,mediaId)
@@ -71,5 +89,6 @@ public class CommentPresenter extends RxPresenter<CommentContract.View> implemen
     public void setMediaId(int id) {
         this.mediaId = id;
     }
+
 
 }

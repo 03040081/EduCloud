@@ -27,6 +27,8 @@ import com.zsc.zzc.educloud.utils.EventUtil;
 import com.zsc.zzc.educloud.widget.LVGhost;
 import com.zsc.zzc.educloud.widget.SwipeViewPager;
 
+import org.simple.eventbus.EventBus;
+
 import butterknife.BindView;
 import butterknife.OnClick;
 import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
@@ -61,6 +63,7 @@ public class VideoInfoActivity extends SwipeBackActivity<VideoInfoPresenter> imp
 
     @Override
     protected void initView() {
+        EventBus.getDefault().register(this);
         animation = AnimationUtils.loadAnimation(mContext, R.anim.view_hand);
         rlCollect.setVisibility(View.VISIBLE);
         FragmentPagerItemAdapter adapter = new FragmentPagerItemAdapter(
