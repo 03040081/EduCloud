@@ -42,6 +42,7 @@ import static com.zsc.zzc.educloud.R.id.recyclerView;
 
 public class MineFragment extends BaseMvpFragment<MinePresenter> implements MineContract.View {
     //public static final String SET_THEME = "SET_THEME";
+    //public static final String LoginResfesh="LoginResfesh";
     MineHistoryVideoListAdapter mAdapter;
     VideoInfor videoInfor;
     @BindView(R.id.title_name)
@@ -112,7 +113,9 @@ public class MineFragment extends BaseMvpFragment<MinePresenter> implements Mine
                 VideoInfoActivity.start(mContext,videoInfor);
             }
         });
-
+        if(LoginPresenter.getUserId()>0){
+            imgHead.setEnabled(false);
+        }
     }
 
     @Override
@@ -183,4 +186,5 @@ public class MineFragment extends BaseMvpFragment<MinePresenter> implements Mine
     protected void initInject() {
         getFragmentComponent().inject(this);
     }
+
 }

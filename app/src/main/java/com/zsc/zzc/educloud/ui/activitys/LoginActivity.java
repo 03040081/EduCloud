@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.View;
@@ -17,7 +18,6 @@ import com.zsc.zzc.educloud.base.SwipeBackActivity;
 import com.zsc.zzc.educloud.model.bean.User;
 import com.zsc.zzc.educloud.presenter.LoginPresenter;
 import com.zsc.zzc.educloud.presenter.contract.LoginContract;
-import com.zsc.zzc.educloud.utils.ActivityUtils;
 
 import org.simple.eventbus.EventBus;
 
@@ -57,7 +57,13 @@ public class LoginActivity extends SwipeBackActivity<LoginPresenter> implements 
     @Override
     public void saveContent(User user) {
         //Toast.makeText(mContext,user.getUserName(),Toast.LENGTH_SHORT);
-        Log.e("用户：",user.getUserName());
+        //mPresenter.insertUser(user);
+        Log.e("LoginActivity",String.valueOf(user.getUserId()));
+        Intent intent = new Intent("jerry");
+        intent.putExtra("change", "yes");
+        intent.putExtra("userId",String.valueOf(user.getUserId()));
+        LocalBroadcastManager.getInstance(mContext).sendBroadcast(intent);
+
     }
     @Override
     protected void getIntentData() {
@@ -95,8 +101,9 @@ public class LoginActivity extends SwipeBackActivity<LoginPresenter> implements 
                 userAccount= String.valueOf(etUsername.getText());
                 String userPass= String.valueOf(etPassword.getText());
                 mPresenter.login(userAccount,userPass);
-                ActivityUtils.finishAll();
+                //ActivityUtils.finishAll();
                 MainActivity.start(mContext);
+                //finish();
                 break;
         }
     }
@@ -105,4 +112,5 @@ public class LoginActivity extends SwipeBackActivity<LoginPresenter> implements 
         starter.putExtra("userAccount", userAccount);
         context.startActivity(starter);
     }
+
 }

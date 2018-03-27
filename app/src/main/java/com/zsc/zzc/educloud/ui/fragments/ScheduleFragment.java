@@ -1,5 +1,11 @@
 package com.zsc.zzc.educloud.ui.fragments;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.os.Handler;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.text.TextUtils;
@@ -36,35 +42,49 @@ public class ScheduleFragment extends BaseMvpFragment<SchedulePresenter> impleme
     @BindView(R.id.recyclerView)
     EasyRecyclerView recyclerView;
 
+    TextView tv_empty;
+
     ScheduleAdapter adapter;
 
     VideoInfor videoInfor;
 
     private int userId = 0;
 
+    LocalBroadcastManager broadcastManager;
+
     @Override
     protected void initView(LayoutInflater inflater) {
         EventBus.getDefault().register(this);
         titleName.setText("我的课程表");
         recyclerView.setAdapterWithProgress(adapter = new ScheduleAdapter(getContext()));
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setErrorView(R.layout.view_error);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         SpaceDecoration itemDecoration = new SpaceDecoration(ScreenUtil.dip2px(getContext(), 8));
         itemDecoration.setPaddingEdgeSide(true);
         itemDecoration.setPaddingStart(true);
         itemDecoration.setPaddingHeaderFooter(false);
         recyclerView.addItemDecoration(itemDecoration);
+        tv_empty=(TextView)recyclerView.getEmptyView();
+        this.userId = LoginPresenter.getUserId();
+        if(userId>0){
+            tv_empty.setText("您还没有添加课程");
+        }else{
+            Log.e("您还未登录",userId+"");
+            tv_empty.setText("您还未登录");
+            adapter.clear();
+            recyclerView.setEmptyView(tv_empty);
+        }
         ///////////////////////////////////////////
         //mPresenter.onRefresh(userId);
-        this.userId = LoginPresenter.getUserId();
+
         Log.e("加载过后",String.valueOf(userId));
     }
 
     @Override
     protected void initEvent() {
-        this.userId = LoginPresenter.getUserId();
+        //this.userId = LoginPresenter.getUserId();
         Log.e("Schedule",String.valueOf(userId));
-        mPresenter.onRefresh(userId);
+        //mPresenter.onRefresh(userId);
         adapter.setOnItemClickListener(new RecyclerArrayAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
@@ -83,10 +103,12 @@ public class ScheduleFragment extends BaseMvpFragment<SchedulePresenter> impleme
             public void onClick(View v) {
                 recyclerView.showProgress();
                 ///////////////////////
-                mPresenter.onRefresh(userId);
+                onRefresh();
             }
         });
+        recyclerView.setRefreshListener(this);
 
+        registerReceiver();
 
     }
 
@@ -98,8 +120,8 @@ public class ScheduleFragment extends BaseMvpFragment<SchedulePresenter> impleme
     @Override
     public void showContent(List<VideoInfor> viewRes) {
         adapter.clear();
-        if (viewRes != null)
-            adapter.addAll(viewRes);
+
+        adapter.addAll(viewRes);
     }
 
     @Override
@@ -121,8 +143,40 @@ public class ScheduleFragment extends BaseMvpFragment<SchedulePresenter> impleme
     }
 
     @Override
-    public void onRefresh() {
+    public  void onRefresh() {
         userId=LoginPresenter.getUserId();
         mPresenter.onRefresh(userId);
+        Log.e("接收到广播"," "+userId);
     }
+
+
+    private void registerReceiver() {
+        broadcastManager = LocalBroadcastManager.getInstance(getActivity());
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction("jerry");
+        broadcastManager.registerReceiver(mAdDownLoadReceiver, intentFilter);
+    }
+
+    private BroadcastReceiver mAdDownLoadReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, final Intent intent) {
+            final String change = intent.getStringExtra("change");
+            userId=Integer.valueOf(intent.getStringExtra("userId"));
+            if ("yes".equals(change)) {
+                // 这地方只能在主线程中刷新UI,子线程中无效，因此用Handler来实现
+                new Handler().post(new Runnable() {
+                    public void run() {
+                        Log.e("接收到广播",change+" "+userId);
+                        onRefresh();
+                    }
+                });
+            }
+        }
+    };
+
+    public void onDetach(){
+        super.onDetach();
+        broadcastManager.unregisterReceiver(mAdDownLoadReceiver);
+    }
+
 }

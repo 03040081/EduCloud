@@ -37,8 +37,8 @@ public class LoginPresenter extends RxPresenter<LoginContract.View> implements L
                         if (user != null) {
                             mView.saveContent(user);
                             insertUser(user);
-                            userId=user.getUserId();
-                            Log.e("Presenter用户：",user.getUserName());
+                            //userId=user.getUserId();
+                            Log.e("Presenter用户：",user.getUserName()+" "+user.getUserId());
                         }
                     }
                 }, new Action1<Throwable>() {
@@ -54,6 +54,7 @@ public class LoginPresenter extends RxPresenter<LoginContract.View> implements L
     @Override
     public void insertUser(User user) {
         if (user!=null){
+            Log.e("保存User搭配Realm",user.getUserAccount());
             RealmHelper.getInstance().insertUserInfo(user);
         }
     }
@@ -61,6 +62,7 @@ public class LoginPresenter extends RxPresenter<LoginContract.View> implements L
     public static int getUserId(){
        User user= RealmHelper.getInstance().getUserInfo();
         if(user!=null){
+            Log.e("LoginPre获取User信息",user.getUserAccount());
             return user.getUserId();
         }
         return 0;
@@ -72,6 +74,10 @@ public class LoginPresenter extends RxPresenter<LoginContract.View> implements L
 
     public static void loginOut(){
         RealmHelper.getInstance().deleteAllUserInfo();
+    }
+
+    public int getUserIdForLogin(){
+        return this.userId;
     }
 
 

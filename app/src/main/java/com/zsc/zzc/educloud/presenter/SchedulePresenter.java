@@ -23,9 +23,7 @@ public class SchedulePresenter extends RxPresenter<ScheduleContract.View> implem
 
     @Override
     public void onRefresh(int userId) {
-        if(userId>0) {
-            getScheduleInfo(userId);
-        }
+        getScheduleInfo(userId);
     }
 
     private void getScheduleInfo(int userId){
@@ -45,5 +43,6 @@ public class SchedulePresenter extends RxPresenter<ScheduleContract.View> implem
                         mView.refreshFaild(StringUtils.getErrorMsg(throwable.getMessage()));
                     }
                 });
+        addSubscribe(rxSubscription);
     }
 }
