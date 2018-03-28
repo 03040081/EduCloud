@@ -65,7 +65,7 @@ public class ScheduleFragment extends BaseMvpFragment<SchedulePresenter> impleme
         itemDecoration.setPaddingHeaderFooter(false);
         recyclerView.addItemDecoration(itemDecoration);
         tv_empty=(TextView)recyclerView.getEmptyView();
-        this.userId = LoginPresenter.getUserId();
+        //this.userId = LoginPresenter.getUserId();
         if(userId>0){
             tv_empty.setText("您还没有添加课程");
         }else{
@@ -75,8 +75,6 @@ public class ScheduleFragment extends BaseMvpFragment<SchedulePresenter> impleme
             recyclerView.setEmptyView(tv_empty);
         }
         ///////////////////////////////////////////
-        //mPresenter.onRefresh(userId);
-
         Log.e("加载过后",String.valueOf(userId));
     }
 
@@ -84,7 +82,7 @@ public class ScheduleFragment extends BaseMvpFragment<SchedulePresenter> impleme
     protected void initEvent() {
         //this.userId = LoginPresenter.getUserId();
         Log.e("Schedule",String.valueOf(userId));
-        //mPresenter.onRefresh(userId);
+
         adapter.setOnItemClickListener(new RecyclerArrayAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
@@ -106,9 +104,12 @@ public class ScheduleFragment extends BaseMvpFragment<SchedulePresenter> impleme
                 onRefresh();
             }
         });
+
         recyclerView.setRefreshListener(this);
 
         registerReceiver();
+
+
 
     }
 
@@ -120,7 +121,6 @@ public class ScheduleFragment extends BaseMvpFragment<SchedulePresenter> impleme
     @Override
     public void showContent(List<VideoInfor> viewRes) {
         adapter.clear();
-
         adapter.addAll(viewRes);
     }
 
@@ -135,6 +135,8 @@ public class ScheduleFragment extends BaseMvpFragment<SchedulePresenter> impleme
     @Override
     protected void initInject() {
         getFragmentComponent().inject(this);
+        this.userId=LoginPresenter.getUserId();
+        mPresenter.setUserId(this.userId);
     }
 
     @Override
@@ -144,8 +146,9 @@ public class ScheduleFragment extends BaseMvpFragment<SchedulePresenter> impleme
 
     @Override
     public  void onRefresh() {
-        userId=LoginPresenter.getUserId();
-        mPresenter.onRefresh(userId);
+        //userId=LoginPresenter.getUserId();
+
+        mPresenter.onRefresh();
         Log.e("接收到广播"," "+userId);
     }
 

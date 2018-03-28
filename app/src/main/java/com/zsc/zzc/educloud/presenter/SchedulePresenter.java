@@ -17,12 +17,18 @@ import rx.functions.Action1;
 
 public class SchedulePresenter extends RxPresenter<ScheduleContract.View> implements ScheduleContract.Presenter {
 
+    private int userId=0;
 
     @Inject
-    public SchedulePresenter(){}
+    public SchedulePresenter(){
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
 
     @Override
-    public void onRefresh(int userId) {
+    public void onRefresh() {
         getScheduleInfo(userId);
     }
 

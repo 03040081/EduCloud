@@ -15,6 +15,6 @@ public interface ScheduleContract {
 
     }
     interface Presenter extends BasePresenter<View> {
-        void onRefresh(int userId);
+        void onRefresh();
     }
 }
