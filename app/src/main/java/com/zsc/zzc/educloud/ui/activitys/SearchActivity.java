@@ -17,8 +17,8 @@ import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
 import com.jude.easyrecyclerview.decoration.SpaceDecoration;
 import com.zsc.zzc.educloud.R;
 import com.zsc.zzc.educloud.base.SwipeBackActivity;
+import com.zsc.zzc.educloud.model.bean.Course;
 import com.zsc.zzc.educloud.model.bean.SearchKey;
-import com.zsc.zzc.educloud.model.bean.VideoInfor;
 import com.zsc.zzc.educloud.model.db.RealmHelper;
 import com.zsc.zzc.educloud.presenter.SearchVideoListPresenter;
 import com.zsc.zzc.educloud.presenter.contract.SearchVideoListContract;
@@ -36,8 +36,8 @@ import static com.zsc.zzc.educloud.R.id.recyclerView;
 
 public class SearchActivity extends SwipeBackActivity<SearchVideoListPresenter> implements SearchVideoListContract.View, SwipeRefreshLayout.OnRefreshListener, RecyclerArrayAdapter.OnLoadMoreListener {
 
-    List<VideoInfor> lists;
-    VideoInfor videoInfor;
+    List<Course> lists;
+    Course videoInfor;
     @BindView(recyclerView)
     EasyRecyclerView mRecyclerView;
     VideoListAdapter mAdapter;
@@ -64,7 +64,7 @@ public class SearchActivity extends SwipeBackActivity<SearchVideoListPresenter> 
     TextView tvTitle1;*/
 /*    @BindView(R.id.ll_recommend)
     LinearLayout llRecommend;*/
-    List<VideoInfor> recommends;
+    List<Course> recommends;
 
     @Override
     protected void initView() {
@@ -92,7 +92,7 @@ public class SearchActivity extends SwipeBackActivity<SearchVideoListPresenter> 
                 //videoInfo = BeanUtil.VideoType2VideoInfo(mAdapter.getItem(position), videoInfo);
                 //VideoInfoActivity.start(mContext, videoInfo);
                 //?????????????????????????????????????????????????????
-                videoInfor=(VideoInfor)mAdapter.getItem(position);
+                videoInfor=(Course) mAdapter.getItem(position);
                 VideoInfoActivity.start(mContext,videoInfor);
             }
         });
@@ -223,7 +223,7 @@ public class SearchActivity extends SwipeBackActivity<SearchVideoListPresenter> 
     }
 
     @Override
-    public void showContent(List<VideoInfor> list) {
+    public void showContent(List<Course> list) {
         mAdapter.clear();
         if (list != null && list.size() < pageSize) {
             clearFooter();
@@ -234,12 +234,12 @@ public class SearchActivity extends SwipeBackActivity<SearchVideoListPresenter> 
     }
 
     @Override
-    public void showMoreContent(List<VideoInfor> list) {
+    public void showMoreContent(List<Course> list) {
         mAdapter.addAll(list);
     }
 
     @Override
-    public void showRecommend(List<VideoInfor> list) {
+    public void showRecommend(List<Course> list) {
         /*if (list != null) {
             recommends = list;
             VideoInfor videoInfor = list.get(0);
@@ -259,7 +259,7 @@ public class SearchActivity extends SwipeBackActivity<SearchVideoListPresenter> 
 
     @Override
     protected  void getIntentData() {
-        lists = (List<VideoInfor>) getIntent().getSerializableExtra("recommend");
+        lists = (List<Course>) getIntent().getSerializableExtra("recommend");
     }
 
     @Override

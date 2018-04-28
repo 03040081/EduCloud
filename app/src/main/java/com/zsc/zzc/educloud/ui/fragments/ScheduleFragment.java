@@ -1,15 +1,9 @@
 package com.zsc.zzc.educloud.ui.fragments;
 
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
-import android.os.Handler;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
@@ -19,8 +13,7 @@ import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
 import com.jude.easyrecyclerview.decoration.SpaceDecoration;
 import com.zsc.zzc.educloud.R;
 import com.zsc.zzc.educloud.base.BaseMvpFragment;
-import com.zsc.zzc.educloud.model.bean.VideoInfor;
-import com.zsc.zzc.educloud.presenter.LoginPresenter;
+import com.zsc.zzc.educloud.model.bean.Course;
 import com.zsc.zzc.educloud.presenter.SchedulePresenter;
 import com.zsc.zzc.educloud.presenter.contract.ScheduleContract;
 import com.zsc.zzc.educloud.ui.activitys.VideoInfoActivity;
@@ -46,9 +39,9 @@ public class ScheduleFragment extends BaseMvpFragment<SchedulePresenter> impleme
 
     ScheduleAdapter adapter;
 
-    VideoInfor videoInfor;
+    Course videoInfor;
 
-    private int userId = 0;
+    //private int userId = 0;
 
     LocalBroadcastManager broadcastManager;
 
@@ -65,8 +58,13 @@ public class ScheduleFragment extends BaseMvpFragment<SchedulePresenter> impleme
         itemDecoration.setPaddingHeaderFooter(false);
         recyclerView.addItemDecoration(itemDecoration);
         tv_empty=(TextView)recyclerView.getEmptyView();
+        if(adapter.getCount()<1){
+            tv_empty.setText("您还没有添加课程");
+            recyclerView.setEmptyView(tv_empty);
+        }
+
         //this.userId = LoginPresenter.getUserId();
-        if(userId>0){
+        /*if(userId>0){
             tv_empty.setText("您还没有添加课程");
         }else{
             Log.e("您还未登录",userId+"");
@@ -75,13 +73,13 @@ public class ScheduleFragment extends BaseMvpFragment<SchedulePresenter> impleme
             recyclerView.setEmptyView(tv_empty);
         }
         ///////////////////////////////////////////
-        Log.e("加载过后",String.valueOf(userId));
+        Log.e("加载过后",String.valueOf(userId));*/
     }
 
     @Override
     protected void initEvent() {
         //this.userId = LoginPresenter.getUserId();
-        Log.e("Schedule",String.valueOf(userId));
+        //Log.e("Schedule",String.valueOf(userId));
 
         adapter.setOnItemClickListener(new RecyclerArrayAdapter.OnItemClickListener() {
             @Override
@@ -107,8 +105,8 @@ public class ScheduleFragment extends BaseMvpFragment<SchedulePresenter> impleme
 
         recyclerView.setRefreshListener(this);
 
-        registerReceiver();
-
+        //registerReceiver();
+        onRefresh();
 
 
     }
@@ -119,9 +117,10 @@ public class ScheduleFragment extends BaseMvpFragment<SchedulePresenter> impleme
     }
 
     @Override
-    public void showContent(List<VideoInfor> viewRes) {
+    public void showContent(List<Course> viewRes) {
         adapter.clear();
         adapter.addAll(viewRes);
+
     }
 
     @Override
@@ -135,8 +134,8 @@ public class ScheduleFragment extends BaseMvpFragment<SchedulePresenter> impleme
     @Override
     protected void initInject() {
         getFragmentComponent().inject(this);
-        this.userId=LoginPresenter.getUserId();
-        mPresenter.setUserId(this.userId);
+        //this.userId=LoginPresenter.getUserId();
+        //mPresenter.setUserId(this.userId);
     }
 
     @Override
@@ -149,11 +148,11 @@ public class ScheduleFragment extends BaseMvpFragment<SchedulePresenter> impleme
         //userId=LoginPresenter.getUserId();
 
         mPresenter.onRefresh();
-        Log.e("接收到广播"," "+userId);
+        //Log.e("接收到广播"," "+userId);
     }
 
 
-    private void registerReceiver() {
+   /* private void registerReceiver() {
         broadcastManager = LocalBroadcastManager.getInstance(getActivity());
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction("jerry");
@@ -180,6 +179,6 @@ public class ScheduleFragment extends BaseMvpFragment<SchedulePresenter> impleme
     public void onDetach(){
         super.onDetach();
         broadcastManager.unregisterReceiver(mAdDownLoadReceiver);
-    }
+    }*/
 
 }

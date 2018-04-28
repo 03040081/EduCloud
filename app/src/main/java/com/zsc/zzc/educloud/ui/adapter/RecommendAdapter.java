@@ -9,9 +9,10 @@ import com.jude.easyrecyclerview.adapter.BaseViewHolder;
 import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
 import com.zsc.zzc.educloud.R;
 import com.zsc.zzc.educloud.component.ImageLoader;
-import com.zsc.zzc.educloud.model.bean.VideoInfor;
+import com.zsc.zzc.educloud.model.bean.Course;
+import com.zsc.zzc.educloud.utils.StringUtils;
 
-public class RecommendAdapter extends RecyclerArrayAdapter<VideoInfor> {
+public class RecommendAdapter extends RecyclerArrayAdapter<Course> {
 
     public RecommendAdapter(Context context) {
         super(context);
@@ -22,13 +23,14 @@ public class RecommendAdapter extends RecyclerArrayAdapter<VideoInfor> {
         return new RecommendViewHolder(parent);
     }
 
-    class RecommendViewHolder extends BaseViewHolder<VideoInfor> {
+    class RecommendViewHolder extends BaseViewHolder<Course> {
         ImageView imgPicture;
         TextView tv_title;
         TextView tv_descript;
         TextView tv_rank;
         TextView tv_hot;
-        TextView tv_prices;
+        TextView tv_profession;
+        TextView tv_proname;
 
         public RecommendViewHolder(ViewGroup parent) {
             super(parent, R.layout.item_video);
@@ -37,18 +39,21 @@ public class RecommendAdapter extends RecyclerArrayAdapter<VideoInfor> {
             tv_descript=$(R.id.tv_descript);
             tv_rank=$(R.id.tv_rank);
             tv_hot=$(R.id.tv_hot);
-            tv_prices=$(R.id.tv_prices);
+            tv_profession=$(R.id.tv_profession);
+            tv_proname=$(R.id.tv_proname);
             imgPicture.setScaleType(ImageView.ScaleType.CENTER_CROP);
         }
 
         @Override
-        public void setData(VideoInfor data) {
-            tv_title.setText(data.getVideoTile());
-            tv_rank.setText(data.getRank().getRankName());
-            tv_hot.setText(String.valueOf(data.getStudySum()));
-            tv_prices.setText(String.valueOf(data.getPrices()));
-            tv_descript.setText(data.getVideoDiscript());
-            ImageLoader.load(getContext(), "http://47.93.11.130:8080/educloud/"+data.getPicUrl(), imgPicture);
+        public void setData(Course data) {
+            tv_title.setText(data.getName());
+            tv_rank.setText("教师:");
+            tv_hot.setText(String.valueOf(data.getTeacher().getName()));
+            //tv_prices.setText(String.valueOf(data.getPrices()));
+            tv_profession.setText("专业:");
+            tv_proname.setText(data.getProfession().getName());
+            tv_descript.setText(data.getIntro());
+            ImageLoader.load(getContext(), StringUtils.getHostImg(data.getIcon()), imgPicture);
         }
     }
 

@@ -1,10 +1,13 @@
 package com.zsc.zzc.educloud.model.bean;
 
 import java.io.Serializable;
+import java.util.List;
 
-import io.realm.RealmObject;
+/**
+ * Created by 21191 on 2018/4/25.
+ */
 
-public class Record extends RealmObject implements Serializable {
+public class Course implements Serializable{
 
     private String id;
 
@@ -24,34 +27,25 @@ public class Record extends RealmObject implements Serializable {
 
     private String fitPeople;
 
-    long time;
+    private List<Section> listSections;
 
     private Profession profession;
 
     private Teacher teacher;
 
-    public Profession getProfession() {
-        return profession;
-    }
+    public Course(){}
 
-    public void setProfession(Profession profession) {
-        this.profession = profession;
-    }
-
-    public Teacher getTeacher() {
-        return teacher;
-    }
-
-    public void setTeacher(Teacher teacher) {
-        this.teacher = teacher;
-    }
-
-    public long getTime() {
-        return time;
-    }
-
-    public void setTime(long time) {
-        this.time = time;
+    public Course(String id, String name, String teacherId, String professionId, String tagId, String icon, Integer type, String intro, String fitPeople, List<Section> listSections) {
+        this.id = id;
+        this.name = name;
+        this.teacherId = teacherId;
+        this.professionId = professionId;
+        this.tagId = tagId;
+        this.icon = icon;
+        this.type = type;
+        this.intro = intro;
+        this.fitPeople = fitPeople;
+        this.listSections = listSections;
     }
 
     public String getId() {
@@ -124,5 +118,29 @@ public class Record extends RealmObject implements Serializable {
 
     public void setFitPeople(String fitPeople) {
         this.fitPeople = fitPeople;
+    }
+
+    public List<Section> getListSections() {
+        return listSections;
+    }
+
+    public void setListSections(List<Section> listSections) {
+        this.listSections = listSections;
+    }
+
+    public Profession getProfession() {
+        return profession;
+    }
+
+    public void setProfession(Profession profession) {
+        this.profession = profession;
+    }
+
+    public Teacher getTeacher() {
+        return teacher;
+    }
+
+    public void setTeacher(Teacher teacher) {
+        this.teacher = teacher;
     }
 }

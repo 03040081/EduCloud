@@ -9,9 +9,9 @@
         android:layout_width="match_parent"
         android:background="@color/category"
         android:layout_height="30dp" />
-    <com.zsc.zzc.educloud.widget.MyGridView
+    <!--<com.zsc.zzc.educloud.widget.MyGridView
         android:id="@+id/categorydetailedgrid"
         android:numColumns="2"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"/>-->
 </LinearLayout>

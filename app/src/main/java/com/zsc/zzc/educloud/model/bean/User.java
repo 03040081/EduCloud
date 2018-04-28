@@ -1,99 +1,128 @@
 package com.zsc.zzc.educloud.model.bean;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import io.realm.RealmObject;
-import io.realm.annotations.Ignore;
+
+/**
+ * Created by 21191 on 2018/4/25.
+ */
 
 public class User extends RealmObject implements Serializable {
-    private int userId;
-    private String userName;
-    private String userAccount;
-    @Ignore
-    private String userPass;
-    private int locked=0;
-    private RoleInfo role;
-    private String faceImg;
-    private String token;
+
+    private String id;
+
+    private String username;
+
+    private String avatar;
+
+    private String birthday;
+
+    private Boolean gender;
+
+    private String email;
+
+    private String phonenum;
+
+    private String password;
+
+    private Integer identity;
+
+    private Date createdTime;
 
     public User(){}
 
-
-
-    public User(int userId, String userName, String userAccount, String userPass, int locked, RoleInfo role,
-                String faceImg,String token) {
-        this.userId = userId;
-        this.userName = userName;
-        this.userAccount = userAccount;
-        this.userPass = userPass;
-        this.locked = locked;
-        this.role = role;
-        this.faceImg = faceImg;
-        this.token=token;
+    public User(String id, String username, String avatar, String birthday, Boolean gender, String email, String phonenum, String password, Integer identity, Date createdTime) {
+        this.id = id;
+        this.username = username;
+        this.avatar = avatar;
+        this.birthday = birthday;
+        this.gender = gender;
+        this.email = email;
+        this.phonenum = phonenum;
+        this.password = password;
+        this.identity = identity;
+        this.createdTime = createdTime;
     }
 
+    public String getId() {
+        return id;
+    }
 
+    public void setId(String id) {
+        this.id = id;
+    }
 
-    public User(String userName, String userAccount, String userPass, int locked, RoleInfo role, String faceImg,String token) {
-        this.userName = userName;
-        this.userAccount = userAccount;
-        this.userPass = userPass;
-        this.locked = locked;
-        this.role = role;
-        this.faceImg = faceImg;
-        this.token=token;
+    public String getUsername() {
+        return username;
     }
-    @Override
-    public String toString() {
-        return "User [userId=" + userId + ", userName=" + userName + ", userAccount=" + userAccount + ", userPass="
-                + userPass + ", locked=" + locked + ", role=" + role + ", faceImg=" + faceImg + "]";
+
+    public void setUsername(String username) {
+        this.username = username;
     }
-    public String getToken() {
-        return token;
+
+    public String getAvatar() {
+        return avatar;
     }
-    public void setToken(String token) {
-        this.token = token;
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
-    public int getUserId() {
-        return userId;
+
+    public String getBirthday() {
+        return birthday;
     }
-    public void setUserId(int userId) {
-        this.userId = userId;
+
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
     }
-    public String getUserName() {
-        return userName;
+
+    public Boolean getGender() {
+        return gender;
     }
-    public void setUserName(String userName) {
-        this.userName = userName;
+
+    public void setGender(Boolean gender) {
+        this.gender = gender;
     }
-    public String getUserAccount() {
-        return userAccount;
+
+    public String getEmail() {
+        return email;
     }
-    public void setUserAccount(String userAccount) {
-        this.userAccount = userAccount;
+
+    public void setEmail(String email) {
+        this.email = email;
     }
-    public String getUserPass() {
-        return userPass;
+
+    public String getPhonenum() {
+        return phonenum;
     }
-    public void setUserPass(String userPass) {
-        this.userPass = userPass;
+
+    public void setPhonenum(String phonenum) {
+        this.phonenum = phonenum;
     }
-    public int getLocked() {
-        return locked;
+
+    public String getPassword() {
+        return password;
     }
-    public void setLocked(int locked) {
-        this.locked = locked;
+
+    public void setPassword(String password) {
+        this.password = password;
     }
-    public RoleInfo getRole() {
-        return role;
+
+    public Integer getIdentity() {
+        return identity;
     }
-    public void setRole(RoleInfo role) {
-        this.role = role;
+
+    public void setIdentity(Integer identity) {
+        this.identity = identity;
     }
-    public String getFaceImg() {
-        return faceImg;
+
+    public Date getCreatedTime() {
+        return createdTime;
     }
-    public void setFaceImg(String faceImg) {
-        this.faceImg = faceImg;
+
+    public void setCreatedTime(Date createdTime) {
+        this.createdTime = createdTime;
     }
 }

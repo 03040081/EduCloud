@@ -19,7 +19,7 @@ import com.jude.easyrecyclerview.decoration.SpaceDecoration;
 import com.jude.rollviewpager.hintview.IconHintView;
 import com.zsc.zzc.educloud.R;
 import com.zsc.zzc.educloud.base.BaseMvpFragment;
-import com.zsc.zzc.educloud.model.bean.VideoInfor;
+import com.zsc.zzc.educloud.model.bean.Course;
 import com.zsc.zzc.educloud.presenter.RecommendPresenter;
 import com.zsc.zzc.educloud.presenter.contract.RecommendContract;
 import com.zsc.zzc.educloud.ui.activitys.MainActivity;
@@ -54,7 +54,7 @@ public class RecommendFragment extends BaseMvpFragment<RecommendPresenter> imple
     RecommendAdapter adapter;
     TextView etSearchKey;
     RelativeLayout rlGoSearch;
-    List<VideoInfor> recommend;
+    List<Course> recommend;
 
     int pageSize = 10;
 
@@ -166,7 +166,7 @@ public class RecommendFragment extends BaseMvpFragment<RecommendPresenter> imple
     }
 
     @Override
-    public void showContent(List<VideoInfor> videoRes) {
+    public void showContent(List<Course> videoRes) {
         adapter.clear();
         if (videoRes != null && videoRes.size() < pageSize) {
             clearFooter();
@@ -176,7 +176,7 @@ public class RecommendFragment extends BaseMvpFragment<RecommendPresenter> imple
 
     }
     @Override
-    public void showRollContent(final List<VideoInfor> list) {
+    public void showRollContent(final List<Course> list) {
         if (adapter.getHeaderCount() == 0) {
             adapter.addHeader(new RecyclerArrayAdapter.ItemView() {
                 @Override
@@ -212,7 +212,7 @@ public class RecommendFragment extends BaseMvpFragment<RecommendPresenter> imple
     }
 
     @Override
-    public void showMoreContent(List<VideoInfor> list) {
+    public void showMoreContent(List<Course> list) {
         adapter.addAll(list);
     }
 

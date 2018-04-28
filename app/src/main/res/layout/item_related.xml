@@ -39,14 +39,28 @@
             android:layout_marginTop="8dp"
             android:layout_marginLeft="114dp"
             android:text="3000"/>
-        <TextView
+        <!--<TextView
             android:id="@+id/tv_prices"
             style="@style/small_tv_info"
             android:layout_below="@+id/tv_rank"
             android:layout_marginTop="2dp"
             android:layout_marginLeft="89dp"
             android:text="1024.00元"
-            />
+            />-->
+        <TextView
+            android:id="@+id/tv_profession"
+            style="@style/small_tv_info"
+            android:layout_below="@id/tv_rank"
+            android:layout_marginTop="2dp"
+            android:layout_marginLeft="89dp"
+            android:text="高级"/>
+        <TextView
+            android:id="@+id/tv_proname"
+            style="@style/small_tv_info"
+            android:layout_below="@id/tv_rank"
+            android:layout_marginTop="2dp"
+            android:layout_marginLeft="114dp"
+            android:text="3000"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="8dp"

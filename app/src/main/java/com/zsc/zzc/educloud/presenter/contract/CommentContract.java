@@ -3,7 +3,7 @@ package com.zsc.zzc.educloud.presenter.contract;
 
 import com.zsc.zzc.educloud.base.BasePresenter;
 import com.zsc.zzc.educloud.base.BaseView;
-import com.zsc.zzc.educloud.model.bean.VideoAssess;
+import com.zsc.zzc.educloud.model.bean.Comment;
 
 import java.util.List;
 
@@ -13,9 +13,9 @@ public interface CommentContract {
 
         void refreshFaild(String msg);
 
-        void showContent(List<VideoAssess> list);
+        void showContent(List<Comment> list);
 
-        void showMoreContent(List<VideoAssess> list);
+        void showMoreContent(List<Comment> list);
     }
 
     interface Presenter extends BasePresenter<View> {
@@ -24,7 +24,7 @@ public interface CommentContract {
 
         void loadMore();
 
-        void setMediaId(int id);
+        void setMediaId(String id);
 
     }
 }

@@ -1,10 +1,10 @@
 package com.zsc.zzc.educloud.model;
 
 import com.zsc.zzc.educloud.model.bean.Collection;
+import com.zsc.zzc.educloud.model.bean.Course;
 import com.zsc.zzc.educloud.model.bean.Record;
 import com.zsc.zzc.educloud.model.bean.SearchKey;
 import com.zsc.zzc.educloud.model.bean.User;
-import com.zsc.zzc.educloud.model.bean.VideoInfor;
 import com.zsc.zzc.educloud.model.db.DBHelper;
 import com.zsc.zzc.educloud.model.http.HttpHelper;
 import com.zsc.zzc.educloud.model.http.response.VideoHttpResponse;
@@ -36,7 +36,7 @@ public class DataManager implements HttpHelper, DBHelper {
     }
 
     @Override
-    public void deleteCollection(int videoId) {
+    public void deleteCollection(String videoId) {
         mDbHelper.deleteCollection(videoId);
     }
 
@@ -46,7 +46,7 @@ public class DataManager implements HttpHelper, DBHelper {
     }
 
     @Override
-    public boolean queryCollectionId(int videoId) {
+    public boolean queryCollectionId(String videoId) {
         return mDbHelper.queryCollectionId(videoId);
     }
 
@@ -61,12 +61,12 @@ public class DataManager implements HttpHelper, DBHelper {
     }
 
     @Override
-    public void deleteRecord(int videoId) {
+    public void deleteRecord(String videoId) {
         mDbHelper.deleteRecord(videoId);
     }
 
     @Override
-    public boolean queryRecordId(int videoId) {
+    public boolean queryRecordId(String videoId) {
         return mDbHelper.queryRecordId(videoId);
     }
 
@@ -111,7 +111,7 @@ public class DataManager implements HttpHelper, DBHelper {
     }
 
     @Override
-    public void deleteUserInfo(int userId) {
+    public void deleteUserInfo(String userId) {
         mDbHelper.deleteUserInfo(userId);
     }
 
@@ -122,8 +122,8 @@ public class DataManager implements HttpHelper, DBHelper {
 
     ///////////////////////////////////////////////////////////
     @Override
-    public Observable<VideoHttpResponse<List<VideoInfor>>> fetchRecommendVideos(int currPage, int pageSize) {
-        return mHttpHelper.fetchRecommendVideos(currPage,pageSize);
+    public Observable<VideoHttpResponse<List<Course>>> fetchRecommendVideos() {
+        return mHttpHelper.fetchRecommendVideos();
     }
 ///////////////////////////////////////////////////////////
 

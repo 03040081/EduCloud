@@ -7,7 +7,6 @@ import com.zsc.zzc.educloud.di.scope.ActivityScope;
 import com.zsc.zzc.educloud.ui.activitys.CollectionActivity;
 import com.zsc.zzc.educloud.ui.activitys.HistoryActivity;
 import com.zsc.zzc.educloud.ui.activitys.LoginActivity;
-import com.zsc.zzc.educloud.ui.activitys.RegisterActivity;
 import com.zsc.zzc.educloud.ui.activitys.SearchActivity;
 import com.zsc.zzc.educloud.ui.activitys.VideoInfoActivity;
 import com.zsc.zzc.educloud.ui.activitys.VideoListActivity;
@@ -34,7 +33,7 @@ public interface ActivityComponent {
 
     void inject(LoginActivity loginActivity);
 
-    void inject(RegisterActivity registerActivity);
+   /* void inject(RegisterActivity registerActivity);*/
 
     //void inject(WelfareActivity welfareActivity);
 

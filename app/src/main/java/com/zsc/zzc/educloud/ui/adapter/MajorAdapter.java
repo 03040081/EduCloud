@@ -9,7 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.zsc.zzc.educloud.R;
-import com.zsc.zzc.educloud.model.bean.Major;
+import com.zsc.zzc.educloud.model.bean.Category;
 import com.zsc.zzc.educloud.ui.fragments.ClassificationFragment;
 
 import java.util.ArrayList;
@@ -18,10 +18,10 @@ import java.util.List;
 public class MajorAdapter extends BaseAdapter {
 
     private Context context;
-    private List<Major> list=new ArrayList<Major>();
+    private List<Category> list=new ArrayList<Category>();
     public static int mPosition;
 
-    public MajorAdapter(Context context,List<Major> list){
+    public MajorAdapter(Context context,List<Category> list){
         this.context=context;
         this.list=list;
     }
@@ -45,8 +45,8 @@ public class MajorAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         convertView = LayoutInflater.from(context).inflate(R.layout.item_major, null);
         TextView tv = (TextView) convertView.findViewById(R.id.majorname);
-        mPosition = list.get(position).getMajorId();
-        tv.setText(list.get(position).getMajorName());
+        mPosition = position;
+        tv.setText(list.get(position).getName());
         if (position == ClassificationFragment.mPosition) {
             convertView.setBackgroundColor(Color.parseColor("#e08c6ba4"));
         } else {

@@ -1,7 +1,9 @@
 package com.zsc.zzc.educloud.presenter;
 
+import android.util.Log;
+
 import com.zsc.zzc.educloud.base.RxPresenter;
-import com.zsc.zzc.educloud.model.bean.VideoAssess;
+import com.zsc.zzc.educloud.model.bean.Comment;
 import com.zsc.zzc.educloud.model.http.response.VideoHttpResponse;
 import com.zsc.zzc.educloud.model.net.RetrofitHelper;
 import com.zsc.zzc.educloud.presenter.contract.CommentContract;
@@ -17,7 +19,7 @@ import rx.functions.Action1;
 
 public class CommentPresenter extends RxPresenter<CommentContract.View> implements CommentContract.Presenter {
     int page = 1;
-    int mediaId=0 ;
+    String mediaId="" ;
     int pageSize=20;
 
 
@@ -28,20 +30,20 @@ public class CommentPresenter extends RxPresenter<CommentContract.View> implemen
     @Override
     public void onRefresh() {
         page = 1;
-        if (mediaId != 0) {
+        if (!"".equals(mediaId)) {
             getComment(mediaId);
         }
     }
 
-    public void postComment(int videoId,String contents,int userId){
+    public void postComment(String sectionId,String userId,String content){
 
-        Subscription rxSubscription=RetrofitHelper.getVideoApi().publishAssess(videoId,contents,userId)
-                .compose(RxUtil.<VideoHttpResponse<Boolean>>rxSchedulerHelper())
-                .compose(RxUtil.<Boolean>handleResult())
-                .subscribe(new Action1<Boolean>() {
+        Subscription rxSubscription=RetrofitHelper.getVideoApi().publishAssess(sectionId,userId,content)
+                .compose(RxUtil.<VideoHttpResponse<String>>rxSchedulerHelper())
+                .compose(RxUtil.<String>handleResult())
+                .subscribe(new Action1<String>() {
                     @Override
-                    public void call(Boolean bool) {
-                        if(bool==null||bool==false)
+                    public void call(String bool) {
+                        if(bool==null||!bool.equals("OK"))
                             mView.showError("发表失败");
                     }
                 });
@@ -50,16 +52,18 @@ public class CommentPresenter extends RxPresenter<CommentContract.View> implemen
 
 
 
-    private void getComment(int mediaId) {
-        Subscription rxSubscription = RetrofitHelper.getVideoApi().getVideoAssesses(page,pageSize,mediaId)
-                .compose(RxUtil.<VideoHttpResponse<List<VideoAssess>>>rxSchedulerHelper())
-                .compose(RxUtil.<List<VideoAssess>>handleResult())
-                .subscribe(new Action1<List<VideoAssess>>() {
+    private void getComment(String sectionId) {
+        Log.e("调用getComment",sectionId);
+        Subscription rxSubscription = RetrofitHelper.getVideoApi().getVideoAssesses(sectionId,page)
+                .compose(RxUtil.<VideoHttpResponse<List<Comment>>>rxSchedulerHelper())
+                .compose(RxUtil.<List<Comment>>handleResult())
+                .subscribe(new Action1<List<Comment>>() {
                     @Override
-                    public void call(List<VideoAssess> res) {
+                    public void call(List<Comment> res) {
                         if (res != null) {
                             if (page == 1) {
                                 mView.showContent(res);
+                                Log.e("访问网络获取Comment",res.get(0).getContent());
                             } else {
                                 mView.showMoreContent(res);
                             }
@@ -72,6 +76,7 @@ public class CommentPresenter extends RxPresenter<CommentContract.View> implemen
                             page--;
                         }
                         mView.refreshFaild(StringUtils.getErrorMsg(throwable.getMessage()));
+                        Log.e("Comment异常",throwable.getMessage()+""+throwable);
                     }
                 });
         addSubscribe(rxSubscription);
@@ -80,13 +85,13 @@ public class CommentPresenter extends RxPresenter<CommentContract.View> implemen
     @Override
     public void loadMore() {
         page++;
-        if (mediaId != 0) {
+        if (!"".equals(mediaId)) {
             getComment(mediaId);
         }
     }
 
     @Override
-    public void setMediaId(int id) {
+    public void setMediaId(String id) {
         this.mediaId = id;
     }
 

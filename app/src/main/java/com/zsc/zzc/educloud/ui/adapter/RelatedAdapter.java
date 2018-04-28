@@ -10,13 +10,14 @@ import com.jude.easyrecyclerview.adapter.BaseViewHolder;
 import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
 import com.zsc.zzc.educloud.R;
 import com.zsc.zzc.educloud.component.ImageLoader;
-import com.zsc.zzc.educloud.model.bean.VideoInfor;
+import com.zsc.zzc.educloud.model.bean.Course;
+import com.zsc.zzc.educloud.utils.StringUtils;
 
 
 /*
  推荐
  */
-public class RelatedAdapter extends RecyclerArrayAdapter<VideoInfor> {
+public class RelatedAdapter extends RecyclerArrayAdapter<Course> {
 
     public RelatedAdapter(Context context) {
         super(context);
@@ -27,7 +28,7 @@ public class RelatedAdapter extends RecyclerArrayAdapter<VideoInfor> {
         return new RelatedViewHolder(parent);
     }
 
-    class RelatedViewHolder extends BaseViewHolder<VideoInfor> {
+    class RelatedViewHolder extends BaseViewHolder<Course> {
         ImageView imgPicture;
         TextView tv_title;
 
@@ -39,8 +40,8 @@ public class RelatedAdapter extends RecyclerArrayAdapter<VideoInfor> {
         }
 
         @Override
-        public void setData(VideoInfor data) {
-            tv_title.setText(data.getVideoTile());
+        public void setData(Course data) {
+            tv_title.setText(data.getName());
             ViewGroup.LayoutParams params = imgPicture.getLayoutParams();
 
             DisplayMetrics dm = getContext().getResources().getDisplayMetrics();
@@ -49,7 +50,7 @@ public class RelatedAdapter extends RecyclerArrayAdapter<VideoInfor> {
 
             params.height = (int) (width * 1.2);
             imgPicture.setLayoutParams(params);
-            ImageLoader.load(getContext(), data.getPicUrl(), imgPicture);
+            ImageLoader.load(getContext(), StringUtils.getHostImg(data.getIcon()), imgPicture);
         }
     }
 }

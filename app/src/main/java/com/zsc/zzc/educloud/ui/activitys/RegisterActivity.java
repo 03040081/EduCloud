@@ -1,3 +1,4 @@
+/*
 package com.zsc.zzc.educloud.ui.activitys;
 
 import android.animation.Animator;
@@ -254,3 +255,4 @@ public class RegisterActivity extends SwipeBackActivity<RegisterPresenter> imple
 
 
 }
+*/

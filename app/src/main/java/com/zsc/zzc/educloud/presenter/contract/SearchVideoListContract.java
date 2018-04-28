@@ -2,7 +2,7 @@ package com.zsc.zzc.educloud.presenter.contract;
 
 import com.zsc.zzc.educloud.base.BasePresenter;
 import com.zsc.zzc.educloud.base.BaseView;
-import com.zsc.zzc.educloud.model.bean.VideoInfor;
+import com.zsc.zzc.educloud.model.bean.Course;
 
 import java.util.List;
 
@@ -14,11 +14,11 @@ public interface SearchVideoListContract {
 
         void loadMoreFaild(String msg);
 
-        void showContent(List<VideoInfor> list);
+        void showContent(List<Course> list);
 
-        void showMoreContent(List<VideoInfor> list);
+        void showMoreContent(List<Course> list);
 
-        void showRecommend(List<VideoInfor> list);
+        void showRecommend(List<Course> list);
     }
 
     interface Presenter extends BasePresenter<View> {

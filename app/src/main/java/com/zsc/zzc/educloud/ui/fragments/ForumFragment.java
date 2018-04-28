@@ -1,3 +1,4 @@
+/*
 package com.zsc.zzc.educloud.ui.fragments;
 
 import android.content.Context;
@@ -16,7 +17,6 @@ import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
 import com.jude.easyrecyclerview.decoration.SpaceDecoration;
 import com.zsc.zzc.educloud.R;
 import com.zsc.zzc.educloud.base.BaseMvpFragment;
-import com.zsc.zzc.educloud.model.bean.Forum;
 import com.zsc.zzc.educloud.presenter.ForumPresenter;
 import com.zsc.zzc.educloud.presenter.LoginPresenter;
 import com.zsc.zzc.educloud.presenter.VideoInfoPresenter;
@@ -175,3 +175,4 @@ public class ForumFragment extends BaseMvpFragment<ForumPresenter> implements Fo
         }
     }
 }
+*/

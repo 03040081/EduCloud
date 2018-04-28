@@ -7,7 +7,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.zsc.zzc.educloud.R;
-import com.zsc.zzc.educloud.model.bean.ChapterDetailed;
+import com.zsc.zzc.educloud.model.bean.Section;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,9 +16,9 @@ import java.util.List;
 public class ChapterDetailedAdapter extends BaseAdapter {
 
     private Context context;
-    private List<ChapterDetailed> list=new ArrayList<>();
+    private List<Section> list=new ArrayList<>();
 
-    public ChapterDetailedAdapter(Context context,List<ChapterDetailed> list
+    public ChapterDetailedAdapter(Context context,List<Section> list
                                   ){
         this.context=context;
         this.list=list;
@@ -36,14 +36,14 @@ public class ChapterDetailedAdapter extends BaseAdapter {
 
     @Override
     public long getItemId(int position) {
-        return list.get(position).getDetailedId();
+        return position;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View view=View.inflate(context, R.layout.chapterdetailed_item ,null);
         TextView view1=(TextView)view.findViewById(R.id.chapterdetailedname);
-        view1.setText(list.get(position).getDetailedTile());
+        view1.setText("第 "+list.get(position).getSubIndex()+" 节  "+list.get(position).getSubTitle());
         return view;
         /*HolderView holderView=null;
         if(convertView==null){

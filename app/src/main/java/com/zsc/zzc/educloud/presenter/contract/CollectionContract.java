@@ -3,7 +3,7 @@ package com.zsc.zzc.educloud.presenter.contract;
 
 import com.zsc.zzc.educloud.base.BasePresenter;
 import com.zsc.zzc.educloud.base.BaseView;
-import com.zsc.zzc.educloud.model.bean.VideoInfor;
+import com.zsc.zzc.educloud.model.bean.Course;
 
 import java.util.List;
 public interface CollectionContract {
@@ -11,7 +11,7 @@ public interface CollectionContract {
     interface View extends BaseView {
 
 
-        void showContent(List<VideoInfor> list);
+        void showContent(List<Course> list);
 
     }
 

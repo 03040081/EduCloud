@@ -11,6 +11,18 @@ import com.mikepenz.iconics.typeface.IIcon;
 import java.util.Random;
 
 public class StringUtils {
+
+    private static final String HOSTIMG="http://47.93.11.130:8080/zsccloud/Images/";
+    private static final String HOSTVIDEO="http://47.93.11.130:8080/zsccloud/Vedios/";
+
+    public static String getHostImg(String str){
+        return HOSTIMG+str;
+    }
+
+    public static String getHostVideo(String courseId,String subTitle){
+        return HOSTVIDEO+courseId+"/"+subTitle+".mp4";
+    }
+
     /**
      * 去掉特殊字符
      *

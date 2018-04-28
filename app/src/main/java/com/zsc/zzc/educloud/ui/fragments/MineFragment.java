@@ -15,8 +15,8 @@ import com.jude.easyrecyclerview.decoration.SpaceDecoration;
 import com.zsc.zzc.educloud.R;
 import com.zsc.zzc.educloud.base.BaseMvpFragment;
 import com.zsc.zzc.educloud.component.ImageLoader;
+import com.zsc.zzc.educloud.model.bean.Course;
 import com.zsc.zzc.educloud.model.bean.User;
-import com.zsc.zzc.educloud.model.bean.VideoInfor;
 import com.zsc.zzc.educloud.presenter.LoginPresenter;
 import com.zsc.zzc.educloud.presenter.MinePresenter;
 import com.zsc.zzc.educloud.presenter.VideoInfoPresenter;
@@ -29,6 +29,7 @@ import com.zsc.zzc.educloud.ui.activitys.VideoInfoActivity;
 import com.zsc.zzc.educloud.ui.adapter.MineHistoryVideoListAdapter;
 import com.zsc.zzc.educloud.utils.EventUtil;
 import com.zsc.zzc.educloud.utils.ScreenUtil;
+import com.zsc.zzc.educloud.utils.StringUtils;
 
 import org.simple.eventbus.EventBus;
 import org.simple.eventbus.Subscriber;
@@ -44,7 +45,7 @@ public class MineFragment extends BaseMvpFragment<MinePresenter> implements Mine
     //public static final String SET_THEME = "SET_THEME";
     //public static final String LoginResfesh="LoginResfesh";
     MineHistoryVideoListAdapter mAdapter;
-    VideoInfor videoInfor;
+    Course videoInfor;
     @BindView(R.id.title_name)
     TextView titleName;
     @BindView(R.id.toolbar)
@@ -113,7 +114,8 @@ public class MineFragment extends BaseMvpFragment<MinePresenter> implements Mine
                 VideoInfoActivity.start(mContext,videoInfor);
             }
         });
-        if(LoginPresenter.getUserId()>0){
+        String userId=LoginPresenter.getUserId();
+        if(userId!=null&&!userId.equals("")){
             imgHead.setEnabled(false);
         }
     }
@@ -124,7 +126,7 @@ public class MineFragment extends BaseMvpFragment<MinePresenter> implements Mine
     }
 
     @Override
-    public void showContent(List<VideoInfor> list,User user) {
+    public void showContent(List<Course> list,User user) {
         mAdapter.clear();
         mAdapter.addAll(list);
         if (list.size() > 0) {
@@ -135,9 +137,10 @@ public class MineFragment extends BaseMvpFragment<MinePresenter> implements Mine
         //Log.e("用户不存在","测试");
         if(user!=null) {
             this.user=user;
-            username.setText(user.getUserName());
-            if(user.getFaceImg()!=null&&!user.getFaceImg().equals("")){
-                ImageLoader.load(mContext,"http://47.93.11.130:8080/educloud/"+user.getFaceImg(),imgHead);
+            username.setText(user.getUsername());
+            String userAvatar=user.getAvatar();
+            if(userAvatar!=null&&!userAvatar.equals("")){
+                ImageLoader.load(mContext, StringUtils.getHostImg(userAvatar),imgHead);
             }
         }
     }

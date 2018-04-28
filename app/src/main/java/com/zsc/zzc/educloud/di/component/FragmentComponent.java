@@ -6,10 +6,10 @@ import com.zsc.zzc.educloud.di.module.FragmentModule;
 import com.zsc.zzc.educloud.di.scope.FragmentScope;
 import com.zsc.zzc.educloud.ui.fragments.ClassificationFragment;
 import com.zsc.zzc.educloud.ui.fragments.CommentFragment;
-import com.zsc.zzc.educloud.ui.fragments.ForumFragment;
 import com.zsc.zzc.educloud.ui.fragments.MineFragment;
 import com.zsc.zzc.educloud.ui.fragments.RecommendFragment;
 import com.zsc.zzc.educloud.ui.fragments.ScheduleFragment;
+import com.zsc.zzc.educloud.ui.fragments.VideoIntroFragment;
 
 import dagger.Component;
 
@@ -30,6 +30,6 @@ public interface FragmentComponent {
 
     void inject(ScheduleFragment scheduleFragment);
 
-//    void inject(VideoIntroFragment videoIntroFragment);
-    void inject(ForumFragment forumFragment);
+    void inject(VideoIntroFragment videoIntroFragment);
+    /*void inject(ForumFragment forumFragment);*/
 }

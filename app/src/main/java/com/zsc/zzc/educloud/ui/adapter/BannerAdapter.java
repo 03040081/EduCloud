@@ -8,17 +8,18 @@ import android.widget.ImageView;
 import com.jude.rollviewpager.adapter.StaticPagerAdapter;
 import com.zsc.zzc.educloud.R;
 import com.zsc.zzc.educloud.component.ImageLoader;
-import com.zsc.zzc.educloud.model.bean.VideoInfor;
+import com.zsc.zzc.educloud.model.bean.Course;
 import com.zsc.zzc.educloud.ui.activitys.VideoInfoActivity;
+import com.zsc.zzc.educloud.utils.StringUtils;
 
 import java.util.List;
 
 public class BannerAdapter extends StaticPagerAdapter {
 
     private Context ctx;
-    private List<VideoInfor> list;
+    private List<Course> list;
 
-    public BannerAdapter(Context ctx, List<VideoInfor> list) {
+    public BannerAdapter(Context ctx, List<Course> list) {
         this.ctx = ctx;
         this.list = list;
         //removeEmpty(this.list);
@@ -40,7 +41,7 @@ public class BannerAdapter extends StaticPagerAdapter {
         imageView.setScaleType(ImageView.ScaleType.FIT_XY);
         imageView.setBackgroundResource(R.mipmap.default_320);
         //加载图片
-        ImageLoader.load(ctx, "http://47.93.11.130:8080/educloud/"+list.get(position).getPicUrl(), imageView);
+        ImageLoader.load(ctx, StringUtils.getHostImg(list.get(position).getIcon()), imageView);
         //点击事件
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override

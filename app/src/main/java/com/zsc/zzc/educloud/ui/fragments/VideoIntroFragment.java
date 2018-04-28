@@ -11,7 +11,7 @@ import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
 import com.jude.easyrecyclerview.decoration.SpaceDecoration;
 import com.zsc.zzc.educloud.R;
 import com.zsc.zzc.educloud.base.BaseFragment;
-import com.zsc.zzc.educloud.model.bean.VideoInfor;
+import com.zsc.zzc.educloud.model.bean.Course;
 import com.zsc.zzc.educloud.presenter.VideoInfoPresenter;
 import com.zsc.zzc.educloud.ui.adapter.RelatedAdapter;
 import com.zsc.zzc.educloud.utils.ScreenUtil;
@@ -30,7 +30,7 @@ public class VideoIntroFragment extends BaseFragment {
     EasyRecyclerView recyclerView;
     TextViewExpandableAnimation tvExpand;
     View headerView;
-    private VideoInfor videoRes=null;
+    private Course videoRes=null;
 
     RelatedAdapter adapter;
 
@@ -80,13 +80,13 @@ public class VideoIntroFragment extends BaseFragment {
     }
 
     @Subscriber(tag = VideoInfoPresenter.Refresh_Video_Info)
-    public void setData(VideoInfor videoInfo) {
+    public void setData(Course videoInfo) {
         videoRes=videoInfo;
-        String dir = "课题：" + StringUtils.removeOtherCode(videoRes.getVideoTile());
-        String act = "级别：" + StringUtils.removeOtherCode(videoRes.getRank().getRankName());
-        String des = dir + "\n" + act + "\n" + "简介：" + StringUtils.removeOtherCode(videoRes.getVideoDiscript());
+        String dir = "课题：" + StringUtils.removeOtherCode(videoRes.getName());
+        //String act = "级别：" + StringUtils.removeOtherCode(videoRes.getRank().getRankName());
+        String des = dir + "\n"  + "\n" + "简介：" + StringUtils.removeOtherCode(videoRes.getIntro());
         tvExpand.setText(des);
-        Log.e("检验路径 ： ",videoRes.getListChapter().get(0).getListChapterDetailed().get(0).getVideoUrl());
+        Log.e("检验路径 ： ",videoRes.getListSections().get(0).getListChapter().get(0).getSubTitle());
         //adapter.add(videoInfo);
         /*if (videoInfo.list.size() > 1)
             adapter.addAll(videoInfo.list.get(1).childList);

@@ -1,7 +1,7 @@
 package com.zsc.zzc.educloud.presenter;
 
 import com.zsc.zzc.educloud.base.RxPresenter;
-import com.zsc.zzc.educloud.model.bean.VideoInfor;
+import com.zsc.zzc.educloud.model.bean.Course;
 import com.zsc.zzc.educloud.model.http.response.VideoHttpResponse;
 import com.zsc.zzc.educloud.model.net.RetrofitHelper;
 import com.zsc.zzc.educloud.presenter.contract.VideoListContract;
@@ -22,27 +22,31 @@ public class VideoListPresenter extends RxPresenter<VideoListContract.View> impl
     int categoryId;
     int cgdetaliedId;
 
+    String tag_id,profession_id;
+
     @Inject
     public VideoListPresenter() {
     }
 
     @Override
-    public void onRefresh(int majorId,int categoryId,int cgdetaliedId) {
+    public void onRefresh(String tag_id,String profession_id) {
         //this.catalogId = catalogId;
         page = 1;
-        this.majorId=majorId;
+        /*this.majorId=majorId;
         this.categoryId=categoryId;
-        this.cgdetaliedId=cgdetaliedId;
-        getVideoList(majorId,categoryId,cgdetaliedId);
+        this.cgdetaliedId=cgdetaliedId;*/
+        this.tag_id=tag_id;
+        this.profession_id=profession_id;
+        getVideoList(tag_id,profession_id);
     }
 
-    private void getVideoList(int majorId,int categoryId,int cgdetaliedId) {
-        Subscription rxSubscription = RetrofitHelper.getVideoApi().cgdetailedVideos(page,10,majorId,categoryId,cgdetaliedId)
-                .compose(RxUtil.<VideoHttpResponse<List<VideoInfor>>>rxSchedulerHelper())
-                .compose(RxUtil.<List<VideoInfor>>handleResult())
-                .subscribe(new Action1<List<VideoInfor>>() {
+    private void getVideoList(String tag_id,String type) {
+        Subscription rxSubscription = RetrofitHelper.getVideoApi().cgdetailedVideosForTag(tag_id,type,page)
+                .compose(RxUtil.<VideoHttpResponse<List<Course>>>rxSchedulerHelper())
+                .compose(RxUtil.<List<Course>>handleResult())
+                .subscribe(new Action1<List<Course>>() {
                     @Override
-                    public void call(List<VideoInfor> res) {
+                    public void call(List<Course> res) {
                         if (res != null) {
                             if (page == 1) {
                                 mView.showContent(res);
@@ -69,12 +73,12 @@ public class VideoListPresenter extends RxPresenter<VideoListContract.View> impl
      * @param searchStr
      */
     private void getSearchVideoList(String searchStr) {
-        Subscription rxSubscription = RetrofitHelper.getVideoApi().searchVideos(page,10,searchStr)
-                .compose(RxUtil.<VideoHttpResponse<List<VideoInfor>>>rxSchedulerHelper())
-                .compose(RxUtil.<List<VideoInfor>>handleResult())
-                .subscribe(new Action1<List<VideoInfor>>() {
+        Subscription rxSubscription = RetrofitHelper.getVideoApi().searchVideos(searchStr,page)
+                .compose(RxUtil.<VideoHttpResponse<List<Course>>>rxSchedulerHelper())
+                .compose(RxUtil.<List<Course>>handleResult())
+                .subscribe(new Action1<List<Course>>() {
                     @Override
-                    public void call(List<VideoInfor> res) {
+                    public void call(List<Course> res) {
                         if (res != null) {
                             if (page == 1) {
                                 mView.showContent(res);
@@ -98,7 +102,7 @@ public class VideoListPresenter extends RxPresenter<VideoListContract.View> impl
     @Override
     public void loadMore() {
         page++;
-        getVideoList(majorId,categoryId,cgdetaliedId);
+        getVideoList(tag_id,profession_id);
     }
 
 }

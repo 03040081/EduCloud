@@ -3,51 +3,53 @@ package com.zsc.zzc.educloud.ui.adapter;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.zsc.zzc.educloud.R;
-import com.zsc.zzc.educloud.model.bean.Category;
-import com.zsc.zzc.educloud.widget.MyGridView;
+import com.zsc.zzc.educloud.model.bean.Tag;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CategoryAdapter extends BaseAdapter implements AdapterView.OnItemClickListener {
+public class CategoryAdapter extends BaseAdapter {
     private Context context;
-    private List<Category> categoryArrayList =new ArrayList<Category>();
-    private MyClickListener myClickListener;
+    private List<Tag> tags =new ArrayList<Tag>();
+    //private MyClickListener myClickListener;
 
-    public interface MyClickListener{
+    /*public interface MyClickListener{
         public void clickListener(AdapterView<?> parent, View view, int position, long id);
-    }
+    }*/
 
-    public CategoryAdapter(Context context, List<Category> categoryArrayList,MyClickListener myClickListener){
+    public CategoryAdapter(Context context, List<Tag> tags ){
         this.context=context;
-        this.categoryArrayList=categoryArrayList;
-        this.myClickListener=myClickListener;
+        this.tags=tags;
+        //this.myClickListener=myClickListener;
     }
 
     @Override
     public int getCount() {
-        return categoryArrayList.size();
+        return tags.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return categoryArrayList.get(position);
+        return tags.get(position);
     }
 
     @Override
     public long getItemId(int position) {
-        return categoryArrayList.get(position).getCategoryId();
+        return position;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        HodeView hodeView=null;
+        View view=View.inflate(context, R.layout.item_category,null);
+        TextView textView=(TextView)view.findViewById(R.id.categoryname);
+        textView.setText(tags.get(position).getName());
+
+        /*HodeView hodeView=null;
         if(convertView==null){
             hodeView=new HodeView();
             convertView=View.inflate(context, R.layout.item_category,null);
@@ -61,17 +63,17 @@ public class CategoryAdapter extends BaseAdapter implements AdapterView.OnItemCl
                 categoryArrayList.get(position).getCategoryDetailedList());
         hodeView.cgdetailedgv.setAdapter(adapterCD);
         hodeView.topCategoryName.setText(categoryArrayList.get(position).getCategoryName());
-        hodeView.cgdetailedgv.setOnItemClickListener(this);
+        hodeView.cgdetailedgv.setOnItemClickListener(this);*/
 
-        return convertView;
+        return view;
     }
-    class HodeView{
+  /*  class HodeView{
         public MyGridView cgdetailedgv;
         public TextView topCategoryName;
-    }
+    }*/
 
-    @Override
+    /*@Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         myClickListener.clickListener(parent, view, position, id);
-    }
+    }*/
 }

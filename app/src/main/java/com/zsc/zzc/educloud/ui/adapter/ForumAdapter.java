@@ -1,3 +1,4 @@
+/*
 package com.zsc.zzc.educloud.ui.adapter;
 
 import android.content.Context;
@@ -10,7 +11,6 @@ import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.zsc.zzc.educloud.R;
 import com.zsc.zzc.educloud.component.ImageLoader;
-import com.zsc.zzc.educloud.model.bean.Forum;
 
 public class ForumAdapter extends RecyclerArrayAdapter<Forum> {
 
@@ -48,3 +48,4 @@ public class ForumAdapter extends RecyclerArrayAdapter<Forum> {
         }
     }
 }
+*/

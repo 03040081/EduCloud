@@ -15,20 +15,20 @@ public interface DBHelper {
     //-------------------收藏相关----------------------
     void insertCollection(Collection bean);
 
-    void deleteCollection(int videoId);
+    void deleteCollection(String videoId);
 
     void deleteAllCollection();
 
-    boolean queryCollectionId(int videoId);
+    boolean queryCollectionId(String videoId);
 
     List<Collection> getCollectionList();
 
     //-----------------播放记录相关---------------------
     void insertRecord(Record bean, int maxSize);
 
-    void deleteRecord(int videoId);
+    void deleteRecord(String videoId);
 
-    boolean queryRecordId(int videoId);
+    boolean queryRecordId(String videoId);
 
     List<Record> getRecordList();
 
@@ -48,7 +48,7 @@ public interface DBHelper {
     //--------用户--------------------------------------
     void insertUserInfo(User user);
 
-    void deleteUserInfo(int userId);
+    void deleteUserInfo(String userId);
 
     User getUserInfo();
 }

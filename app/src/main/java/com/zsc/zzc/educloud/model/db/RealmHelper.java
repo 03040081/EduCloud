@@ -61,8 +61,8 @@ public class RealmHelper implements DBHelper {
      *
      * @param videoId
      */
-    public void deleteCollection(int videoId) {
-        Collection data = getRealm().where(Collection.class).equalTo("videoId", videoId).findFirst();
+    public void deleteCollection(String videoId) {
+        Collection data = getRealm().where(Collection.class).equalTo("id", videoId).findFirst();
         getRealm().beginTransaction();
         data.deleteFromRealm();
         getRealm().commitTransaction();
@@ -83,10 +83,10 @@ public class RealmHelper implements DBHelper {
      * @param videoId
      * @return
      */
-    public boolean queryCollectionId(int videoId) {
+    public boolean queryCollectionId(String videoId) {
         RealmResults<Collection> results = getRealm().where(Collection.class).findAll();
         for (Collection item : results) {
-            if (item.getVideoId()==videoId) {
+            if (item.getId().equals(videoId)) {
                 return true;
             }
         }
@@ -118,7 +118,7 @@ public class RealmHelper implements DBHelper {
             RealmResults<Record> results = getRealm().where(Record.class).findAllSorted("time", Sort.DESCENDING);
             if (results.size() >= maxSize) {
                 for (int i = maxSize - 1; i < results.size(); i++) {
-                    deleteRecord(results.get(i).getVideoId());
+                    deleteRecord(results.get(i).getId());
                 }
             }
         }
@@ -133,8 +133,8 @@ public class RealmHelper implements DBHelper {
      *
      * @param videoId
      */
-    public void deleteRecord(int videoId) {
-        Record data = getRealm().where(Record.class).equalTo("videoId", videoId).findFirst();
+    public void deleteRecord(String videoId) {
+        Record data = getRealm().where(Record.class).equalTo("id", videoId).findFirst();
         getRealm().beginTransaction();
         data.deleteFromRealm();
         getRealm().commitTransaction();
@@ -146,10 +146,10 @@ public class RealmHelper implements DBHelper {
      * @param videoId
      * @return
      */
-    public boolean queryRecordId(int videoId) {
+    public boolean queryRecordId(String videoId) {
         RealmResults<Record> results = getRealm().where(Record.class).findAll();
         for (Record item : results) {
-            if (item.getVideoId()==videoId) {
+            if (item.equals(videoId)) {
                 return true;
             }
         }
@@ -240,8 +240,8 @@ public class RealmHelper implements DBHelper {
         }
     }
 
-    public void deleteUserInfo(int userId){
-        User user=getRealm().where(User.class).equalTo("videoId",userId).findFirst();
+    public void deleteUserInfo(String userId){
+        User user=getRealm().where(User.class).equalTo("id",userId).findFirst();
         getRealm().beginTransaction();
         user.deleteFromRealm();
         getRealm().commitTransaction();

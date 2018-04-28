@@ -1,3 +1,4 @@
+/*
 package com.zsc.zzc.educloud.presenter;
 
 import android.util.Log;
@@ -64,3 +65,4 @@ public class RegisterPresenter extends RxPresenter<RegisterContract.View> implem
         addSubscribe(rxSubscription);
     }
 }
+*/

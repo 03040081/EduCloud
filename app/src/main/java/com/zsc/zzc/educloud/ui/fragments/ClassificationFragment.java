@@ -13,7 +13,7 @@ import android.widget.TextView;
 import com.zsc.zzc.educloud.R;
 import com.zsc.zzc.educloud.base.BaseMvpFragment;
 import com.zsc.zzc.educloud.model.bean.Category;
-import com.zsc.zzc.educloud.model.bean.Major;
+import com.zsc.zzc.educloud.model.bean.Tag;
 import com.zsc.zzc.educloud.presenter.ClassificationPresenter;
 import com.zsc.zzc.educloud.presenter.contract.ClassificationContract;
 import com.zsc.zzc.educloud.ui.adapter.MajorAdapter;
@@ -29,7 +29,7 @@ public class ClassificationFragment extends BaseMvpFragment<ClassificationPresen
     @BindView(R.id.title_name)
     TextView titleName;
 
-    private List<Major> majorList;
+    private List<Category> majorList;
     @BindView(R.id.list_major)
     ListView listView;
     private MajorAdapter adapter;
@@ -51,7 +51,7 @@ public class ClassificationFragment extends BaseMvpFragment<ClassificationPresen
     }
 
     @Override
-    public void showContent(List<Major> majorRes) {
+    public void showContent(List<Category> majorRes) {
         majorList=majorRes;
         if(majorRes!=null&&adapter==null){
             adapter=new MajorAdapter(getContext(),majorList);
@@ -60,7 +60,7 @@ public class ClassificationFragment extends BaseMvpFragment<ClassificationPresen
             CategoryFragment categoryFragment=new CategoryFragment();
             FragmentTransaction transaction=getChildFragmentManager().beginTransaction();
             transaction.replace(R.id.fragment_category,categoryFragment);
-            List<Category> categories=majorList.get(mPosition).getCategoryList();
+            List<Tag> categories=majorList.get(mPosition).getListTags();
             Bundle args=new Bundle();
             args.putSerializable(CategoryFragment.TAG, (Serializable) categories);
             categoryFragment.setArguments(args);
@@ -76,7 +76,7 @@ public class ClassificationFragment extends BaseMvpFragment<ClassificationPresen
         FragmentTransaction transaction=getChildFragmentManager().beginTransaction();
         transaction.replace(R.id.fragment_category,categoryFragment);
         Bundle args=new Bundle();
-        List<Category> categories=majorList.get(mPosition).getCategoryList();
+        List<Tag> categories=majorList.get(mPosition).getListTags();
         args.putSerializable(CategoryFragment.TAG, (Serializable) categories);
         categoryFragment.setArguments(args);
         transaction.commit();

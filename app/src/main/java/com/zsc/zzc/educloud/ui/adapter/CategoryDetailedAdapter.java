@@ -1,3 +1,4 @@
+/*
 package com.zsc.zzc.educloud.ui.adapter;
 
 import android.content.Context;
@@ -7,7 +8,6 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.zsc.zzc.educloud.R;
-import com.zsc.zzc.educloud.model.bean.CategoryDetailed;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,3 +47,4 @@ public class CategoryDetailedAdapter extends BaseAdapter {
         return view;
     }
 }
+*/

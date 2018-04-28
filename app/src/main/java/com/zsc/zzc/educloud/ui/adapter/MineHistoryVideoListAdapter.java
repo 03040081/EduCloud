@@ -10,9 +10,10 @@ import com.jude.easyrecyclerview.adapter.BaseViewHolder;
 import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
 import com.zsc.zzc.educloud.R;
 import com.zsc.zzc.educloud.component.ImageLoader;
-import com.zsc.zzc.educloud.model.bean.VideoInfor;
+import com.zsc.zzc.educloud.model.bean.Course;
+import com.zsc.zzc.educloud.utils.StringUtils;
 
-public class MineHistoryVideoListAdapter extends RecyclerArrayAdapter<VideoInfor> {
+public class MineHistoryVideoListAdapter extends RecyclerArrayAdapter<Course> {
 
     public MineHistoryVideoListAdapter(Context context) {
         super(context);
@@ -23,7 +24,7 @@ public class MineHistoryVideoListAdapter extends RecyclerArrayAdapter<VideoInfor
         return new MineHistoryVideoListViewHolder(parent);
     }
 
-    class MineHistoryVideoListViewHolder extends BaseViewHolder<VideoInfor> {
+    class MineHistoryVideoListViewHolder extends BaseViewHolder<Course> {
         ImageView imgPicture;
         TextView tv_title;
 
@@ -35,8 +36,8 @@ public class MineHistoryVideoListAdapter extends RecyclerArrayAdapter<VideoInfor
         }
 
         @Override
-        public void setData(VideoInfor data) {
-            tv_title.setText(data.getVideoTile());
+        public void setData(Course data) {
+            tv_title.setText(data.getName());
             ViewGroup.LayoutParams params = imgPicture.getLayoutParams();
 
             DisplayMetrics dm = getContext().getResources().getDisplayMetrics();
@@ -45,7 +46,7 @@ public class MineHistoryVideoListAdapter extends RecyclerArrayAdapter<VideoInfor
 
             params.height = width;
             imgPicture.setLayoutParams(params);
-            ImageLoader.load(getContext(), "http://47.93.11.130:8080/educloud/"+data.getPicUrl(), imgPicture);
+            ImageLoader.load(getContext(), StringUtils.getHostImg(data.getIcon()), imgPicture);
         }
     }
 }

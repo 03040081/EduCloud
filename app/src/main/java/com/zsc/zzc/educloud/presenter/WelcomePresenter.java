@@ -20,7 +20,7 @@ public class WelcomePresenter extends RxPresenter<WelcomeContract.View> implemen
 
     private static final int COUNT_DOWN_TIME = 2200;
     final int WAIT_TIME = 200;
-    int userId=0;
+    String userId=null;
 
     @Inject
     public WelcomePresenter() {
@@ -62,7 +62,7 @@ public class WelcomePresenter extends RxPresenter<WelcomeContract.View> implemen
     public void getUserInfo() {
         User user= RealmHelper.getInstance().getUserInfo();
         if(user!=null) {
-            userId=user.getUserId();
+            userId=user.getId();
         }
     }
 /*    private void putUserId(){

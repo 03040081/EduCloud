@@ -2,13 +2,13 @@ package com.zsc.zzc.educloud.presenter.contract;
 
 import com.zsc.zzc.educloud.base.BasePresenter;
 import com.zsc.zzc.educloud.base.BaseView;
-import com.zsc.zzc.educloud.model.bean.VideoInfor;
+import com.zsc.zzc.educloud.model.bean.Course;
 
 public interface VideoInfoContract {
 
     interface View extends BaseView {
 
-        void showContent(VideoInfor videoRes);
+        void showContent(Course videoRes);
 
         void hidLoading();
 
@@ -18,7 +18,7 @@ public interface VideoInfoContract {
     }
 
     interface Presenter extends BasePresenter<View> {
-        void getDetailData(int dataId);
+        void getDetailData(String dataId);
 
         void collect();
 

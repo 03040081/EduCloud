@@ -1,10 +1,9 @@
 package com.zsc.zzc.educloud.presenter;
 
 import com.zsc.zzc.educloud.base.RxPresenter;
-import com.zsc.zzc.educloud.model.bean.Rank;
+import com.zsc.zzc.educloud.model.bean.Course;
 import com.zsc.zzc.educloud.model.bean.Record;
 import com.zsc.zzc.educloud.model.bean.User;
-import com.zsc.zzc.educloud.model.bean.VideoInfor;
 import com.zsc.zzc.educloud.model.db.RealmHelper;
 import com.zsc.zzc.educloud.presenter.contract.MineContract;
 
@@ -25,8 +24,8 @@ public class MinePresenter extends RxPresenter<MineContract.View> implements Min
         List<Record> records = RealmHelper.getInstance().getRecordList();
         //List<VideoType> list = new ArrayList<>();
         //VideoType videoType;
-        List<VideoInfor> list=new ArrayList<>();
-        VideoInfor videoInfor=null;
+        List<Course> list=new ArrayList<>();
+        Course videoInfor=null;
         int maxlinth = records.size() <= 3 ? records.size() : 3;
         for (int i = 0; i < maxlinth; i++) {
             Record record = records.get(i);
@@ -35,15 +34,15 @@ public class MinePresenter extends RxPresenter<MineContract.View> implements Min
             videoType.pic = record.pic;
             videoType.dataId = record.getId();
             list.add(videoType);*/
-            videoInfor=new VideoInfor();
-            videoInfor.setVideoId(record.getVideoId());
-            videoInfor.setVideoTile(record.getVideoTile());
-            videoInfor.setPicUrl(record.getPicUrl());
-            videoInfor.setPrices(record.getPrices());
-            Rank rank=new Rank();
+            videoInfor=new Course();
+            videoInfor.setId(record.getId());
+            videoInfor.setName(record.getName());
+            videoInfor.setIcon(record.getIcon());
+            videoInfor.setIntro(record.getIntro());
+            /*Rank rank=new Rank();
             rank.setRankName(record.getRankName());
             videoInfor.setRank(rank);
-            videoInfor.setStudySum(record.getStudySum());
+            videoInfor.setStudySum(record.getStudySum());*/
             list.add(videoInfor);
         }
         User user=getUserInfo();

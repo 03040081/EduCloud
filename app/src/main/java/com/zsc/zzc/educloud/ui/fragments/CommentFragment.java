@@ -1,6 +1,11 @@
 package com.zsc.zzc.educloud.ui.fragments;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.os.Handler;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.text.TextUtils;
@@ -18,7 +23,7 @@ import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
 import com.jude.easyrecyclerview.decoration.SpaceDecoration;
 import com.zsc.zzc.educloud.R;
 import com.zsc.zzc.educloud.base.BaseMvpFragment;
-import com.zsc.zzc.educloud.model.bean.VideoAssess;
+import com.zsc.zzc.educloud.model.bean.Comment;
 import com.zsc.zzc.educloud.presenter.CommentPresenter;
 import com.zsc.zzc.educloud.presenter.LoginPresenter;
 import com.zsc.zzc.educloud.presenter.VideoInfoPresenter;
@@ -50,8 +55,10 @@ public class CommentFragment extends BaseMvpFragment<CommentPresenter> implement
 
     int pageSize = 20;
 
-    int videoId=0;
-    int userId=0;
+    String chapterId="";
+    String userId="";
+
+    LocalBroadcastManager broadcastManager;
 
     @Override
     protected int getLayout() {
@@ -92,16 +99,18 @@ public class CommentFragment extends BaseMvpFragment<CommentPresenter> implement
             }
         });
 
+        registerReceiver();
+
         userId= LoginPresenter.getUserId();
-        if(userId>0)
+        if(userId!=null&&!"".equals(userId))
             btassess.setEnabled(true);
     }
 
     @OnClick(R.id.bt_post_assess)
     public void onClick(View view){
         String txt=tvcontents.getText().toString().trim();
-        if(txt.length()>0&&userId>0){
-            mPresenter.postComment(videoId,txt,userId);
+        if(txt.length()>0&&!userId.equals("")){
+            mPresenter.postComment(chapterId,txt,userId);
             tvcontents.setText("");
             hintKbTwo();
         }else{
@@ -129,7 +138,7 @@ public class CommentFragment extends BaseMvpFragment<CommentPresenter> implement
     }
 
     @Override
-    public void showContent(List<VideoAssess> list) {
+    public void showContent(List<Comment> list) {
         adapter.clear();
         if (list != null && list.size() < pageSize) {
             clearFooter();
@@ -138,7 +147,7 @@ public class CommentFragment extends BaseMvpFragment<CommentPresenter> implement
     }
 
     @Override
-    public void showMoreContent(List<VideoAssess> list) {
+    public void showMoreContent(List<Comment> list) {
         adapter.addAll(list);
     }
 
@@ -157,11 +166,11 @@ public class CommentFragment extends BaseMvpFragment<CommentPresenter> implement
         EventUtil.showToast(mContext, msg);
     }
 
-    @Subscriber(tag = VideoInfoPresenter.Put_DataId)
-    public void setData(int dataId) {
-        Log.e("检查VideoId传输状态:  ", String.valueOf(dataId));
-        this.videoId=dataId;
-        mPresenter.setMediaId(dataId);
+    @Subscriber(tag = VideoInfoPresenter.Put_FirstChapterId)
+    public void setData(String chapterId) {
+        Log.e("检查ChapterId传输状态:  ", String.valueOf(chapterId));
+        this.chapterId=chapterId;
+        mPresenter.setMediaId(chapterId);
         mPresenter.onRefresh();
     }
 
@@ -183,4 +192,35 @@ public class CommentFragment extends BaseMvpFragment<CommentPresenter> implement
                     InputMethodManager.HIDE_NOT_ALWAYS);
         }
     }
+
+    private void registerReceiver(){
+        broadcastManager=LocalBroadcastManager.getInstance(mContext);
+        IntentFilter intentFilter=new IntentFilter();
+        intentFilter.addAction("comid");
+        broadcastManager.registerReceiver(mAdDownLoadReceiver,intentFilter);
+    }
+
+    private BroadcastReceiver mAdDownLoadReceiver=new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            final String change=intent.getStringExtra("change");
+            chapterId=intent.getStringExtra("commentId");
+            Log.e("接收到广播",chapterId);
+            if("yes".equals(change)){
+                new Handler().post(new Runnable() {
+                    @Override
+                    public void run() {
+                        mPresenter.setMediaId(chapterId);
+                        onRefresh();
+                    }
+                });
+            }
+        }
+    };
+
+    public void onDetach(){
+        super.onDetach();
+        broadcastManager.unregisterReceiver(mAdDownLoadReceiver);
+    }
+
 }

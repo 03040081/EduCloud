@@ -2,6 +2,7 @@ package com.zsc.zzc.educloud.ui.adapter;
 
 import android.content.Context;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
@@ -10,9 +11,10 @@ import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.zsc.zzc.educloud.R;
 import com.zsc.zzc.educloud.component.ImageLoader;
-import com.zsc.zzc.educloud.model.bean.VideoAssess;
+import com.zsc.zzc.educloud.model.bean.Comment;
+import com.zsc.zzc.educloud.utils.StringUtils;
 
-public class CommentAdapter extends RecyclerArrayAdapter<VideoAssess> {
+public class CommentAdapter extends RecyclerArrayAdapter<Comment> {
 
     public CommentAdapter(Context context) {
         super(context);
@@ -23,7 +25,7 @@ public class CommentAdapter extends RecyclerArrayAdapter<VideoAssess> {
         return new CommentViewHolder(parent);
     }
 
-    class CommentViewHolder extends BaseViewHolder<VideoAssess> {
+    class CommentViewHolder extends BaseViewHolder<Comment> {
         RoundedImageView avatar;
         TextView tv_nick;
         TextView tv_time;
@@ -40,13 +42,14 @@ public class CommentAdapter extends RecyclerArrayAdapter<VideoAssess> {
         }
 
         @Override
-        public void setData(VideoAssess data) {
-            tv_nick.setText(data.getUser().getUserName());
-            //tv_time.setText(data.time);
+        public void setData(Comment data) {
+            tv_nick.setText(data.getUser().getUsername());
+            tv_time.setText(data.getCreatedTime().toString());
             //tv_like.setText(data.likeNum);
-            tv_comment.setText(data.getContents());
-            if (!TextUtils.isEmpty(data.getUser().getFaceImg()))
-                ImageLoader.load(getContext(), data.getUser().getFaceImg(), avatar);
+            tv_comment.setText(data.getContent());
+            if (!TextUtils.isEmpty(data.getUser().getAvatar()))
+                ImageLoader.load(getContext(), StringUtils.getHostImg(data.getUser().getAvatar()), avatar);
+            Log.e("CommentAdapter","正常加载");
         }
     }
 }

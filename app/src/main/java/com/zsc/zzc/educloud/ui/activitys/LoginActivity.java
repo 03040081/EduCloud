@@ -1,9 +1,7 @@
 package com.zsc.zzc.educloud.ui.activitys;
 
-import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.widget.CardView;
@@ -58,10 +56,10 @@ public class LoginActivity extends SwipeBackActivity<LoginPresenter> implements 
     public void saveContent(User user) {
         //Toast.makeText(mContext,user.getUserName(),Toast.LENGTH_SHORT);
         //mPresenter.insertUser(user);
-        Log.e("LoginActivity",String.valueOf(user.getUserId()));
+        Log.e("LoginActivity",String.valueOf(user.getId()));
         Intent intent = new Intent("jerry");
         intent.putExtra("change", "yes");
-        intent.putExtra("userId",String.valueOf(user.getUserId()));
+        intent.putExtra("userId",String.valueOf(user.getId()));
         LocalBroadcastManager.getInstance(mContext).sendBroadcast(intent);
 
     }
@@ -76,20 +74,20 @@ public class LoginActivity extends SwipeBackActivity<LoginPresenter> implements 
             etUsername.setText(userAccount);
         }
     }
-    @OnClick({R.id.bt_go, R.id.fab})
+    @OnClick({R.id.bt_go})
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.fab:
+            /*case R.id.fab:
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     getWindow().setExitTransition(null);
                     getWindow().setEnterTransition(null);
                     ActivityOptions options =
                             ActivityOptions.makeSceneTransitionAnimation(this, fab, fab.getTransitionName());
-                    startActivity(new Intent(this, RegisterActivity.class), options.toBundle());
+                   // startActivity(new Intent(this, RegisterActivity.class), options.toBundle());
                 } else {
-                    startActivity(new Intent(this, RegisterActivity.class));
+                    //startActivity(new Intent(this, RegisterActivity.class));
                 }
-                break;
+                break;*/
             case R.id.bt_go:
                 /*Explode explode=new Explode();
                 explode.setDuration(500);

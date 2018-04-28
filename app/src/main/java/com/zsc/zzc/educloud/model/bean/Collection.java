@@ -6,69 +6,124 @@ import io.realm.RealmObject;
 
 
 public class Collection extends RealmObject implements Serializable {
-    int videoId;
+
+    private String id;
+
+    private String name;
+
+    private String teacherId;
+
+    private String professionId;
+
+    private String tagId;
+
+    private String icon;
+
+    private Integer type;
+
+    private String intro;
+
+    private String fitPeople;
+
     long time;
-    public String videoTile;
-    public String picUrl;
-    public int studySum;
-    public double prices;
-    public String rankName;
-    //public String airTime;
-    // public String score;
 
-    public String getRankName() {
-        return rankName;
+    private Profession profession;
+
+    private Teacher teacher;
+
+    public Profession getProfession() {
+        return profession;
     }
 
-    public void setRankName(String rankName) {
-        this.rankName = rankName;
+    public void setProfession(Profession profession) {
+        this.profession = profession;
     }
 
-    public void setTime(long time){
-        this.time=time;
-    }
-    public long getTime(){
-        return this.time;
+    public Teacher getTeacher() {
+        return teacher;
     }
 
-    public int getVideoId() {
-        return videoId;
+    public void setTeacher(Teacher teacher) {
+        this.teacher = teacher;
     }
 
-    public void setVideoId(int videoId) {
-        this.videoId = videoId;
+    public long getTime() {
+        return time;
     }
 
-    public String getVideoTile() {
-        return videoTile;
+    public void setTime(long time) {
+        this.time = time;
     }
 
-    public void setVideoTile(String videoTile) {
-        this.videoTile = videoTile;
+    public String getId() {
+        return id;
     }
 
-    public String getPicUrl() {
-        return picUrl;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public void setPicUrl(String picUrl) {
-        this.picUrl = picUrl;
+    public String getName() {
+        return name;
     }
 
-    public int getStudySum() {
-        return studySum;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void setStudySum(int studySum) {
-        this.studySum = studySum;
+    public String getTeacherId() {
+        return teacherId;
     }
 
-    public double getPrices() {
-        return prices;
+    public void setTeacherId(String teacherId) {
+        this.teacherId = teacherId;
     }
 
-    public void setPrices(double prices) {
-        this.prices = prices;
+    public String getProfessionId() {
+        return professionId;
     }
 
+    public void setProfessionId(String professionId) {
+        this.professionId = professionId;
+    }
+
+    public String getTagId() {
+        return tagId;
+    }
+
+    public void setTagId(String tagId) {
+        this.tagId = tagId;
+    }
+
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
+    }
+
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
+    }
+
+    public String getIntro() {
+        return intro;
+    }
+
+    public void setIntro(String intro) {
+        this.intro = intro;
+    }
+
+    public String getFitPeople() {
+        return fitPeople;
+    }
+
+    public void setFitPeople(String fitPeople) {
+        this.fitPeople = fitPeople;
+    }
 }

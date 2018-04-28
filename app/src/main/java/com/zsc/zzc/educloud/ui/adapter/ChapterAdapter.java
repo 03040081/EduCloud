@@ -8,7 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.zsc.zzc.educloud.R;
-import com.zsc.zzc.educloud.model.bean.VideoChapter;
+import com.zsc.zzc.educloud.model.bean.Section;
 import com.zsc.zzc.educloud.widget.MyListView;
 
 import java.util.ArrayList;
@@ -17,14 +17,14 @@ import java.util.List;
 public class ChapterAdapter extends BaseAdapter implements AdapterView.OnItemClickListener{
 
     private Context context;
-    private List<VideoChapter> list=new ArrayList<>();
+    private List<Section> list=new ArrayList<>();
     private MyClickListener myClickListener;
 
     public interface MyClickListener{
         public void clickListener(AdapterView<?> parent, View view, int position, long id);
     }
 
-    public ChapterAdapter(Context context,List<VideoChapter> list,
+    public ChapterAdapter(Context context,List<Section> list,
                           MyClickListener myClickListener){
         this.context=context;
         this.list=list;
@@ -43,7 +43,7 @@ public class ChapterAdapter extends BaseAdapter implements AdapterView.OnItemCli
 
     @Override
     public long getItemId(int position) {
-        return list.get(position).getChapterId();
+        return position;
     }
 
     @Override
@@ -60,9 +60,9 @@ public class ChapterAdapter extends BaseAdapter implements AdapterView.OnItemCli
         }
 
         final ChapterDetailedAdapter adapter=new ChapterDetailedAdapter(context,
-                list.get(position).getListChapterDetailed());
+                list.get(position).getListChapter());
         hodeView.chapter.setAdapter(adapter);
-        hodeView.topchaptername.setText(list.get(position).getChapterName());
+        hodeView.topchaptername.setText("第 "+list.get(position).getIndex()+" 节"+list.get(position).getTitle());
         hodeView.chapter.setOnItemClickListener(this);
         /*hodeView.chapter.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

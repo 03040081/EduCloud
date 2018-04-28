@@ -1,7 +1,7 @@
+/*
 package com.zsc.zzc.educloud.presenter;
 
 import com.zsc.zzc.educloud.base.RxPresenter;
-import com.zsc.zzc.educloud.model.bean.Forum;
 import com.zsc.zzc.educloud.model.http.response.VideoHttpResponse;
 import com.zsc.zzc.educloud.model.net.RetrofitHelper;
 import com.zsc.zzc.educloud.presenter.contract.ForumContract;
@@ -87,3 +87,4 @@ public class ForumPresenter extends RxPresenter<ForumContract.View> implements F
         addSubscribe(rxSubscription);
     }
 }
+*/

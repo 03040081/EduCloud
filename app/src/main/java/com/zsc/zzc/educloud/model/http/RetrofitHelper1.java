@@ -1,6 +1,6 @@
 package com.zsc.zzc.educloud.model.http;
 
-import com.zsc.zzc.educloud.model.bean.VideoInfor;
+import com.zsc.zzc.educloud.model.bean.Course;
 import com.zsc.zzc.educloud.model.http.api.VideoApis;
 import com.zsc.zzc.educloud.model.http.response.VideoHttpResponse;
 
@@ -18,13 +18,12 @@ public class RetrofitHelper1 implements HttpHelper {
     @Inject
     public RetrofitHelper1(VideoApis videoApis) {
         this.mVideoApis = videoApis;
-        //this.mGankApis = gankApis;
     }
 
 
     @Override
-    public Observable<VideoHttpResponse<List<VideoInfor>>> fetchRecommendVideos(int currPage, int pageSize) {
-        return mVideoApis.getRecommendVideos(currPage,pageSize);
+    public Observable<VideoHttpResponse<List<Course>>> fetchRecommendVideos() {
+        return mVideoApis.getRecommendVideos();
     }
 
 }

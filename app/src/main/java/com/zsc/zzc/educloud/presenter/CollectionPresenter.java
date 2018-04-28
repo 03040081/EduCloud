@@ -2,9 +2,10 @@ package com.zsc.zzc.educloud.presenter;
 
 import com.zsc.zzc.educloud.base.RxPresenter;
 import com.zsc.zzc.educloud.model.bean.Collection;
-import com.zsc.zzc.educloud.model.bean.Rank;
+import com.zsc.zzc.educloud.model.bean.Course;
+import com.zsc.zzc.educloud.model.bean.Profession;
 import com.zsc.zzc.educloud.model.bean.Record;
-import com.zsc.zzc.educloud.model.bean.VideoInfor;
+import com.zsc.zzc.educloud.model.bean.Teacher;
 import com.zsc.zzc.educloud.model.db.RealmHelper;
 import com.zsc.zzc.educloud.presenter.contract.CollectionContract;
 
@@ -35,9 +36,9 @@ public class CollectionPresenter extends RxPresenter<CollectionContract.View> im
     @Override
     public void getCollectData() {
         List<Collection> collections = RealmHelper.getInstance().getCollectionList();
-        List<VideoInfor> list = new ArrayList<>();
+        List<Course> list = new ArrayList<>();
         //VideoType videoType;
-        VideoInfor videoInfor=null;
+        Course videoInfor=null;
         for (Collection collection : collections) {
             /*videoType = new VideoType();
             videoType.title = collection.title;
@@ -46,15 +47,21 @@ public class CollectionPresenter extends RxPresenter<CollectionContract.View> im
             videoType.score = collection.getScore();
             videoType.airTime = collection.getAirTime();
             list.add(videoType);*/
-            videoInfor=new VideoInfor();
-            videoInfor.setVideoId(collection.getVideoId());
-            videoInfor.setVideoTile(collection.getVideoTile());
-            videoInfor.setPicUrl(collection.getPicUrl());
-            videoInfor.setPrices(collection.getPrices());
-            Rank rank=new Rank();
+            videoInfor=new Course();
+            videoInfor.setId(collection.getId());
+            videoInfor.setName(collection.getName());
+            videoInfor.setIcon(collection.getIcon());
+            videoInfor.setIntro(collection.getIntro());
+            Profession profession=new Profession();
+            profession.setName(collection.getProfession().getName());
+            videoInfor.setProfession(profession);
+            Teacher teacher=new Teacher();
+            teacher.setName(collection.getTeacher().getName());
+            videoInfor.setTeacher(teacher);
+            /*Rank rank=new Rank();
             rank.setRankName(collection.getRankName());
             videoInfor.setRank(rank);
-            videoInfor.setStudySum(collection.getStudySum());
+            videoInfor.setStudySum(collection.getStudySum());*/
             list.add(videoInfor);
         }
         mView.showContent(list);
@@ -75,23 +82,29 @@ public class CollectionPresenter extends RxPresenter<CollectionContract.View> im
         List<Record> records = RealmHelper.getInstance().getRecordList();
         //List<VideoType> list = new ArrayList<>();
         //VideoType videoType;
-        List<VideoInfor> list=new ArrayList<>();
-        VideoInfor videoInfor=null;
+        List<Course> list=new ArrayList<>();
+        Course videoInfor=null;
         for (Record record : records) {
             /*videoType = new VideoType();
             videoType.title = record.title;
             videoType.pic = record.pic;
             videoType.dataId = record.getId();
             list.add(videoType);*/
-            videoInfor=new VideoInfor();
-            videoInfor.setVideoId(record.getVideoId());
-            videoInfor.setVideoTile(record.getVideoTile());
-            videoInfor.setPicUrl(record.getPicUrl());
-            videoInfor.setPrices(record.getPrices());
-            Rank rank=new Rank();
+            videoInfor=new Course();
+            videoInfor.setId(record.getId());
+            videoInfor.setName(record.getName());
+            videoInfor.setIcon(record.getIcon());
+            videoInfor.setIntro(record.getIntro());
+            Profession profession=new Profession();
+            profession.setName(record.getProfession().getName());
+            videoInfor.setProfession(profession);
+            Teacher teacher=new Teacher();
+            teacher.setName(record.getTeacher().getName());
+            videoInfor.setTeacher(teacher);
+            /*Rank rank=new Rank();
             rank.setRankName(record.getRankName());
             videoInfor.setRank(rank);
-            videoInfor.setStudySum(record.getStudySum());
+            videoInfor.setStudySum(record.getStudySum());*/
 
             list.add(videoInfor);
         }

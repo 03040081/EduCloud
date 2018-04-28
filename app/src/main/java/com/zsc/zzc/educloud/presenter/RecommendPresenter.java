@@ -1,7 +1,7 @@
 package com.zsc.zzc.educloud.presenter;
 
 import com.zsc.zzc.educloud.base.RxPresenter;
-import com.zsc.zzc.educloud.model.bean.VideoInfor;
+import com.zsc.zzc.educloud.model.bean.Course;
 import com.zsc.zzc.educloud.model.http.response.VideoHttpResponse;
 import com.zsc.zzc.educloud.model.net.RetrofitHelper;
 import com.zsc.zzc.educloud.presenter.contract.RecommendContract;
@@ -37,12 +37,12 @@ public class RecommendPresenter extends RxPresenter<RecommendContract.View> impl
     }
 
     private void getPageHomeInfo() {
-        Subscription rxSubscription = RetrofitHelper.getVideoApi().getRecommendVideos(page,pageSize)
-                .compose(RxUtil.<VideoHttpResponse<List<VideoInfor>>>rxSchedulerHelper())
-                .compose(RxUtil.<List<VideoInfor>>handleResult())
-                .subscribe(new Action1<List<VideoInfor>>() {
+        Subscription rxSubscription = RetrofitHelper.getVideoApi().getRecommendVideos()
+                .compose(RxUtil.<VideoHttpResponse<List<Course>>>rxSchedulerHelper())
+                .compose(RxUtil.<List<Course>>handleResult())
+                .subscribe(new Action1<List<Course>>() {
                     @Override
-                    public void call(final List<VideoInfor> res) {
+                    public void call(final List<Course> res) {
                         if (res != null) {
                             if(page==1) {
                                 mView.showContent(res);
@@ -65,11 +65,11 @@ public class RecommendPresenter extends RxPresenter<RecommendContract.View> impl
     }
     private void getRollVideos(){
         Subscription rxSubscription=RetrofitHelper.getVideoApi().getRollVideos()
-                .compose(RxUtil.<VideoHttpResponse<List<VideoInfor>>>rxSchedulerHelper())
-                .compose(RxUtil.<List<VideoInfor>>handleResult())
-                .subscribe(new Action1<List<VideoInfor>>() {
+                .compose(RxUtil.<VideoHttpResponse<List<Course>>>rxSchedulerHelper())
+                .compose(RxUtil.<List<Course>>handleResult())
+                .subscribe(new Action1<List<Course>>() {
                     @Override
-                    public void call(List<VideoInfor> videoInfors) {
+                    public void call(List<Course> videoInfors) {
                         mView.showRollContent(videoInfors);
                     }
                 }, new Action1<Throwable>() {

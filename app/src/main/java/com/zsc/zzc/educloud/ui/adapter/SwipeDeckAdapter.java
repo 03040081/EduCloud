@@ -11,7 +11,8 @@ import android.widget.TextView;
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.zsc.zzc.educloud.R;
 import com.zsc.zzc.educloud.component.ImageLoader;
-import com.zsc.zzc.educloud.model.bean.VideoInfor;
+import com.zsc.zzc.educloud.model.bean.Course;
+import com.zsc.zzc.educloud.utils.StringUtils;
 
 import java.util.List;
 
@@ -20,18 +21,18 @@ import butterknife.ButterKnife;
 
 public class SwipeDeckAdapter extends BaseAdapter {
 
-    private List<VideoInfor> data;
+    private List<Course> data;
     private Context context;
     private LayoutInflater inflater;
-    private VideoInfor videoInfo;
+    private Course videoInfo;
 
-    public SwipeDeckAdapter(List<VideoInfor> data, Context context) {
+    public SwipeDeckAdapter(List<Course> data, Context context) {
         this.data = data;
         this.context = context;
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
-    public void refresh(List<VideoInfor> data) {
+    public void refresh(List<Course> data) {
         this.data = data;
         notifyDataSetChanged();
     }
@@ -62,10 +63,10 @@ public class SwipeDeckAdapter extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        ImageLoader.load(context, data.get(position).getPicUrl(), holder.offerImage);
-        String intro = "\t\t\t" + data.get(position).getVideoDiscript();
+        ImageLoader.load(context, StringUtils.getHostImg(data.get(position).getIcon()), holder.offerImage);
+        String intro = "\t\t\t" + data.get(position).getIntro();
         holder.tvIntroduction.setText(intro);
-        holder.tv_title.setText(data.get(position).getVideoTile());
+        holder.tv_title.setText(data.get(position).getName());
 
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,13 +95,13 @@ public class SwipeDeckAdapter extends BaseAdapter {
         }
     }
 
-    private void switchData(VideoInfor videoType) {
+    private void switchData(Course videoType) {
         if (videoInfo == null)
-            videoInfo = new VideoInfor();
-        videoInfo.setVideoTile(videoType.getVideoTile());
-        videoInfo.setVideoId(videoType.getVideoId());
-        videoInfo.setPicUrl(videoType.getPicUrl());
-        videoInfo.setPrices(videoType.getPrices());
+            videoInfo = new Course();
+        videoInfo.setName(videoType.getName());
+        videoInfo.setId(videoType.getId());
+        videoInfo.setIcon(videoType.getIcon());
+        videoInfo.setIntro(videoType.getIntro());
         /*videoInfo.title = videoType.title;
         videoInfo.dataId = videoType.dataId;
         videoInfo.pic = videoType.pic;

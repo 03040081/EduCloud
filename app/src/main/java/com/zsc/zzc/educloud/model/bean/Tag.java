@@ -1,26 +1,25 @@
 package com.zsc.zzc.educloud.model.bean;
 
 import java.io.Serializable;
-import java.util.List;
 
 /**
  * Created by 21191 on 2018/4/25.
  */
 
-public class Category implements Serializable{
+public class Tag implements Serializable{
 
     private String id;
 
     private String name;
 
-    private List<Tag> listTags;
+    private String categoryId;
 
-    public Category(){}
+    public Tag(){}
 
-    public Category(String id, String name, List<Tag> listTags) {
+    public Tag(String id, String name, String categoryId) {
         this.id = id;
         this.name = name;
-        this.listTags = listTags;
+        this.categoryId = categoryId;
     }
 
     public String getId() {
@@ -39,11 +38,11 @@ public class Category implements Serializable{
         this.name = name;
     }
 
-    public List<Tag> getListTags() {
-        return listTags;
+    public String getCategoryId() {
+        return categoryId;
     }
 
-    public void setListTags(List<Tag> listTags) {
-        this.listTags = listTags;
+    public void setCategoryId(String categoryId) {
+        this.categoryId = categoryId;
     }
 }

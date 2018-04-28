@@ -1,3 +1,4 @@
+/*
 package com.zsc.zzc.educloud.presenter.contract;
 
 import com.zsc.zzc.educloud.base.BasePresenter;
@@ -13,3 +14,4 @@ public interface RegisterContract {
         void confirm(String phone);
     }
 }
+*/

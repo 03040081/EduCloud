@@ -10,7 +10,7 @@ import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
 import com.jude.easyrecyclerview.decoration.SpaceDecoration;
 import com.zsc.zzc.educloud.R;
 import com.zsc.zzc.educloud.base.SwipeBackActivity;
-import com.zsc.zzc.educloud.model.bean.VideoInfor;
+import com.zsc.zzc.educloud.model.bean.Course;
 import com.zsc.zzc.educloud.presenter.CollectionPresenter;
 import com.zsc.zzc.educloud.presenter.VideoInfoPresenter;
 import com.zsc.zzc.educloud.presenter.contract.CollectionContract;
@@ -37,7 +37,7 @@ public class CollectionActivity extends SwipeBackActivity<CollectionPresenter> i
     @BindView(R.id.recyclerView)
     EasyRecyclerView mRecyclerView;
     VideoListAdapter mAdapter;
-    VideoInfor videoInfor;
+    Course videoInfor;
 
     @Override
     protected int getLayout() {
@@ -70,7 +70,7 @@ public class CollectionActivity extends SwipeBackActivity<CollectionPresenter> i
                 //videoInfo = BeanUtil.VideoType2VideoInfo(mAdapter.getItem(position), videoInfo);
                 //VideoInfoActivity.start(mContext, videoInfo);
                 //????????????????????????????????????????????????????
-                videoInfor=(VideoInfor) mAdapter.getItem(position);
+                videoInfor=(Course) mAdapter.getItem(position);
                 VideoInfoActivity.start(mContext,videoInfor);
             }
         });
@@ -83,7 +83,7 @@ public class CollectionActivity extends SwipeBackActivity<CollectionPresenter> i
 
 
     @Override
-    public void showContent(List<VideoInfor> list) {
+    public void showContent(List<Course> list) {
         mAdapter.clear();
         mAdapter.addAll(list);
     }

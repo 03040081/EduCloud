@@ -1,39 +1,61 @@
 package com.zsc.zzc.educloud.presenter;
 
 import com.zsc.zzc.educloud.base.RxPresenter;
-import com.zsc.zzc.educloud.model.bean.VideoInfor;
-import com.zsc.zzc.educloud.model.http.response.VideoHttpResponse;
-import com.zsc.zzc.educloud.model.net.RetrofitHelper;
+import com.zsc.zzc.educloud.model.bean.Collection;
+import com.zsc.zzc.educloud.model.bean.Course;
+import com.zsc.zzc.educloud.model.db.RealmHelper;
 import com.zsc.zzc.educloud.presenter.contract.ScheduleContract;
-import com.zsc.zzc.educloud.utils.RxUtil;
-import com.zsc.zzc.educloud.utils.StringUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
 
-import rx.Subscription;
-import rx.functions.Action1;
-
 public class SchedulePresenter extends RxPresenter<ScheduleContract.View> implements ScheduleContract.Presenter {
 
-    private int userId=0;
+    //private String userId="";
 
     @Inject
     public SchedulePresenter(){
     }
 
-    public void setUserId(int userId) {
+    /*public void setUserId(String userId) {
         this.userId = userId;
-    }
+    }*/
 
     @Override
     public void onRefresh() {
-        getScheduleInfo(userId);
+        getScheduleInfo();
     }
 
-    private void getScheduleInfo(int userId){
-        Subscription rxSubscription= RetrofitHelper.getVideoApi().getSchedule(userId)
+    private void getScheduleInfo(){
+
+        List<Collection> collections = RealmHelper.getInstance().getCollectionList();
+        List<Course> list = new ArrayList<>();
+        //VideoType videoType;
+        Course videoInfor=null;
+        for (Collection collection : collections) {
+            /*videoType = new VideoType();
+            videoType.title = collection.title;
+            videoType.pic = collection.pic;
+            videoType.dataId = collection.getId();
+            videoType.score = collection.getScore();
+            videoType.airTime = collection.getAirTime();
+            list.add(videoType);*/
+            videoInfor=new Course();
+            videoInfor.setId(collection.getId());
+            videoInfor.setName(collection.getName());
+            videoInfor.setIcon(collection.getIcon());
+            videoInfor.setIntro(collection.getIntro());
+            /*Rank rank=new Rank();
+            rank.setRankName(collection.getRankName());
+            videoInfor.setRank(rank);
+            videoInfor.setStudySum(collection.getStudySum());*/
+            list.add(videoInfor);
+        }
+        mView.showContent(list);
+
+        /*Subscription rxSubscription= RetrofitHelper.getVideoApi().getSchedule(userId)
                 .compose(RxUtil.<VideoHttpResponse<List<VideoInfor>>>rxSchedulerHelper())
                 .compose(RxUtil.<List<VideoInfor>>handleResult())
                 .subscribe(new Action1<List<VideoInfor>>() {
@@ -49,6 +71,6 @@ public class SchedulePresenter extends RxPresenter<ScheduleContract.View> implem
                         mView.refreshFaild(StringUtils.getErrorMsg(throwable.getMessage()));
                     }
                 });
-        addSubscribe(rxSubscription);
+        addSubscribe(rxSubscription);*/
     }
 }

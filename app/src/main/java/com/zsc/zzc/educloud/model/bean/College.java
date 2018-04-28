@@ -7,20 +7,20 @@ import java.util.List;
  * Created by 21191 on 2018/4/25.
  */
 
-public class Category implements Serializable{
+public class College implements Serializable {
 
     private String id;
 
     private String name;
 
-    private List<Tag> listTags;
+    private List<Profession> listProfessions;
 
-    public Category(){}
+    public College(){}
 
-    public Category(String id, String name, List<Tag> listTags) {
+    public College(String id, String name, List<Profession> listProfessions) {
         this.id = id;
         this.name = name;
-        this.listTags = listTags;
+        this.listProfessions = listProfessions;
     }
 
     public String getId() {
@@ -39,11 +39,11 @@ public class Category implements Serializable{
         this.name = name;
     }
 
-    public List<Tag> getListTags() {
-        return listTags;
+    public List<Profession> getListProfessions() {
+        return listProfessions;
     }
 
-    public void setListTags(List<Tag> listTags) {
-        this.listTags = listTags;
+    public void setListProfessions(List<Profession> listProfessions) {
+        this.listProfessions = listProfessions;
     }
 }

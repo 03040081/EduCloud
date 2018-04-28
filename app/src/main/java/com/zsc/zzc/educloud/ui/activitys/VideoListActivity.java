@@ -13,7 +13,7 @@ import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
 import com.jude.easyrecyclerview.decoration.SpaceDecoration;
 import com.zsc.zzc.educloud.R;
 import com.zsc.zzc.educloud.base.SwipeBackActivity;
-import com.zsc.zzc.educloud.model.bean.VideoInfor;
+import com.zsc.zzc.educloud.model.bean.Course;
 import com.zsc.zzc.educloud.presenter.VideoListPresenter;
 import com.zsc.zzc.educloud.presenter.contract.VideoListContract;
 import com.zsc.zzc.educloud.ui.adapter.VideoListAdapter;
@@ -29,7 +29,8 @@ public class VideoListActivity extends SwipeBackActivity<VideoListPresenter> imp
 
     //String mTitle = "";
     //String mCatalogId = "";
-    int majorId,categoryId,cgdetailedId;
+    //int majorId,categoryId,cgdetailedId;
+    String tagId,professionId;
 
     @BindView(R.id.title_name)
     TextView mTitleName;
@@ -38,7 +39,7 @@ public class VideoListActivity extends SwipeBackActivity<VideoListPresenter> imp
     EasyRecyclerView mRecyclerView;
     VideoListAdapter mAdapter;
 
-    VideoInfor videoInfor;
+    Course videoInfor;
     int pageSize = 10;
 
     @Override
@@ -128,7 +129,7 @@ public class VideoListActivity extends SwipeBackActivity<VideoListPresenter> imp
     }
 
     @Override
-    public void showContent(List<VideoInfor> list) {
+    public void showContent(List<Course> list) {
         mAdapter.clear();
         if (list != null && list.size() < pageSize) {
             clearFooter();
@@ -137,7 +138,7 @@ public class VideoListActivity extends SwipeBackActivity<VideoListPresenter> imp
     }
 
     @Override
-    public void showMoreContent(List<VideoInfor> list) {
+    public void showMoreContent(List<Course> list) {
         mAdapter.addAll(list);
     }
 
@@ -150,7 +151,7 @@ public class VideoListActivity extends SwipeBackActivity<VideoListPresenter> imp
     @Override
     public void onRefresh() {
         //mPresenter.onRefresh(mCatalogId);
-        mPresenter.onRefresh(majorId,categoryId,cgdetailedId);
+        mPresenter.onRefresh(tagId,professionId);
     }
 
     @Override
@@ -160,9 +161,11 @@ public class VideoListActivity extends SwipeBackActivity<VideoListPresenter> imp
 
     @Override
     protected void getIntentData() {
-        majorId=Integer.valueOf(getIntent().getStringExtra("majorId"));
+        /*majorId=Integer.valueOf(getIntent().getStringExtra("majorId"));
         categoryId=Integer.valueOf(getIntent().getStringExtra("categoryId"));
-        cgdetailedId=Integer.valueOf(getIntent().getStringExtra("cgdetaliedId"));
+        cgdetailedId=Integer.valueOf(getIntent().getStringExtra("cgdetaliedId"));*/
+        tagId=getIntent().getStringExtra("tagId");
+        professionId=getIntent().getStringExtra("professionId");
     }
 
     @Override
@@ -173,11 +176,11 @@ public class VideoListActivity extends SwipeBackActivity<VideoListPresenter> imp
     /*
     分类查找显示页
      */
-    public static void start(Context context, int majorId,int categoryId,int cgdetaliedId) {
+    public static void start(Context context, String tagId,String professionId) {
         Intent starter = new Intent(context, VideoListActivity.class);
-        starter.putExtra("majorId",String.valueOf(majorId));
-        starter.putExtra("categoryId",String.valueOf(categoryId));
-        starter.putExtra("cgdetaliedId",String.valueOf(cgdetaliedId));
+        starter.putExtra("tagId",tagId);
+        starter.putExtra("professionId",String.valueOf(professionId));
+        //starter.putExtra("cgdetaliedId",String.valueOf(cgdetaliedId));
         context.startActivity(starter);
     }
 }

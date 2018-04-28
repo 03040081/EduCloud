@@ -1,7 +1,7 @@
 package com.zsc.zzc.educloud.presenter;
 
 import com.zsc.zzc.educloud.base.RxPresenter;
-import com.zsc.zzc.educloud.model.bean.VideoInfor;
+import com.zsc.zzc.educloud.model.bean.Course;
 import com.zsc.zzc.educloud.model.http.response.VideoHttpResponse;
 import com.zsc.zzc.educloud.model.net.RetrofitHelper;
 import com.zsc.zzc.educloud.presenter.contract.SearchVideoListContract;
@@ -28,7 +28,7 @@ public class SearchVideoListPresenter extends RxPresenter<SearchVideoListContrac
     public void onRefresh() {
         page = 1;
         if (searchStr != null && !searchStr.equals("")) {
-            getSearchVideoList(10,searchStr);
+            getSearchVideoList(searchStr);
         }
     }
 
@@ -36,7 +36,7 @@ public class SearchVideoListPresenter extends RxPresenter<SearchVideoListContrac
     public void loadMore() {
         page++;
         if (searchStr != null && !searchStr.equals("")) {
-            getSearchVideoList(10,searchStr);
+            getSearchVideoList(searchStr);
         }
     }
 
@@ -46,17 +46,16 @@ public class SearchVideoListPresenter extends RxPresenter<SearchVideoListContrac
     }
 
     /**
-     * 搜索电影
+     * 搜索课程
      *
-     * @param searchStr
      */
-    private void getSearchVideoList(int pageSize,String searchStr) {
-        Subscription rxSubscription = RetrofitHelper.getVideoApi().searchVideos(page,pageSize,searchStr)
-                .compose(RxUtil.<VideoHttpResponse<List<VideoInfor>>>rxSchedulerHelper())
-                .compose(RxUtil.<List<VideoInfor>>handleResult())
-                .subscribe(new Action1<List<VideoInfor>>() {
+    private void getSearchVideoList(String searchStr) {
+        Subscription rxSubscription = RetrofitHelper.getVideoApi().searchVideos(searchStr,page)
+                .compose(RxUtil.<VideoHttpResponse<List<Course>>>rxSchedulerHelper())
+                .compose(RxUtil.<List<Course>>handleResult())
+                .subscribe(new Action1<List<Course>>() {
                     @Override
-                    public void call(List<VideoInfor> res) {
+                    public void call(List<Course> res) {
                         if (res != null) {
                             if (page == 1) {
                                 mView.showContent(res);
