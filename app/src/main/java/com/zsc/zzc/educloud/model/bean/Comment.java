@@ -1,7 +1,6 @@
 package com.zsc.zzc.educloud.model.bean;
 
 import java.io.Serializable;
-import java.util.Date;
 
 /**
  * Created by 21191 on 2018/4/25.
@@ -17,13 +16,13 @@ public class Comment implements Serializable {
 
     private String content;
 
-    private Date createdTime;
+    private String createdTime;
 
     private User user;
 
     public Comment(){}
 
-    public Comment(String id, String sectionId, String userId, String content, Date createdTime, User user) {
+    public Comment(String id, String sectionId, String userId, String content, String createdTime, User user) {
         this.id = id;
         this.sectionId = sectionId;
         this.userId = userId;
@@ -72,11 +71,11 @@ public class Comment implements Serializable {
         this.content = content;
     }
 
-    public Date getCreatedTime() {
+    public String getCreatedTime() {
         return createdTime;
     }
 
-    public void setCreatedTime(Date createdTime) {
+    public void setCreatedTime(String createdTime) {
         this.createdTime = createdTime;
     }
 }

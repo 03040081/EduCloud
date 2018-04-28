@@ -110,7 +110,7 @@ public class CommentFragment extends BaseMvpFragment<CommentPresenter> implement
     public void onClick(View view){
         String txt=tvcontents.getText().toString().trim();
         if(txt.length()>0&&!userId.equals("")){
-            mPresenter.postComment(chapterId,txt,userId);
+            mPresenter.postComment(chapterId,userId,txt);
             tvcontents.setText("");
             hintKbTwo();
         }else{
@@ -144,6 +144,9 @@ public class CommentFragment extends BaseMvpFragment<CommentPresenter> implement
             clearFooter();
         }
         adapter.addAll(list);
+        if (adapter.getCount()<1){
+            recyclerView.setEmptyView(tv_empty);
+        }
     }
 
     @Override
@@ -212,6 +215,7 @@ public class CommentFragment extends BaseMvpFragment<CommentPresenter> implement
                     public void run() {
                         mPresenter.setMediaId(chapterId);
                         onRefresh();
+
                     }
                 });
             }

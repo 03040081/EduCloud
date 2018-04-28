@@ -83,8 +83,13 @@ public class VideoIntroFragment extends BaseFragment {
     public void setData(Course videoInfo) {
         videoRes=videoInfo;
         String dir = "课题：" + StringUtils.removeOtherCode(videoRes.getName());
+        String professionName="专业："+StringUtils.removeOtherCode(videoRes.getProfession().getName());
+        String teacherName="教师："+StringUtils.removeOtherCode(videoRes.getTeacher().getName());
+        String fit="适合人群："+StringUtils.removeOtherCode(videoRes.getFitPeople());
         //String act = "级别：" + StringUtils.removeOtherCode(videoRes.getRank().getRankName());
-        String des = dir + "\n"  + "\n" + "简介：" + StringUtils.removeOtherCode(videoRes.getIntro());
+        String des = dir + "\n" +professionName + "\n"
+                + teacherName+ "\n"+ fit +"\n"
+                + "简介："+ StringUtils.removeOtherCode(videoRes.getIntro());
         tvExpand.setText(des);
         Log.e("检验路径 ： ",videoRes.getListSections().get(0).getListChapter().get(0).getSubTitle());
         //adapter.add(videoInfo);

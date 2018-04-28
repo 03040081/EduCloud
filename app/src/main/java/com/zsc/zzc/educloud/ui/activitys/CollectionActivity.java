@@ -107,9 +107,9 @@ public class CollectionActivity extends SwipeBackActivity<CollectionPresenter> i
 
     private void setTitle() {
         if (mContext instanceof CollectionActivity) {
-            titleName.setText("收藏");
+            titleName.setText("我的学习");
         } else if (mContext instanceof HistoryActivity) {
-            titleName.setText("历史");
+            titleName.setText("最近学习");
         }
     }
 

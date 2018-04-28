@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <include layout="@layout/main_title" />
+ <!--   <include layout="@layout/main_title" />-->
 
     <!--<com.jude.easyrecyclerview.EasyRecyclerView
         android:id="@+id/recyclerView"

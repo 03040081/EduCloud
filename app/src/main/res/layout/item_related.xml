@@ -61,9 +61,9 @@
             android:layout_marginTop="2dp"
             android:layout_marginLeft="114dp"
             android:text="3000"/>
-        <TextView
+        <!--<TextView
             android:layout_width="match_parent"
             android:layout_height="8dp"
-            android:layout_below="@+id/tv_prices"/>
+            android:layout_below="@+id/tv_prices"/>-->
     </RelativeLayout>
 </LinearLayout>

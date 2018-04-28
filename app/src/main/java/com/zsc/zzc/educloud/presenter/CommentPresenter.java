@@ -63,7 +63,7 @@ public class CommentPresenter extends RxPresenter<CommentContract.View> implemen
                         if (res != null) {
                             if (page == 1) {
                                 mView.showContent(res);
-                                Log.e("访问网络获取Comment",res.get(0).getContent());
+                                //Log.e("访问网络获取Comment",res.get(0).getContent());
                             } else {
                                 mView.showMoreContent(res);
                             }

@@ -1,7 +1,6 @@
 package com.zsc.zzc.educloud.model.bean;
 
 import java.io.Serializable;
-import java.util.Date;
 
 import io.realm.RealmObject;
 
@@ -25,11 +24,11 @@ public class Teacher extends RealmObject implements Serializable {
 
     private String avatar;
 
-    private Date createdTime;
+    private String createdTime;
 
     public Teacher(){}
 
-    public Teacher(String id, String userId, String collegeId, String name, String grade, String intro, String avatar, Date createdTime) {
+    public Teacher(String id, String userId, String collegeId, String name, String grade, String intro, String avatar, String createdTime) {
         this.id = id;
         this.userId = userId;
         this.collegeId = collegeId;
@@ -96,11 +95,11 @@ public class Teacher extends RealmObject implements Serializable {
         this.avatar = avatar;
     }
 
-    public Date getCreatedTime() {
+    public String getCreatedTime() {
         return createdTime;
     }
 
-    public void setCreatedTime(Date createdTime) {
+    public void setCreatedTime(String createdTime) {
         this.createdTime = createdTime;
     }
 }

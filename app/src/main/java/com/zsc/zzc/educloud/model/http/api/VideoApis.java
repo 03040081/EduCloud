@@ -3,6 +3,7 @@
 package com.zsc.zzc.educloud.model.http.api;
 
 import com.zsc.zzc.educloud.model.bean.Category;
+import com.zsc.zzc.educloud.model.bean.College;
 import com.zsc.zzc.educloud.model.bean.Comment;
 import com.zsc.zzc.educloud.model.bean.Course;
 import com.zsc.zzc.educloud.model.bean.User;
@@ -68,7 +69,7 @@ public interface VideoApis {
         @ 待用
      */
     @GET("college/peofession")
-    Observable<VideoHttpResponse<List<Category>>> getCollege();
+    Observable<VideoHttpResponse<List<College>>> getCollege();
 
     /*
     课程评论 由课程的评论 改为对课程的章节评论
@@ -94,7 +95,7 @@ public interface VideoApis {
      */
     @GET("user/login")
     Observable<VideoHttpResponse<User>>Login(
-            @Query("account") String userAccount,
+            @Query("useraccout") String userAccount,
             @Query("password") String userPass);
 
     //====================================================== 以下为废弃方案==============================================================

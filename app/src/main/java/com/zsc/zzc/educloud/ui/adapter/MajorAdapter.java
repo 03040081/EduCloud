@@ -48,7 +48,7 @@ public class MajorAdapter extends BaseAdapter {
         mPosition = position;
         tv.setText(list.get(position).getName());
         if (position == ClassificationFragment.mPosition) {
-            convertView.setBackgroundColor(Color.parseColor("#e08c6ba4"));
+            convertView.setBackgroundColor(Color.parseColor("#30FFFFFF"));
         } else {
             //convertView.setBackgroundColor(Color.parseColor("#000000"));
         }

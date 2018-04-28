@@ -15,6 +15,7 @@ import com.zsc.zzc.educloud.R;
 import com.zsc.zzc.educloud.base.BaseMvpFragment;
 import com.zsc.zzc.educloud.model.bean.Course;
 import com.zsc.zzc.educloud.presenter.SchedulePresenter;
+import com.zsc.zzc.educloud.presenter.VideoInfoPresenter;
 import com.zsc.zzc.educloud.presenter.contract.ScheduleContract;
 import com.zsc.zzc.educloud.ui.activitys.VideoInfoActivity;
 import com.zsc.zzc.educloud.ui.adapter.ScheduleAdapter;
@@ -22,6 +23,7 @@ import com.zsc.zzc.educloud.utils.EventUtil;
 import com.zsc.zzc.educloud.utils.ScreenUtil;
 
 import org.simple.eventbus.EventBus;
+import org.simple.eventbus.Subscriber;
 
 import java.util.List;
 
@@ -149,6 +151,10 @@ public class ScheduleFragment extends BaseMvpFragment<SchedulePresenter> impleme
 
         mPresenter.onRefresh();
         //Log.e("接收到广播"," "+userId);
+    }
+    @Subscriber(tag = VideoInfoPresenter.Refresh_Collection_List)
+    public void setData(String tag) {
+        onRefresh();
     }
 
 

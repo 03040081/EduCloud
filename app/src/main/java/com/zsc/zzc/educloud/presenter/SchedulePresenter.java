@@ -3,6 +3,8 @@ package com.zsc.zzc.educloud.presenter;
 import com.zsc.zzc.educloud.base.RxPresenter;
 import com.zsc.zzc.educloud.model.bean.Collection;
 import com.zsc.zzc.educloud.model.bean.Course;
+import com.zsc.zzc.educloud.model.bean.Profession;
+import com.zsc.zzc.educloud.model.bean.Teacher;
 import com.zsc.zzc.educloud.model.db.RealmHelper;
 import com.zsc.zzc.educloud.presenter.contract.ScheduleContract;
 
@@ -47,6 +49,12 @@ public class SchedulePresenter extends RxPresenter<ScheduleContract.View> implem
             videoInfor.setName(collection.getName());
             videoInfor.setIcon(collection.getIcon());
             videoInfor.setIntro(collection.getIntro());
+            Profession profession=new Profession();
+            profession.setName(collection.getProfession().getName());
+            videoInfor.setProfession(profession);
+            Teacher teacher=new Teacher();
+            teacher.setName(collection.getTeacher().getName());
+            videoInfor.setTeacher(teacher);
             /*Rank rank=new Rank();
             rank.setRankName(collection.getRankName());
             videoInfor.setRank(rank);

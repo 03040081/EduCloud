@@ -5,6 +5,8 @@ import android.widget.ImageView;
 import com.zsc.zzc.educloud.R;
 import com.zsc.zzc.educloud.base.BaseMvpActivity;
 import com.zsc.zzc.educloud.component.ImageLoader;
+import com.zsc.zzc.educloud.model.bean.User;
+import com.zsc.zzc.educloud.model.db.RealmHelper;
 import com.zsc.zzc.educloud.presenter.WelcomePresenter;
 import com.zsc.zzc.educloud.presenter.contract.WelcomeContract;
 import com.zsc.zzc.educloud.utils.EventUtil;
@@ -46,8 +48,14 @@ public class WelcomeActivity extends BaseMvpActivity<WelcomePresenter> implement
 
     @Override
     public void jumpToMain() {
-        MainActivity.start(this);
-        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+        User user= RealmHelper.getInstance().getUserInfo();
+        if(user!=null) {
+            MainActivity.start(this);
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+        }else {
+            LoginActivity.start(mContext,"");
+        }
+
     }
 
     @Override

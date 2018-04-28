@@ -46,7 +46,7 @@ public class RealmHelper implements DBHelper {
     //--------------------------------------------------收藏相关----------------------------------------------------
 
     /**
-     * 增加 收藏记录
+     * 增加 课程
      *
      * @param bean
      */
@@ -57,7 +57,7 @@ public class RealmHelper implements DBHelper {
     }
 
     /**
-     * 删除 收藏记录
+     * 删除 课程记录
      *
      * @param videoId
      */
@@ -122,9 +122,12 @@ public class RealmHelper implements DBHelper {
                 }
             }
         }
-        getRealm().beginTransaction();
-        getRealm().copyToRealm(bean);
-        getRealm().commitTransaction();
+        Record temp=getRealm().where(Record.class).equalTo("id",bean.getId()).findFirst();
+        if (temp==null) {
+            getRealm().beginTransaction();
+            getRealm().copyToRealm(bean);
+            getRealm().commitTransaction();
+        }
     }
 
 

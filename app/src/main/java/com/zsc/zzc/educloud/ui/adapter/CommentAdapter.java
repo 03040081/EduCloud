@@ -43,12 +43,15 @@ public class CommentAdapter extends RecyclerArrayAdapter<Comment> {
 
         @Override
         public void setData(Comment data) {
-            tv_nick.setText(data.getUser().getUsername());
+            if(data.getUser()!=null)
+                tv_nick.setText(data.getUser().getUsername());
             tv_time.setText(data.getCreatedTime().toString());
             //tv_like.setText(data.likeNum);
             tv_comment.setText(data.getContent());
-            if (!TextUtils.isEmpty(data.getUser().getAvatar()))
-                ImageLoader.load(getContext(), StringUtils.getHostImg(data.getUser().getAvatar()), avatar);
+            if(data.getUser()!=null) {
+                if (!TextUtils.isEmpty(data.getUser().getAvatar()))
+                    ImageLoader.load(getContext(), StringUtils.getHostImg(data.getUser().getAvatar()), avatar);
+            }
             Log.e("CommentAdapter","正常加载");
         }
     }

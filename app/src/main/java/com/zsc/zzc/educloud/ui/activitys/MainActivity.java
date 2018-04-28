@@ -13,7 +13,7 @@ import com.zsc.zzc.educloud.R;
 import com.zsc.zzc.educloud.app.App;
 import com.zsc.zzc.educloud.base.BaseActivity;
 import com.zsc.zzc.educloud.ui.adapter.ContentPagerAdapter;
-import com.zsc.zzc.educloud.ui.fragments.ClassificationFragment;
+import com.zsc.zzc.educloud.ui.fragments.ClassificationAllFragment;
 import com.zsc.zzc.educloud.ui.fragments.MineFragment;
 import com.zsc.zzc.educloud.ui.fragments.RecommendFragment;
 import com.zsc.zzc.educloud.ui.fragments.ScheduleFragment;
@@ -121,7 +121,8 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
     private List<Fragment> initFragments() {
         List<Fragment> fragments = new ArrayList<>();
         Fragment fragment1 = new RecommendFragment();
-        Fragment fragment2 = new ClassificationFragment();
+        //Fragment fragment2 = new ClassificationFragment();
+        Fragment fragment2 = new ClassificationAllFragment();
         Fragment fragment3 = new ScheduleFragment();
         Fragment mineFragment = new MineFragment();
         fragments.add(fragment1);

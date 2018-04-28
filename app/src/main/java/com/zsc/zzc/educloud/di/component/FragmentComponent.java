@@ -5,6 +5,7 @@ import android.app.Activity;
 import com.zsc.zzc.educloud.di.module.FragmentModule;
 import com.zsc.zzc.educloud.di.scope.FragmentScope;
 import com.zsc.zzc.educloud.ui.fragments.ClassificationFragment;
+import com.zsc.zzc.educloud.ui.fragments.CollegeFragment;
 import com.zsc.zzc.educloud.ui.fragments.CommentFragment;
 import com.zsc.zzc.educloud.ui.fragments.MineFragment;
 import com.zsc.zzc.educloud.ui.fragments.RecommendFragment;
@@ -32,4 +33,5 @@ public interface FragmentComponent {
 
     void inject(VideoIntroFragment videoIntroFragment);
     /*void inject(ForumFragment forumFragment);*/
+    void inject(CollegeFragment collegeFragment);
 }

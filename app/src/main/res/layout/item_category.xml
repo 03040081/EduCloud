@@ -7,7 +7,8 @@
     <TextView
         android:id="@+id/categoryname"
         android:layout_width="match_parent"
-        android:background="@color/category"
+        android:background="@color/white_translucent"
+        android:gravity="center"
         android:layout_height="30dp" />
     <!--<com.zsc.zzc.educloud.widget.MyGridView
         android:id="@+id/categorydetailedgrid"

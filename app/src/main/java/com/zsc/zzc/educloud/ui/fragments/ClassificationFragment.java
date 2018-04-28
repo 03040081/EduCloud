@@ -8,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.zsc.zzc.educloud.R;
 import com.zsc.zzc.educloud.base.BaseMvpFragment;
@@ -26,8 +25,8 @@ import butterknife.BindView;
 
 public class ClassificationFragment extends BaseMvpFragment<ClassificationPresenter> implements ClassificationContract.View, SwipeRefreshLayout.OnRefreshListener,AdapterView.OnItemClickListener {
 
-    @BindView(R.id.title_name)
-    TextView titleName;
+   /* @BindView(R.id.title_name)
+    TextView titleName;*/
 
     private List<Category> majorList;
     @BindView(R.id.list_major)
@@ -37,7 +36,7 @@ public class ClassificationFragment extends BaseMvpFragment<ClassificationPresen
 
     @Override
     protected void initView(LayoutInflater inflater) {
-        titleName.setText("分类");
+        //titleName.setText("分类");
     }
 
     @Override

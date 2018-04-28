@@ -97,7 +97,7 @@ public class SettingActivity extends SwipeBackActivity {
             case R.id.rl_loginout:
                 LoginPresenter.loginOut();
                 ActivityUtils.finishAll();
-                MainActivity.start(mContext);
+                LoginActivity.start(mContext,"");
                 break;
         }
     }

@@ -3,7 +3,6 @@ package com.zsc.zzc.educloud.ui.activitys;
 import android.content.Context;
 import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.View;
@@ -36,6 +35,7 @@ public class LoginActivity extends SwipeBackActivity<LoginPresenter> implements 
     FloatingActionButton fab;
 
     String userAccount=null;
+    User user=null;
 
     @Override
     protected int getLayout() {
@@ -54,13 +54,14 @@ public class LoginActivity extends SwipeBackActivity<LoginPresenter> implements 
 
     @Override
     public void saveContent(User user) {
+        this.user=user;
         //Toast.makeText(mContext,user.getUserName(),Toast.LENGTH_SHORT);
         //mPresenter.insertUser(user);
         Log.e("LoginActivity",String.valueOf(user.getId()));
-        Intent intent = new Intent("jerry");
+       /* Intent intent = new Intent("jerry");
         intent.putExtra("change", "yes");
         intent.putExtra("userId",String.valueOf(user.getId()));
-        LocalBroadcastManager.getInstance(mContext).sendBroadcast(intent);
+        LocalBroadcastManager.getInstance(mContext).sendBroadcast(intent);*/
 
     }
     @Override
@@ -99,8 +100,12 @@ public class LoginActivity extends SwipeBackActivity<LoginPresenter> implements 
                 userAccount= String.valueOf(etUsername.getText());
                 String userPass= String.valueOf(etPassword.getText());
                 mPresenter.login(userAccount,userPass);
+                Log.e("登录",userAccount+"  "+userPass);
                 //ActivityUtils.finishAll();
-                MainActivity.start(mContext);
+                if(user!=null) {
+                    MainActivity.start(mContext);
+                    overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                }
                 //finish();
                 break;
         }

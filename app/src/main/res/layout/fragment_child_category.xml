@@ -7,8 +7,8 @@
     <com.zsc.zzc.educloud.widget.MyGridView
         android:id="@+id/listcategory"
         android:layout_weight="3"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:scrollbars="none">
+        android:numColumns="2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
     </com.zsc.zzc.educloud.widget.MyGridView>
 </LinearLayout>

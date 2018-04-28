@@ -162,9 +162,8 @@ public class VideoInfoPresenter extends RxPresenter<VideoInfoContract.View> impl
                 Teacher teacher=new Teacher();
                 teacher.setName(result.getTeacher().getName());
                 bean.setTeacher(teacher);
-                /*bean.setStudySum(result.getStudySum());
-                bean.setPrices(result.getPrices());
-                bean.setRankName(result.getRank().getRankName());*/
+                Log.e("info Course",result.getTeacher().getName());
+
                 RealmHelper.getInstance().insertCollection(bean);
                 mView.collected();
             }

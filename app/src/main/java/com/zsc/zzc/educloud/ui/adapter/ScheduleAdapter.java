@@ -1,6 +1,7 @@
 package com.zsc.zzc.educloud.ui.adapter;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -47,16 +48,15 @@ public class ScheduleAdapter extends RecyclerArrayAdapter<Course> {
         @Override
         public void setData(Course data) {
             tv_title.setText(data.getName());
-            /*if(data.getRank()!=null)
-                tv_rank.setText(data.getRank().getRankName());*/
-            /*tv_hot.setText(String.valueOf(data.getStudySum()));
-            tv_prices.setText(String.valueOf(data.getPrices()));*/
             tv_rank.setText("教师:");
-            tv_hot.setText(data.getTeacher().getName());
+            if (data.getTeacher()!=null)
+                tv_hot.setText(data.getTeacher().getName());
             tv_profession.setText("专业:");
-            tv_proname.setText(data.getProfession().getName());
+            if (data.getProfession()!=null)
+                tv_proname.setText(data.getProfession().getName());
             tv_descript.setText(data.getIntro());
-            ImageLoader.load(getContext(), StringUtils.getHostImg(data.getIcon()), imgPicture);
+            if (!TextUtils.isEmpty(data.getIcon()))
+                ImageLoader.load(getContext(), StringUtils.getHostImg(data.getIcon()), imgPicture);
         }
     }
 

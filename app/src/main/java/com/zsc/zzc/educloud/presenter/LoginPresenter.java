@@ -38,7 +38,9 @@ public class LoginPresenter extends RxPresenter<LoginContract.View> implements L
                             mView.saveContent(user);
                             insertUser(user);
                             //userId=user.getUserId();
-                            //Log.e("Presenter用户：",user.getUserName()+" "+user.getUserId());
+                            Log.e("Presenter用户：",user.getUsername()+" "+user.getId());
+                        }else {
+                            mView.showError("用户名或密码错误");
                         }
                     }
                 }, new Action1<Throwable>() {

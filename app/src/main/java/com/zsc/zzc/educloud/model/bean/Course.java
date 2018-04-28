@@ -143,4 +143,22 @@ public class Course implements Serializable{
     public void setTeacher(Teacher teacher) {
         this.teacher = teacher;
     }
+
+    @Override
+    public String toString() {
+        return "Course{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", teacherId='" + teacherId + '\'' +
+                ", professionId='" + professionId + '\'' +
+                ", tagId='" + tagId + '\'' +
+                ", icon='" + icon + '\'' +
+                ", type=" + type +
+                ", intro='" + intro + '\'' +
+                ", fitPeople='" + fitPeople + '\'' +
+                ", listSections=" + listSections +
+                ", profession=" + profession +
+                ", teacher=" + teacher +
+                '}';
+    }
 }
