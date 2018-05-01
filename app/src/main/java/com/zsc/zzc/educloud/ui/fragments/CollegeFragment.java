@@ -73,9 +73,9 @@ public class CollegeFragment extends BaseMvpFragment<CollegePresenter> implement
             ProfessionFragment professionFragment=new ProfessionFragment();
             FragmentTransaction transaction=getChildFragmentManager().beginTransaction();
             transaction.replace(R.id.fragment_category,professionFragment);
-            List<Profession> categories=collegeList.get(mPosition).getListProfessions();
+            List<Profession> professionList=collegeList.get(mPosition).getListProfessions();
             Bundle args=new Bundle();
-            args.putSerializable(ProfessionFragment.TAG, (Serializable) categories);
+            args.putSerializable(ProfessionFragment.TAG, (Serializable) professionList);
             professionFragment.setArguments(args);
             transaction.commit();
         }

@@ -1,7 +1,5 @@
 package com.zsc.zzc.educloud.presenter;
 
-import android.util.Log;
-
 import com.zsc.zzc.educloud.base.RxPresenter;
 import com.zsc.zzc.educloud.model.bean.User;
 import com.zsc.zzc.educloud.model.db.RealmHelper;
@@ -37,8 +35,6 @@ public class LoginPresenter extends RxPresenter<LoginContract.View> implements L
                         if (user != null) {
                             mView.saveContent(user);
                             insertUser(user);
-                            //userId=user.getUserId();
-                            Log.e("Presenter用户：",user.getUsername()+" "+user.getId());
                         }else {
                             mView.showError("用户名或密码错误");
                         }
@@ -47,7 +43,6 @@ public class LoginPresenter extends RxPresenter<LoginContract.View> implements L
                     @Override
                     public void call(Throwable throwable) {
                         mView.showError(throwable.getMessage());
-                        Log.e("登录失败：",throwable.getMessage());
                     }
                 });
         addSubscribe(rxSubscription);
@@ -56,7 +51,6 @@ public class LoginPresenter extends RxPresenter<LoginContract.View> implements L
     @Override
     public void insertUser(User user) {
         if (user!=null){
-            //Log.e("保存User搭配Realm",user.getUserAccount());
             RealmHelper.getInstance().insertUserInfo(user);
         }
     }

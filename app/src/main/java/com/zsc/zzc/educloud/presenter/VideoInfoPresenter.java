@@ -64,7 +64,7 @@ public class VideoInfoPresenter extends RxPresenter<VideoInfoContract.View> impl
         getDetailData(videoInfor.getId());
         setCollectState();
         putMediaId();
-        putFirstChapterId();
+
     }
 
 
@@ -85,6 +85,7 @@ public class VideoInfoPresenter extends RxPresenter<VideoInfoContract.View> impl
                             result = course;
                             postData();
                             insertRecord();
+                            putFirstChapterId();
                         }
                     }
                 }, new Action1<Throwable>() {

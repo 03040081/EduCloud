@@ -1,7 +1,5 @@
 package com.zsc.zzc.educloud.presenter;
 
-import android.util.Log;
-
 import com.zsc.zzc.educloud.base.RxPresenter;
 import com.zsc.zzc.educloud.model.bean.Comment;
 import com.zsc.zzc.educloud.model.http.response.VideoHttpResponse;
@@ -36,7 +34,6 @@ public class CommentPresenter extends RxPresenter<CommentContract.View> implemen
     }
 
     public void postComment(String sectionId,String userId,String content){
-
         Subscription rxSubscription=RetrofitHelper.getVideoApi().publishAssess(sectionId,userId,content)
                 .compose(RxUtil.<VideoHttpResponse<String>>rxSchedulerHelper())
                 .compose(RxUtil.<String>handleResult())
@@ -53,7 +50,6 @@ public class CommentPresenter extends RxPresenter<CommentContract.View> implemen
 
 
     private void getComment(String sectionId) {
-        Log.e("调用getComment",sectionId);
         Subscription rxSubscription = RetrofitHelper.getVideoApi().getVideoAssesses(sectionId,page)
                 .compose(RxUtil.<VideoHttpResponse<List<Comment>>>rxSchedulerHelper())
                 .compose(RxUtil.<List<Comment>>handleResult())
@@ -63,7 +59,6 @@ public class CommentPresenter extends RxPresenter<CommentContract.View> implemen
                         if (res != null) {
                             if (page == 1) {
                                 mView.showContent(res);
-                                //Log.e("访问网络获取Comment",res.get(0).getContent());
                             } else {
                                 mView.showMoreContent(res);
                             }
@@ -76,7 +71,6 @@ public class CommentPresenter extends RxPresenter<CommentContract.View> implemen
                             page--;
                         }
                         mView.refreshFaild(StringUtils.getErrorMsg(throwable.getMessage()));
-                        Log.e("Comment异常",throwable.getMessage()+""+throwable);
                     }
                 });
         addSubscribe(rxSubscription);

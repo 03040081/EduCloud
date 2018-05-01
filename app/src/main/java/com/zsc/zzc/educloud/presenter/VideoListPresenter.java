@@ -68,7 +68,7 @@ public class VideoListPresenter extends RxPresenter<VideoListContract.View> impl
     }
 
     /**
-     * 搜索电影
+     * 搜索课程
      *
      * @param searchStr
      */

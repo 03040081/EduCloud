@@ -190,10 +190,10 @@ public class VideoInfoActivity extends SwipeBackActivity<VideoInfoPresenter> imp
             ImageLoader.load(mContext, StringUtils.getHostImg(videoRes.getIcon()), videoplayer.thumbImageView);
         //String videoURL="http://47.93.11.130:8080/educloud/"+videoRes.getListChapter().get(0).getListChapterDetailed().get(0).getVideoUrl();
         try {
-            String courseSubTile = videoRes.getListSections().get(0).getListChapter().get(0).getSubTitle();
+            String courseSubId = videoRes.getListSections().get(0).getListChapter().get(0).getId();
             String courseIdURL=videoRes.getId();
             //Log.e("视频路径：",videoURL);
-            String videoURL=StringUtils.getHostVideo(courseIdURL,courseSubTile);
+            String videoURL=StringUtils.getHostVideo(courseIdURL,courseSubId);
             Log.e("videoURL",videoURL);
             if (!TextUtils.isEmpty(videoURL)) {
                 videoplayer.setUp(videoURL, JCVideoPlayerStandard.SCREEN_LAYOUT_LIST, videoRes.getName());
