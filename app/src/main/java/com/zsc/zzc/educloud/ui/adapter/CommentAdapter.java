@@ -12,7 +12,6 @@ import com.makeramen.roundedimageview.RoundedImageView;
 import com.zsc.zzc.educloud.R;
 import com.zsc.zzc.educloud.component.ImageLoader;
 import com.zsc.zzc.educloud.model.bean.Comment;
-import com.zsc.zzc.educloud.utils.StringUtils;
 
 public class CommentAdapter extends RecyclerArrayAdapter<Comment> {
 
@@ -50,7 +49,7 @@ public class CommentAdapter extends RecyclerArrayAdapter<Comment> {
             tv_comment.setText(data.getContent());
             if(data.getUser()!=null) {
                 if (!TextUtils.isEmpty(data.getUser().getAvatar()))
-                    ImageLoader.load(getContext(), StringUtils.getHostImg(data.getUser().getAvatar()), avatar);
+                    ImageLoader.load(getContext(), data.getUser().getAvatar(), avatar);
             }
             Log.e("CommentAdapter","正常加载");
         }

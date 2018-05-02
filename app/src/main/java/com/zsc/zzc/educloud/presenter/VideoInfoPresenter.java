@@ -7,7 +7,6 @@ import com.zsc.zzc.educloud.model.bean.Collection;
 import com.zsc.zzc.educloud.model.bean.Course;
 import com.zsc.zzc.educloud.model.bean.Profession;
 import com.zsc.zzc.educloud.model.bean.Record;
-import com.zsc.zzc.educloud.model.bean.Section;
 import com.zsc.zzc.educloud.model.bean.Teacher;
 import com.zsc.zzc.educloud.model.db.RealmHelper;
 import com.zsc.zzc.educloud.model.http.response.VideoHttpResponse;
@@ -41,7 +40,7 @@ public class VideoInfoPresenter extends RxPresenter<VideoInfoContract.View> impl
     Course result;
 
     String dataId = "";
-    String firstChapterId="";
+    //String firstChapterId="";
 
     String pic = "";
 
@@ -52,19 +51,12 @@ public class VideoInfoPresenter extends RxPresenter<VideoInfoContract.View> impl
     public void prepareInfo(Course videoInfor) {
         mView.showContent(videoInfor);
         this.dataId = videoInfor.getId();
-        List<Section> tempList=videoInfor.getListSections();
-        if(tempList!=null&&tempList.size()>0){
-            List<Section> tempList2=tempList.get(0).getListChapter();
-            if(tempList2!=null&&tempList2.size()>0){
-                this.firstChapterId =tempList2.get(0).getId();
-            }
-        }
+
         //Log.e("VideoId@@@@@@@@@@@@@ ",String.valueOf(this.dataId));
         this.pic = videoInfor.getIcon();
         getDetailData(videoInfor.getId());
         setCollectState();
         putMediaId();
-
     }
 
 
@@ -85,7 +77,7 @@ public class VideoInfoPresenter extends RxPresenter<VideoInfoContract.View> impl
                             result = course;
                             postData();
                             insertRecord();
-                            putFirstChapterId();
+
                         }
                     }
                 }, new Action1<Throwable>() {
@@ -93,6 +85,7 @@ public class VideoInfoPresenter extends RxPresenter<VideoInfoContract.View> impl
                     public void call(Throwable throwable) {
                         mView.hidLoading();
                         mView.showError("数据加载失败");
+                        Log.e("INFO加载",throwable.getMessage());
                     }
                 }, new Action0() {
                     @Override
@@ -131,7 +124,8 @@ public class VideoInfoPresenter extends RxPresenter<VideoInfoContract.View> impl
         addSubscribe(rxSubscription);
     }
 
-    private void putFirstChapterId() {
+    public void putFirstChapterId(final String firstChapterId) {
+        Log.e("putFirstChapterId","putFirstChapterId");
         Subscription rxSubscription = Observable.timer(WAIT_TIME, TimeUnit.MILLISECONDS)
                 .compose(RxUtil.<Long>rxSchedulerHelper())
                 .subscribe(new Action1<Long>() {

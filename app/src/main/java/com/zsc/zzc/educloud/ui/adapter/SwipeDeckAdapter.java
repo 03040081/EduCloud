@@ -2,6 +2,7 @@ package com.zsc.zzc.educloud.ui.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.CardView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +13,6 @@ import com.makeramen.roundedimageview.RoundedImageView;
 import com.zsc.zzc.educloud.R;
 import com.zsc.zzc.educloud.component.ImageLoader;
 import com.zsc.zzc.educloud.model.bean.Course;
-import com.zsc.zzc.educloud.utils.StringUtils;
 
 import java.util.List;
 
@@ -62,8 +62,8 @@ public class SwipeDeckAdapter extends BaseAdapter {
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
-
-        ImageLoader.load(context, StringUtils.getHostImg(data.get(position).getIcon()), holder.offerImage);
+        if (!TextUtils.isEmpty(data.get(position).getIcon()))
+            ImageLoader.load(context, data.get(position).getIcon(), holder.offerImage);
         String intro = "\t\t\t" + data.get(position).getIntro();
         holder.tvIntroduction.setText(intro);
         holder.tv_title.setText(data.get(position).getName());

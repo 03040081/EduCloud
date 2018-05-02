@@ -1,5 +1,7 @@
 package com.zsc.zzc.educloud.presenter;
 
+import android.util.Log;
+
 import com.zsc.zzc.educloud.base.RxPresenter;
 import com.zsc.zzc.educloud.model.bean.Course;
 import com.zsc.zzc.educloud.model.http.response.VideoHttpResponse;
@@ -59,6 +61,7 @@ public class RecommendPresenter extends RxPresenter<RecommendContract.View> impl
                             //Log.e("分页结果测试：",String.valueOf(page));
                         }
                         mView.refreshFaild(StringUtils.getErrorMsg(throwable.getMessage()));
+                        Log.e("Recommend网络错误",throwable.getMessage());
                     }
                 });
         addSubscribe(rxSubscription);

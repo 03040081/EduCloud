@@ -1,6 +1,7 @@
 package com.zsc.zzc.educloud.ui.adapter;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -10,7 +11,6 @@ import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
 import com.zsc.zzc.educloud.R;
 import com.zsc.zzc.educloud.component.ImageLoader;
 import com.zsc.zzc.educloud.model.bean.Course;
-import com.zsc.zzc.educloud.utils.StringUtils;
 
 public class VideoListAdapter extends RecyclerArrayAdapter<Course> {
 
@@ -62,7 +62,8 @@ public class VideoListAdapter extends RecyclerArrayAdapter<Course> {
 
             //params.height = (int) (width * 0.73);
             //imgPicture.setLayoutParams(params);
-            ImageLoader.load(getContext(), StringUtils.getHostImg(data.getIcon()), imgPicture);
+            if (!TextUtils.isEmpty(data.getIcon()))
+                ImageLoader.load(getContext(), data.getIcon(), imgPicture);
         }
     }
 

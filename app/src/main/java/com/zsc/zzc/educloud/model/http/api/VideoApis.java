@@ -21,7 +21,8 @@ import rx.Observable;
 
 public interface VideoApis {
     //String HOST = "http://47.93.11.130:8080/educloud/";
-    String HOST = "http://47.93.11.130:8080/zsccloud/";
+    //String HOST = "http://47.93.11.130:8080/zsccloud/";
+    String HOST="http://111.230.87.210:8080/zsccloud/";
 
 
     /*

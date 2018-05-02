@@ -54,7 +54,7 @@ public class ChapterFragment extends BaseFragment implements ChapterAdapter.MyCl
     @Override
     public void clickListener(AdapterView<?> parent, View view, int position, long id) {
         Section chapterDetailed=(Section) parent.getAdapter().getItem(position);
-        Log.e("视频播放路径：",StringUtils.getHostVideo(chapterDetailed.getCourseId(),chapterDetailed.getSubTitle()));
+        Log.e("视频播放路径：",StringUtils.getHostVideo(chapterDetailed.getCourseId(),chapterDetailed.getId()));
         listener.sendURL(StringUtils.getHostVideo(chapterDetailed.getCourseId(),chapterDetailed.getId()));
         postBroadcast(chapterDetailed.getId());
     }

@@ -29,7 +29,6 @@ import com.zsc.zzc.educloud.ui.activitys.VideoInfoActivity;
 import com.zsc.zzc.educloud.ui.adapter.MineHistoryVideoListAdapter;
 import com.zsc.zzc.educloud.utils.EventUtil;
 import com.zsc.zzc.educloud.utils.ScreenUtil;
-import com.zsc.zzc.educloud.utils.StringUtils;
 
 import org.simple.eventbus.EventBus;
 import org.simple.eventbus.Subscriber;
@@ -139,8 +138,8 @@ public class MineFragment extends BaseMvpFragment<MinePresenter> implements Mine
             this.user=user;
             username.setText(user.getUsername());
             String userAvatar=user.getAvatar();
-            if(userAvatar!=null&&!userAvatar.equals("")){
-                ImageLoader.load(mContext, StringUtils.getHostImg(userAvatar),imgHead);
+            if(userAvatar!=null&&!"".equals(userAvatar)){
+                ImageLoader.load(mContext, userAvatar,imgHead);
             }
         }
     }

@@ -170,9 +170,9 @@ public class CommentFragment extends BaseMvpFragment<CommentPresenter> implement
     }
 
     @Subscriber(tag = VideoInfoPresenter.Put_FirstChapterId)
-    public void setData(String chapterId) {
-        Log.e("检查ChapterId传输状态:  ", String.valueOf(chapterId));
-        this.chapterId=chapterId;
+    public void setData(String firstChapterId) {
+        Log.e("检查ChapterId传输状态:  ", String.valueOf(firstChapterId));
+        this.chapterId=firstChapterId;
         mPresenter.setMediaId(chapterId);
         mPresenter.onRefresh();
     }

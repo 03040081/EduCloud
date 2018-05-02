@@ -16,14 +16,14 @@ public class StringUtils {
     private static final String HOSTVIDEO="http://47.93.11.130:8080/zsccloud/Vedios/";
 
     private static final String FILEIMG="http://111.230.87.210/Images/";
-    private static final String FILEVEDIO="http://111.230.87.210/Vedio/";
+    private static final String FILEVIDEO="http://111.230.87.210/Videos/";
 
-    public static String getHostImg(String str){
+    /*public static String getHostImg(String str){
         return HOSTIMG+str;
-    }
+    }*/
 
-    public static String getHostVideo(String courseId,String subTitle){
-        return HOSTVIDEO+courseId+"/"+subTitle+".mp4";
+    public static String getHostVideo(String courseId,String subId){
+        return FILEVIDEO+courseId+"/"+subId+".mp4";
     }
 
     /**

@@ -11,7 +11,6 @@ import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
 import com.zsc.zzc.educloud.R;
 import com.zsc.zzc.educloud.component.ImageLoader;
 import com.zsc.zzc.educloud.model.bean.Course;
-import com.zsc.zzc.educloud.utils.StringUtils;
 
 public class ScheduleAdapter extends RecyclerArrayAdapter<Course> {
 
@@ -56,7 +55,7 @@ public class ScheduleAdapter extends RecyclerArrayAdapter<Course> {
                 tv_proname.setText(data.getProfession().getName());
             tv_descript.setText(data.getIntro());
             if (!TextUtils.isEmpty(data.getIcon()))
-                ImageLoader.load(getContext(), StringUtils.getHostImg(data.getIcon()), imgPicture);
+                ImageLoader.load(getContext(), data.getIcon(), imgPicture);
         }
     }
 

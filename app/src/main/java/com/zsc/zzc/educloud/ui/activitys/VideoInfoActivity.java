@@ -18,6 +18,7 @@ import com.zsc.zzc.educloud.R;
 import com.zsc.zzc.educloud.base.SwipeBackActivity;
 import com.zsc.zzc.educloud.component.ImageLoader;
 import com.zsc.zzc.educloud.model.bean.Course;
+import com.zsc.zzc.educloud.model.bean.Section;
 import com.zsc.zzc.educloud.presenter.VideoInfoPresenter;
 import com.zsc.zzc.educloud.presenter.contract.VideoInfoContract;
 import com.zsc.zzc.educloud.ui.fragments.ChapterFragment;
@@ -29,6 +30,8 @@ import com.zsc.zzc.educloud.widget.LVGhost;
 import com.zsc.zzc.educloud.widget.SwipeViewPager;
 
 import org.simple.eventbus.EventBus;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -187,20 +190,31 @@ public class VideoInfoActivity extends SwipeBackActivity<VideoInfoPresenter> imp
         this.videoRes = videoRes;
         mTitleName.setText(videoRes.getName());
         if (!TextUtils.isEmpty(videoRes.getIcon()))
-            ImageLoader.load(mContext, StringUtils.getHostImg(videoRes.getIcon()), videoplayer.thumbImageView);
+            ImageLoader.load(mContext, videoRes.getIcon(), videoplayer.thumbImageView);
         //String videoURL="http://47.93.11.130:8080/educloud/"+videoRes.getListChapter().get(0).getListChapterDetailed().get(0).getVideoUrl();
         try {
             String courseSubId = videoRes.getListSections().get(0).getListChapter().get(0).getId();
             String courseIdURL=videoRes.getId();
-            //Log.e("视频路径：",videoURL);
+            Log.e("视频路径courseSubId：",courseSubId);
             String videoURL=StringUtils.getHostVideo(courseIdURL,courseSubId);
+
+            List<Section> tempList=videoRes.getListSections();
+            String firstChapterId="";
+            if(tempList!=null&&tempList.size()>0){
+                List<Section> tempList2=tempList.get(0).getListChapter();
+                if(tempList2!=null&&tempList2.size()>0){
+                    firstChapterId =tempList2.get(0).getId();
+                }
+            }
+            mPresenter.putFirstChapterId(firstChapterId);
+            //postBroadcast(firstChapterId);
             Log.e("videoURL",videoURL);
             if (!TextUtils.isEmpty(videoURL)) {
                 videoplayer.setUp(videoURL, JCVideoPlayerStandard.SCREEN_LAYOUT_LIST, videoRes.getName());
                 videoplayer.onClick(videoplayer.thumbImageView);
             }
         }catch (Exception e){
-            Log.e("视频路径出错",e.getMessage());
+            Log.e("VideoInfo视频路径出错",e.getMessage());
         }
     }
 
@@ -231,6 +245,13 @@ public class VideoInfoActivity extends SwipeBackActivity<VideoInfoPresenter> imp
         Log.e("InforActivityStart: ",videoInfor.getName());
         context.startActivity(starter);
     }
-
+/*
+    private void postBroadcast(String commentId){
+        Intent intent=new Intent("comid");
+        intent.putExtra("change","yes");
+        intent.putExtra("commentId",commentId);
+        LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
+        Log.e("发送广播",commentId);
+    }*/
 
 }

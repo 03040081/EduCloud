@@ -1,6 +1,7 @@
 package com.zsc.zzc.educloud.ui.adapter;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -10,7 +11,6 @@ import com.zsc.zzc.educloud.R;
 import com.zsc.zzc.educloud.component.ImageLoader;
 import com.zsc.zzc.educloud.model.bean.Course;
 import com.zsc.zzc.educloud.ui.activitys.VideoInfoActivity;
-import com.zsc.zzc.educloud.utils.StringUtils;
 
 import java.util.List;
 
@@ -41,7 +41,8 @@ public class BannerAdapter extends StaticPagerAdapter {
         imageView.setScaleType(ImageView.ScaleType.FIT_XY);
         imageView.setBackgroundResource(R.mipmap.default_320);
         //加载图片
-        ImageLoader.load(ctx, StringUtils.getHostImg(list.get(position).getIcon()), imageView);
+        if (!TextUtils.isEmpty(list.get(position).getIcon()))
+            ImageLoader.load(ctx, list.get(position).getIcon(), imageView);
         //点击事件
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
