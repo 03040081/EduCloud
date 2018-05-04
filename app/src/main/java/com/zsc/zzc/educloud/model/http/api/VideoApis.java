@@ -6,6 +6,8 @@ import com.zsc.zzc.educloud.model.bean.Category;
 import com.zsc.zzc.educloud.model.bean.College;
 import com.zsc.zzc.educloud.model.bean.Comment;
 import com.zsc.zzc.educloud.model.bean.Course;
+import com.zsc.zzc.educloud.model.bean.Favorite;
+import com.zsc.zzc.educloud.model.bean.Learn;
 import com.zsc.zzc.educloud.model.bean.User;
 import com.zsc.zzc.educloud.model.http.response.VideoHttpResponse;
 
@@ -21,8 +23,8 @@ import rx.Observable;
 
 public interface VideoApis {
     //String HOST = "http://47.93.11.130:8080/educloud/";
-    //String HOST = "http://47.93.11.130:8080/zsccloud/";
-    String HOST="http://111.230.87.210:8080/zsccloud/";
+    String HOST = "http://47.93.11.130:8080/zsccloud/";
+    //String HOST="http://111.230.87.210:8080/zsccloud/";
 
 
     /*
@@ -98,6 +100,28 @@ public interface VideoApis {
     Observable<VideoHttpResponse<User>>Login(
             @Query("useraccout") String userAccount,
             @Query("password") String userPass);
+
+    @GET("user/selectLearnsByUserId")
+    Observable<VideoHttpResponse<List<Learn>>> selectLearnsByUserId(@Query("userId") String userId);
+
+    @POST("user/insertLearn")
+    @FormUrlEncoded
+    Observable<VideoHttpResponse<String>> insertLearn(@Field("userId")String userId,@Field("courseId")String courseId);
+
+    @POST("user/deleteLearn")
+    @FormUrlEncoded
+    Observable<VideoHttpResponse<String>> deleteLearn(@Field("id")String id);
+
+    @GET("user/selectFavoritesByUserId")
+    Observable<VideoHttpResponse<List<Favorite>>> selectFavoritesByUserId(@Query("userId")String userId);
+
+    @POST("user/insertFavorite")
+    @FormUrlEncoded
+    Observable<VideoHttpResponse<String>> insertFavorite(@Field("courseId")String courseId,@Field("userId")String userId);
+
+    @POST("user/deleteFavorite")
+    @FormUrlEncoded
+    Observable<VideoHttpResponse<String>> deleteFavorite(@Field("id")String id);
 
     //====================================================== 以下为废弃方案==============================================================
 

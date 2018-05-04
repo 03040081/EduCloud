@@ -1,29 +1,36 @@
 package com.zsc.zzc.educloud.presenter;
 
-import com.zsc.zzc.educloud.base.RxPresenter;
-import com.zsc.zzc.educloud.model.bean.Collection;
-import com.zsc.zzc.educloud.model.bean.Course;
-import com.zsc.zzc.educloud.model.bean.Profession;
-import com.zsc.zzc.educloud.model.bean.Teacher;
-import com.zsc.zzc.educloud.model.db.RealmHelper;
-import com.zsc.zzc.educloud.presenter.contract.ScheduleContract;
+import android.util.Log;
 
-import java.util.ArrayList;
+import com.zsc.zzc.educloud.base.RxPresenter;
+import com.zsc.zzc.educloud.model.bean.Learn;
+import com.zsc.zzc.educloud.model.bean.User;
+import com.zsc.zzc.educloud.model.db.RealmHelper;
+import com.zsc.zzc.educloud.model.http.response.VideoHttpResponse;
+import com.zsc.zzc.educloud.model.net.RetrofitHelper;
+import com.zsc.zzc.educloud.presenter.contract.ScheduleContract;
+import com.zsc.zzc.educloud.utils.RxUtil;
+import com.zsc.zzc.educloud.utils.StringUtils;
+
 import java.util.List;
 
 import javax.inject.Inject;
 
+import rx.Subscription;
+import rx.functions.Action1;
+
 public class SchedulePresenter extends RxPresenter<ScheduleContract.View> implements ScheduleContract.Presenter {
 
-    //private String userId="";
+    private String userId="";
 
     @Inject
     public SchedulePresenter(){
+        this.userId=getUserId();
     }
 
-    /*public void setUserId(String userId) {
-        this.userId = userId;
-    }*/
+    public void setUserId(String userId){
+        this.userId=userId;
+    }
 
     @Override
     public void onRefresh() {
@@ -31,54 +38,49 @@ public class SchedulePresenter extends RxPresenter<ScheduleContract.View> implem
     }
 
     private void getScheduleInfo(){
-
-        List<Collection> collections = RealmHelper.getInstance().getCollectionList();
-        List<Course> list = new ArrayList<>();
-        //VideoType videoType;
-        Course videoInfor=null;
-        for (Collection collection : collections) {
-            /*videoType = new VideoType();
-            videoType.title = collection.title;
-            videoType.pic = collection.pic;
-            videoType.dataId = collection.getId();
-            videoType.score = collection.getScore();
-            videoType.airTime = collection.getAirTime();
-            list.add(videoType);*/
-            videoInfor=new Course();
-            videoInfor.setId(collection.getId());
-            videoInfor.setName(collection.getName());
-            videoInfor.setIcon(collection.getIcon());
-            videoInfor.setIntro(collection.getIntro());
-            Profession profession=new Profession();
-            profession.setName(collection.getProfession().getName());
-            videoInfor.setProfession(profession);
-            Teacher teacher=new Teacher();
-            teacher.setName(collection.getTeacher().getName());
-            videoInfor.setTeacher(teacher);
-            /*Rank rank=new Rank();
-            rank.setRankName(collection.getRankName());
-            videoInfor.setRank(rank);
-            videoInfor.setStudySum(collection.getStudySum());*/
-            list.add(videoInfor);
-        }
-        mView.showContent(list);
-
-        /*Subscription rxSubscription= RetrofitHelper.getVideoApi().getSchedule(userId)
-                .compose(RxUtil.<VideoHttpResponse<List<VideoInfor>>>rxSchedulerHelper())
-                .compose(RxUtil.<List<VideoInfor>>handleResult())
-                .subscribe(new Action1<List<VideoInfor>>() {
+        Subscription rxSubscription= RetrofitHelper.getVideoApi().selectLearnsByUserId(userId)
+                .compose(RxUtil.<VideoHttpResponse<List<Learn>>>rxSchedulerHelper())
+                .compose(RxUtil.<List<Learn>>handleResult())
+                .subscribe(new Action1<List<Learn>>() {
                     @Override
-                    public void call(List<VideoInfor> videoInfors) {
-                        if (videoInfors != null) {
-                            mView.showContent(videoInfors);
+                    public void call(List<Learn> learns) {
+                        if(learns!=null) {
+                            mView.showContent(learns);
                         }
                     }
                 }, new Action1<Throwable>() {
                     @Override
                     public void call(Throwable throwable) {
                         mView.refreshFaild(StringUtils.getErrorMsg(throwable.getMessage()));
+                        Log.e("getScheduleInfo错误",throwable.getMessage());
                     }
                 });
-        addSubscribe(rxSubscription);*/
+        addSubscribe(rxSubscription);
+    }
+
+    public void deleteLearn(String id){
+        Subscription rxSubscription=RetrofitHelper.getVideoApi().deleteLearn(id)
+                .compose(RxUtil.<VideoHttpResponse<String>>rxSchedulerHelper())
+                .compose(RxUtil.<String>handleResult())
+                .subscribe(new Action1<String>() {
+                    @Override
+                    public void call(String s) {
+                        mView.showCallDelete(s);
+                    }
+                }, new Action1<Throwable>() {
+                    @Override
+                    public void call(Throwable throwable) {
+
+                    }
+                });
+        addSubscribe(rxSubscription);
+    }
+
+    private String getUserId() {
+        User user= RealmHelper.getInstance().getUserInfo();
+        if(user!=null) {
+           return user.getId();
+        }
+        return "";
     }
 }

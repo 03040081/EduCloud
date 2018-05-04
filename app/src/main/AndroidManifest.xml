@@ -54,8 +54,8 @@
             android:theme="@style/CustomTransparent" />
         <activity android:name=".ui.activitys.LoginActivity"
             android:theme="@style/CustomTransparent" />
-        <activity android:name=".ui.activitys.RegisterActivity"
-            android:theme="@style/CustomTransparent" />
+        <!--<activity android:name=".ui.activitys.RegisterActivity"
+            android:theme="@style/CustomTransparent" />-->
 
         <!--android:configChanges="orientation|screenSize|keyboardHidden"-->
         <!--android:screenOrientation="portrait"-->

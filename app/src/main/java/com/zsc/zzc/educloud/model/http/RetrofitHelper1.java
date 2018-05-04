@@ -13,7 +13,7 @@ import rx.Observable;
 public class RetrofitHelper1 implements HttpHelper {
 
     private VideoApis mVideoApis;
-    //private GankApis mGankApis;
+
     
     @Inject
     public RetrofitHelper1(VideoApis videoApis) {

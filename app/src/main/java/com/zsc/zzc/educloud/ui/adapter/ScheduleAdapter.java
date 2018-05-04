@@ -11,8 +11,9 @@ import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
 import com.zsc.zzc.educloud.R;
 import com.zsc.zzc.educloud.component.ImageLoader;
 import com.zsc.zzc.educloud.model.bean.Course;
+import com.zsc.zzc.educloud.model.bean.Learn;
 
-public class ScheduleAdapter extends RecyclerArrayAdapter<Course> {
+public class ScheduleAdapter extends RecyclerArrayAdapter<Learn> {
 
     public ScheduleAdapter(Context context) {
         super(context);
@@ -23,7 +24,7 @@ public class ScheduleAdapter extends RecyclerArrayAdapter<Course> {
         return new ScheduleViewHolder(parent);
     }
 
-    class ScheduleViewHolder extends BaseViewHolder<Course> {
+    class ScheduleViewHolder extends BaseViewHolder<Learn> {
         ImageView imgPicture;
         TextView tv_title;
         TextView tv_descript;
@@ -45,18 +46,22 @@ public class ScheduleAdapter extends RecyclerArrayAdapter<Course> {
         }
 
         @Override
-        public void setData(Course data) {
-            tv_title.setText(data.getName());
-            tv_rank.setText("教师:");
-            if (data.getTeacher()!=null)
-                tv_hot.setText(data.getTeacher().getName());
-            tv_profession.setText("专业:");
-            if (data.getProfession()!=null)
-                tv_proname.setText(data.getProfession().getName());
-            tv_descript.setText(data.getIntro());
-            if (!TextUtils.isEmpty(data.getIcon()))
-                ImageLoader.load(getContext(), data.getIcon(), imgPicture);
+        public void setData(Learn data) {
+            Course course=data.getCourse();
+            if(course!=null) {
+                tv_title.setText(course.getName());
+                tv_rank.setText("教师:");
+                if (course.getTeacher() != null)
+                    tv_hot.setText(course.getTeacher().getName());
+                tv_profession.setText("专业:");
+                if (course.getProfession() != null)
+                    tv_proname.setText(course.getProfession().getName());
+                tv_descript.setText(course.getIntro());
+                if (!TextUtils.isEmpty(course.getIcon()))
+                    ImageLoader.load(getContext(), course.getIcon(), imgPicture);
+            }
         }
+
     }
 
 }

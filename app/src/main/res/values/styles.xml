@@ -21,6 +21,7 @@
         <item name="android:windowIsTranslucent">true</item>
         <!--<item name="android:windowAnimationStyle">@android:style/Animation</item>-->
         <item name="android:windowAnimationStyle">@style/AnimationActivity</item>
+
     </style>
     <style name="BlackTheme" parent="CustomTransparent">
         <item name="colorPrimary">@color/dark_black</item>
@@ -30,6 +31,7 @@
         <item name="background">@mipmap/bg</item>
         <item name="mine_background">@mipmap/my_bg</item>
         <item name="card_background">@mipmap/card_bg</item>
+
     </style>
 
     <style name="both_wrap_style">
@@ -207,4 +209,11 @@
         <!-- Label color in TRUE state and bar color FALSE and TRUE State -->
         <item name="colorControlActivated">#FFCC00</item>
     </style>
+    <style name="OverflowMenu" parent="Widget.AppCompat.PopupMenu.Overflow">
+        <item name="overlapAnchor">false</item>
+        <item name="android:dropDownVerticalOffset">4dp</item>
+        <item name="android:layout_marginRight">5dp</item>
+        <item name="android:popupBackground">#daccaaff</item>
+    </style>
+
 </resources>
